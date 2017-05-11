@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lista de productos</h1>
+<div class="btn btn-group pull-right">
+<%= link_to 'Agregar producto', new_product_path, class: 'btn btn-primary ' %>
+<%= link_to 'Importar Muchos Productos', import_list_path, class: 'btn btn-default ' %>
+</div>
+
+<br/><br/>
+<br/>
+
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Nombre cientifico</th>
+      <th>Luz</th>
+      <th>Riego</th>
+      <th>Necesidades</th>
+      <th>Descripccion</th>
+      <th>Tamano</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.nombre %></td>
+        <td><%= product.precio %></td>
+        <td><%= product.nombre_cientifico %></td>
+        <td><%= product.luz %></td>
+        <td><%= product.riego %></td>
+        <td><%= product.necesidades.truncate(27, separator: '...') %></td>
+        <td><%= product.descripccion.truncate(27, separator: '...') %></td>
+        <td><%= product.tamano %></td>
+        <td>
+            <%= link_to product  do %>
+            <i class="fa fa-folder-open" aria-hidden="true"></i>
+            <%end%>
+        </td>
+        <td>
+            <%= link_to edit_product_path(product) do %>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <%end%>
+        </td>
+        <td>
+            <%= link_to gallery_path(product) do %>
+            <i class="fa fa-camera-retro" aria-hidden="true"></i>
+            <%end%>
+        </td>
+        <td><%= link_to  product, method: :delete, data: { confirm: '¿Estas segura de eliminar el producto?' } do %>
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+
+            <%end%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<center>
+<%= will_paginate @products, :previous_label => '← Anterior', :next_label => 'Siguiente →', renderer: BootstrapPagination::Rails %>
+</center>

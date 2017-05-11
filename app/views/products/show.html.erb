@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @product.nombre %>
+</p>
+
+<p>
+  <strong>Precio:</strong>
+  <%= @product.precio %>
+</p>
+
+<p>
+  <strong>Nombre cientifico:</strong>
+  <%= @product.nombre_cientifico %>
+</p>
+
+<p>
+  <strong>Luz:</strong>
+  <%= @product.luz %>
+</p>
+
+<p>
+  <strong>Riego:</strong>
+  <%= @product.riego %>
+</p>
+
+<p>
+  <strong>Necesidades:</strong>
+  <%= @product.necesidades %>
+</p>
+
+<p>
+  <strong>Descripccion:</strong>
+  <%= @product.descripccion %>
+</p>
+
+<p>
+  <strong>Tamano:</strong>
+  <%= @product.tamano %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

@@ -1,0 +1,23 @@
+<h1>Imagenes - <%=@product.nombre %></h1>
+<div class="col-lg-12">
+	<%= form_tag add_photos_path(@product), multipart: true do -%>
+	<div class="row">
+		<div class="col-md-5 panel panel-default" style="padding: 20px; background: #f1f1f1;">
+			<div class="col-md-9">
+				<%= file_field_tag 'file[]', multiple: true %>
+			</div>
+			<div class="col-md-2">
+				<button type="submit" class="btn btn-info">
+				<i class="fa fa-upload" aria-hidden="true"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+	<%end%>
+
+	<div class="row">
+	  <% @product.image_products.each do |img| %>
+	    <img src="<%= img.file.standar%>" alt="img.file">
+	  <% end %>
+	</div>
+</div>
