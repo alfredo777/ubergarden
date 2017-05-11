@@ -33,6 +33,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'will_paginate-bootstrap'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem "mini_magick"
+gem "sqlite3-ruby", :require => "sqlite3"
+
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -48,7 +50,6 @@ group :development, :test do
 end
 
 group :development do
-  gem "sqlite3-ruby", :require => "sqlite3"
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
