@@ -33,7 +33,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'will_paginate-bootstrap'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem "mini_magick"
-gem "sqlite3-ruby", :require => "sqlite3"
+
 
 
 # Use Redis adapter to run Action Cable in production
@@ -47,6 +47,7 @@ gem "sqlite3-ruby", :require => "sqlite3"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem "sqlite3-ruby", :require => "sqlite3"
 end
 
 group :development do
@@ -57,6 +58,15 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+  gem "informant-rails"
+  gem 'newrelic_rpm'
+end
+
+
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
