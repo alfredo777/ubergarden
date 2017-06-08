@@ -1,0 +1,80 @@
+<br/><br/>
+<%if printer %>
+
+<center>
+<h1>¡Gracias por su compra!</h1>
+<h4>Aqui puede descargar su orden</h4>
+</center>
+<div class="btn btn-info pull-right" id="print_button">
+	PDF  <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+</div>
+<%end%>
+<div class="col-lg-12" id="print" style="background: #fff;">
+    <br/><br/>
+    <div class="col-lg-12 pull-right">
+	    <%= image_tag('logo.png', width: 150) %>
+	</div>
+	<br/><br/><br/><br/><br/><br/>
+
+	<div class="panel panel-info">
+		<div class="panel-heading" style="color:#fff;">
+			Datos del pedido
+		</div>
+		<div class="panel-body">
+			<label>Código del pedido</label>
+			<%= @pedido.codigo %><br/>
+			<label>Orden (Muy importante anotarla)</label>
+			<%= @pedido.conekta_order %><br/>
+			<label>Nombre del cliente</label>
+			<%= "#{@pedido.nombre_persona_que_ordena} #{@pedido.apellidos_persona_que_ordena}" %>
+			<label>Dirección del pedido</label>
+			<%= @pedido.direccion %><br/>
+			<label>Estado y Localidad</label>
+			<%= "#{@pedido.estado} / #{@pedido.localidad}"%>
+			<label>Calle, Número y Código Postal</label>
+			<%= "#{@pedido.calle} / Exterior: #{@pedido.numero_exterior} , Interior: #{@pedido.numero_interior} / C.P. #{@pedido.cpostal}"%><br/>
+			<label>Celular | Email </label>
+			<%= "Cel. #{@pedido.telefono_celular} / Email: #{@pedido.email}" %><br/><br/>
+		</div>
+	</div>
+	<table class="table table-striped">
+		<caption>Datos del pedido</caption>
+		<thead>
+			<tr>
+				<th>Producto</th>
+				<th>Color</th>
+				<th>Unitario</th>
+				<th>Cantidad </th>
+				<th>Totales</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @pedido.productos_a_pedidos.each do |pp| %>
+			<tr>
+				<td><%= pp.product.nombre %></td>
+				<td><% eval(pp.color).each do |color| %>
+					<ul>
+						<li><%=color%></li>
+					</ul>
+					<%end%>
+				</td>
+				<td>$<%= pp.product.precio %> MXN</td>
+				<td><%= pp.quanty %></td>
+				<td>$<%= pp.total_price %> MXN</td>
+			</tr>
+			<%end%>
+		</tbody>
+	</table>
+	<h2>Monto total: <span class="pull-right">$<%= @pedido.total %> MXN</span></h2>
+</div>
+<%if printer %>
+<script>
+$('#print_button').click(function(){
+var url = window.location.href;
+var divElements = $("#print").html();
+document.body.innerHTML = divElements ;
+window.print();
+window.location = '/all_items';
+});
+</script>
+<%end%>

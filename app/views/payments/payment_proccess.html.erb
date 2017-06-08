@@ -1,0 +1,19 @@
+<% case @pedido.metodo_de_pago %>
+<% when 'card' %>
+  <%= render partial: '/payments/tarjeta', locals: {pedido: @pedido} %>
+<% when 'oxxo'%>
+ <div id="oxxo"></div>
+ <script>
+   $(document).ready(function(){
+   		$.ajax({
+		    type: 'POST',
+		    url: '<%= oxxo_path %>',
+		    data: { 
+		        'id': '<%=@pedido.id%>'
+		    },
+		    success: function(msg){
+		    }
+		});
+     });
+ </script>
+<%end%>

@@ -8,10 +8,10 @@
 	</div>
 	<div class="col-md-8">
 		<center>
-		<form  style="margin-top: 10px; z-index: 1">
+		<form action="<%= search_path %>" style="margin-top: 10px; z-index: 1">
 			<div class="form-group">
 				<div class="input-group input-group-md">
-					<input type="text" class="form-control" placeholder="Buscar ... ">
+					<input type="text" name="search" class="form-control" placeholder="Buscar ... ">
 					<span class="input-group-btn">
 						<button type="submit" class="btn btn-success"><i class="fa fa-search" aria-hidden="true"></i></button>
 					</span>
@@ -57,39 +57,38 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Arboles</a></li>
-							<li><a href="#">Arboles Frutales</a></li>
-							<li><a href="#">Plantas Arborescentes</a></li>
-							<li><a href="#">Palmas</a></li>
-							<li><a href="#">Arbustos</a></li>
-							<li><a href="#">Enredaderas o Trepadoras</a></li>
-							<li><a href="#">Enredaderas Para el Sol</a></li>
-							<li><a href="#">Plantas de Sol</a></li>
-							<li><a href="#">Plantas de Sol y Sombra</a></li>
-							<li><a href="#">Plantas de follaje y flor para sombra y media sombra</a></li>
-							<li><a href="#">Plantas para setos</a></li>
-							<li><a href="#">Plantas para cubrepisos</a></li>
-							<li><a href="#">Plantas anuales y perenes con flores de poca duración</a></li>
-							<li><a href="#">Plantas con follaje ornamental</a></li>
-							<li><a href="#">Flor Cortada</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Toda la mercancia <span class="sr-only">(current)</span></a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Mayoristas</a></li>							
+							<li><a href="<%= search_path(search: 'arboles') %>">Arboles</a></li>
+							<li><a href="<%= search_path(search: 'arboles frutales') %>">Arboles Frutales</a></li>
+							<li><a href="<%= search_path(search: 'arborescentes') %>">Plantas Arborescentes</a></li>
+							<li><a href="<%= search_path(search: 'palmas') %>">Palmas</a></li>
+							<li><a href="<%= search_path(search: 'arbustos') %>">Arbustos</a></li>
+							<li><a href="<%= search_path(search: 'enredaderas trepadoras') %>">Enredaderas o Trepadoras</a></li>
+							<li><a href="<%= search_path(search: 'enredaderas sol') %>">Enredaderas Para el Sol</a></li>
+							<li><a href="<%= search_path(search: 'plantas de sol') %>">Plantas de Sol</a></li>
+							<li><a href="<%= search_path(search: 'plantas de sol y sombra') %>">Plantas de Sol y Sombra</a></li>
+							<li><a href="<%= search_path(search: 'follaje y flor para sombra y media sombra') %>">Plantas de follaje y flor para sombra y media sombra</a></li>
+							<li><a href="<%= search_path(search: 'setos') %>">Plantas para setos</a></li>
+							<li><a href="<%= search_path(search: 'cubrepisos') %>">Plantas para cubrepisos</a></li>
+							<li><a href="<%= search_path(search: 'anuales y perenes con flores') %>">Plantas anuales y perenes con flores de poca duración</a></li>
+							<li><a href="<%= search_path(search: 'follaje ornamental') %>">Plantas con follaje ornamental</a></li>
+							<li><a href="<%= search_path(search: 'flor cortada') %>">Flor Cortada</a></li>							
 						</ul>
 					</li>
-					<li>
+					<!--<li>
 						<a href="#" >Ofertas y promociones</a>
-					</li>
+					</li>-->
 					<li>
-						<a href="#" >Mayoristas</a>
+						<%= link_to all_items_path do %>
+						   Todos los productos
+						<%end%>
 					</li>
 				</ul>
 				<div class="col-md-3">
 					
 				</div>
 				<ul class="nav navbar-nav navbar-right col-md-3">
-					<li ><a href="#" style="color: #000;"><span class="label label-warning">10</span> Total <i class="fa fa-shopping-cart" aria-hidden="true"></i>: $200 MXN</a></li>
+					<li ><a href="<%= lista_de_productos_path %>" style="color: #000;"><span class="label label-warning" id="prodexp"><%= session[:product].size if !session[:product].nil? %></span> Total <i class="fa fa-shopping-cart" aria-hidden="true"></i>: $<span id="pricexp"><%= session[:price].to_f if !session[:price].nil? %><%= "0" if session[:price].nil? %></span> MXN</a></li>
+					<li><a href="<%=eliminar_items_del_carrito_path%>"><i class="fa fa-ban" aria-hidden="true"></i></a></li>
 				</ul>
 				</div><!-- /.navbar-collapse -->
 				</center>

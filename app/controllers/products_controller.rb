@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
     end
     redirect_to :back
   end
-
+  
   def import_list
 
   end

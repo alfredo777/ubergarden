@@ -1,2 +1,16 @@
-<h1>Tienda#search</h1>
-<p>Find me in app/views/tienda/search.html.erb</p>
+<div class="row">
+	<div class="col-lg-12">
+	    <% unless @products.count == 0 %>
+		<% @products.each do |product| %>
+		<%= render partial: "/layout_parts/item_col", locals: {title: "#{product.nombre}", price: "#{product.precio}", descript: "#{product.descripccion}", img: product.image_products.last, product: product} %>
+		<%end%>
+		<%else%>
+		  <center>
+   		 <%= image_tag('sakura.png', width: '30%')%>
+		  <h4>En este momento no hemos encontrado productos con las caracteríticas o categorías de tu busqueda, pero te invitamos a que visites nuestro catálogo y veas lo que te ofrecemos.</h4><br/>
+		  	    <%= link_to 'Ir a los productos', all_items_path %>
+
+		  </center>
+		<%end%>
+	</div>
+</div>

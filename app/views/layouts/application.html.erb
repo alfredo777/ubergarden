@@ -3,21 +3,29 @@
 	<head>
 		<title>Ubergarden</title>
 		<%= csrf_meta_tags %>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+		<%= favicon_link_tag 'favicon.png', type: 'image/png' %>
+
 	</head>
 	<body>
 		<%= render partial: '/layout_parts/head_menu' %>
-		<div style="width:100%; margin-left: 0px; margin-top:-50px; background: url('/assets/banner/0.jpg'); background-size: 100% 100%; min-height: 600px;" >
-		    <!--
-			<div class="col-md-10 panel panel-default" style="background:rgba(103, 135, 60, 0.7);">
-				
-			</div>-->
-			<%#= image_tag('banner/0.jpg', width: '100%')  %>
-		</div><br/><br/>
+		<%= render partial: '/layout_parts/index_slider' %>
+
+
 		<div class="container">
 			<%= yield %>
 		</div>
 	</body>
     <%= render partial: '/layout_parts/footer' %>
 </html>
+
+<script>
+	/*var h = $(window).height() - 80;
+	var w = $(window).width();
+	$('#carousel-example-generic').height(h);
+	$('.img-in').height(h);
+	$('.img-in').width(w);*/
+
+</script>

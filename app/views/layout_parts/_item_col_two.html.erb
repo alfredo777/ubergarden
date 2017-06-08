@@ -1,0 +1,32 @@
+<div class="col-sm-6 col-md-6">
+	<div class="thumbnail">
+		<% if img != nil %>
+		<img src="<%= img.file.standar%>" alt="img.file" width="100%">
+		<%else%>
+		<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MjAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTViMTJmOWMwNTYgdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMnB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNWIxMmY5YzA1NiI+PHJlY3Qgd2lkdGg9IjI0MiIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI4OS44NTkzNzUiIHk9IjEwNS40Ij4yNDJ4MjAwPC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="">
+		<%end%>
+		<div class="caption">
+			<div class="col-md-9">
+				<h3><%= title %></h3>
+			</div>
+			<div class="col-md-3">
+				<a href="#" class="btn btn-info " role="button"><i class="fa fa-pagelines" aria-hidden="true"></i></a>
+			</div>
+			<div class="col-lg-12 justify">
+			<p><%= descript.truncate(100, separator: '...') %></p>
+			</div>
+			<div class="col-lg-12">
+			<h4 style="text-align: right;">Precio: $<%=price%> MXN</h4>
+			</div>
+			<br/><br/>
+			<div class="btn-group btn-group-justified">
+			    <%= link_to actualizar_carrito_path(product: product.id, price: price, color: product.color1, cantidad: 1), class: "btn btn-warning btn-small ", remote: true do %>
+				 Agregar <i class="fa fa-cart-plus" aria-hidden="true"></i>
+				<%end%>
+				<%= link_to item_path(product.id), class: "btn btn-success btn-small " do -%>		
+				 Detalles <i class="fa fa-list" aria-hidden="true"></i>
+				<%end%>		
+			</div>
+		</div>
+	</div>
+</div>

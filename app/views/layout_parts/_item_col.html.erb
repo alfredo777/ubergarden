@@ -10,7 +10,9 @@
 				<h3><%= title %></h3>
 			</div>
 			<div class="col-md-3">
-				<a href="#" class="btn btn-info " role="button"><i class="fa fa-pagelines" aria-hidden="true"></i></a>
+				<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal<%= product.id %>">
+				  <i class="fa fa-pagelines" aria-hidden="true"></i>
+				  </button>
 			</div>
 			<div class="col-lg-12 justify">
 			<p><%= descript.truncate(100, separator: '...') %></p>
@@ -20,12 +22,95 @@
 			</div>
 			<br/><br/>
 			<div class="btn-group btn-group-justified">
-			    
-				<a href="#" class="btn btn-warning btn-small " role="button">Agregar <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
+			    <%= link_to actualizar_carrito_path(product: product.id, price: price, color: product.color1, cantidad: 1), class: "btn btn-warning btn-small ", remote: true do %>
+				 Agregar <i class="fa fa-cart-plus" aria-hidden="true"></i>
+				<%end%>
 				<%= link_to item_path(product.id), class: "btn btn-success btn-small " do -%>		
 				 Detalles <i class="fa fa-list" aria-hidden="true"></i>
 				<%end%>		
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="modal fade" id="myModal<%= product.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><%= product.nombre %> (<%= product.nombre_cientifico %>)</h4>
+      </div>
+      <div class="modal-body">
+         <div class="col-lg-12">
+          <h4>Nuestra galeria</h4>
+         <%product.image_products.each do |img| %>
+           <div class="col-md-3">
+           <%= image_tag(img.file.standar, width: '100%') %>
+           </div>
+         <%end%>
+         </div>
+         <br/><br/>
+         <table class="table table-bordered">
+			<caption>Necesidades</caption>
+			<thead>
+				<tr>
+					<th>Luz</th>
+					<th>Riego</th>
+					<th>Tamaño</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><%= product.luz %></td>
+					<td><%= product.riego %></td>
+					<td><%= product.tamano %></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<table class="table table-bordered">
+			<caption>Datos Geográficos</caption>
+			<thead>
+				<tr>
+					<th>Pais</th>
+					<th>Región climática</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><%= product.pais_de_procedencia %></td>
+					<td><%= product.region_climatica %></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<table class="table table-bordered">
+			<caption>Datos Científicos</caption>
+			<thead>
+				<tr>
+					<th>Familia</th>
+					<th>Orden</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><%= product.familia %></td>
+					<td><%= product.orden %></td>
+				</tr>
+			</tbody>
+		</table>
+         <a href="<%= product.wikipedia_link %>" target="_blank" class="pull-right"><i>Ver mas en <i class="fa fa-wikipedia-w" aria-hidden="true"></i>ikipedia</i></a><br/><br/><br/><br/>
+      </div>
+      <div class="modal-footer">
+            <div class="btn-group btn-group-justified">
+			    <%= link_to actualizar_carrito_path(product: product.id, price: price, color: product.color1, cantidad: 1), class: "btn btn-warning btn-small ", remote: true do %>
+				 Agregar <i class="fa fa-cart-plus" aria-hidden="true"></i>
+				<%end%>
+				<%= link_to item_path(product.id), class: "btn btn-success btn-small " do -%>		
+				 Detalles <i class="fa fa-list" aria-hidden="true"></i>
+				<%end%>		
+			</div>
+      </div>
+    </div>
+  </div>
 </div>

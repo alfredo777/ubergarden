@@ -1,0 +1,2 @@
+class ProductosInLine < ApplicationRecord
+end

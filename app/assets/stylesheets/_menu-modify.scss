@@ -15,18 +15,9 @@
 	font-size: 18px;
 	padding: 3px;
 	margin: 3px;
-	border: solid 1px #93c54b;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 	}
 	& a:hover{
 	  color: #fff !important;
-	  border: solid 1px #fff;
-	  -webkit-border-radius: 5px;
-		-moz-border-radius: 5px;
-		border-radius: 5px;
-		cursor:pointer;
 	}
 	& .dropdown-menu{
 		background: #81b33a;

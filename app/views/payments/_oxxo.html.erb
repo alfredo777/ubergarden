@@ -1,0 +1,51 @@
+<div class="col-lg-12">
+	<div class="btn-group pull-right">
+		<div class="btn btn-info" id="ficha">Decargar Ficha</div>
+		<div class="btn btn-default" id="orden">Decargar Orden</div>
+	</div>
+</div>
+<div class="col-md-3"></div>
+<div class="col-md-6 panel panel-default" style="background: #fff; padding: 7px;" id="ficha-oxxo">
+	<div class="col-lg-12">
+		<div class="col-md-6">
+			<%= image_tag('oxxo.png', width: '100px') %>
+		</div>
+		<div class="col-md-6">
+			<%= image_tag('logo.png', width: '100px', class: "pull-right") %>
+		</div>
+	</div>
+	<center>
+	<h4>Ficha de pago electrónico </h4>
+	<div class="panel panel-default" style="background: #eee; padding: 3px;">
+		<h2><%= @order.charges.first.payment_method.reference %></h2>
+	</div>
+	</center>
+	<div class="panel panel-default">
+		<ul>
+			<li> 1) Acude a la tienda OXXO mas cercana a tu domicilio.</li>
+			<li> 2) Indica en la caja que quieres realizar un pago en OXXOpay.</li>
+			<li> 3) Dicta el número de esta ficha al cajero.</li>
+			<li> 4) Realiza el pago correspondiente en efectivo.</li>
+			<li> 5) Al finalizar el cajero te entregará un comprobante donde podras verificar que se haya realizado el proceso correctamente <b>conserva ese tiket hasta que recibas tu producto</b>.</li>
+		</ul>
+	</div>
+</div>
+<div>
+	<%= render partial: '/payments/order_payment', :locals => { :pedido => @pedido, printer: false } %>
+</div>
+<script>
+$('#ficha').click(function(){
+	downloadPNG('#ficha-oxxo');
+	});
+	$('#orden').click(function(){
+	downloadPNG('#print');
+	});
+
+downloadPNG = function(id){
+	html2canvas($(id), {
+		onrendered: function (canvas) {
+		  Canvas2Image.saveAsPNG(canvas);
+		}
+	});
+}
+</script>

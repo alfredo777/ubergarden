@@ -85,6 +85,10 @@
     <%= f.text_field :tamano, class: "form-control" %>
   </div>
   <div class="field">
+    <label for="product[categoria_principal_interna]">Categoría Principal</label>
+    <%= render partial: 'products/categoria' %>
+  </div>
+  <div class="field">
     <label for="product[region_climatica]">Región Climatica</label>
     <select name="product[region_climatica]"  class="form-control">
       <option value="Mediterraneo">Clima Mediterraneo</option>

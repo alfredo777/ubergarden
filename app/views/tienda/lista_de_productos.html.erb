@@ -1,0 +1,64 @@
+<% if @productos.count != 0 %>
+<div class="col-md-7">
+	<table class="table table-bordered">
+		<caption>Lista del pedido</caption>
+		<thead>
+			<tr>
+				<th colspan="3" width="40%">Producto</th>
+				<th width="5%">Cantidad</th>
+				<th width="7%">Precio</th>
+				<th >Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%@productos.each do |product|%>
+			<tr>
+				<td width="70px"><%= image_tag(product[:img], width: '50px') %></td>
+				<td><%= product[:nombre] %></td>
+				<td>
+                 <% product[:my_colors].each do |c| %>
+                   <%= c %> <br/>
+                 <%end%>
+				</td>
+
+				<td><span class="pull-right"><%= product[:quantity] %></span></td>
+				<td><span class="pull-right"><%= product[:unit_price] %></span></td>
+				<td ><span class="pull-right">$ <%= product[:total_product]%> MXN</span></td>
+			</tr>
+			<%end%>
+		</tbody>
+	</table>
+	<div class="well" style="height: 90px;">
+		<div class="col-md-6">
+		  <span style="font-size: 30px;">
+		  	
+		  </style>Total:</span>
+		</div>
+		<div class="col-md-6">
+		  <span style="font-size: 30px; float: right;">$<%= @total.to_f %> MXN</span>
+		</div>
+	</div>
+</div>
+<div class="col-md-5 panel panel-default">
+<center><h2>Confirmar la compra.</h2></center>
+<p style="text-align: justify;">
+    <b>Terminos y condiciones de la compra:</b><br/><br/>
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a venenatis diam, id fermentum dui. Nulla id mollis dui. Aenean ut ex eu nisi feugiat elementum quis non metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris rutrum blandit est. Phasellus laoreet egestas sapien vel faucibus. Phasellus dignissim rutrum risus at blandit. Ut a enim scelerisque, ultricies nulla sed, aliquet justo. Suspendisse varius sit amet lectus vitae molestie. Aenean at eros quis nisi elementum fermentum. Morbi magna mauris, hendrerit sit amet orci sed, mollis efficitur lectus. Maecenas faucibus dolor mollis, convallis tortor ut, pretium lectus. Vivamus eu sagittis turpis, a lacinia dui. Nam auctor nisi vitae odio pretium laoreet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed ante urna.
+</p><br/><br/>
+<%= form_tag crear_pedido_path, multipart: true do -%>
+<input type="checkbox" name="conditions" required> Acepto<br/><br/>
+<div class="col-md-6">
+<span style="font-size: 25px; float: right;">$<%= @total.to_f %> MXN</span>
+</div>
+<div class="col-md-6">
+<button class="btn btn-primary pull-right">Finalizar Compra</button><br/><br/>
+</div><br/><br/><br/><br/>
+<%end%>
+</div>
+<%else%>
+  <center>
+    <%= image_tag('sakura.png', width: '30%')%>
+    <h3>Para poder comprar necesitas tener seleccionados productos.</h3>
+    <%= link_to 'Ir a los productos', all_items_path %>
+  </center>
+<%end%>
