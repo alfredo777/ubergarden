@@ -83,3 +83,80 @@
 	color: #fff;
 	font-size: 30px;
 }
+
+.left_menu ul li{
+    height: 39px;
+    border-top: 1px solid #fff;
+    text-decoration: none;
+    list-style:none;
+}
+.left_menu ul li+li{
+    height: 39px;
+    border-top: 1px solid #eee;
+}
+.left_menu ul li a {
+    display: block;
+    color: #444;
+    height: 40px;
+    border: 0 none;
+    font: normal 13px/40px Segoeui, Arial, Verdana, serif;
+    text-decoration: none;
+
+}
+
+.left_menu ul li:hover{
+    height: 39px;
+    background: #f5f7f9;
+    border-top: 1px solid #fff;
+    margin: 0 -6px;
+    padding: 0 6px;
+    line-height: 40px;
+
+}
+.left_menu ul li+li:hover a{
+    height: 39px;
+    background: #f5f7f9;
+    border: 0 none;
+    margin: 0 -6px;
+    padding: 0 6px;
+    line-height: 40px;
+}
+.left_menu ul li:hover + li{
+    border-top: 1px solid #fff;
+}
+.left_menu ul li.current{
+    margin: 0 -6px;
+    padding: 0 6px;
+    height: 38px;
+    background: #7ac5ce;
+    border: 1px solid #71b9c1;
+}
+.left_menu ul li.current a{
+    display: block;
+    color: #fff;
+    height: 38px;
+    text-decoration: none;
+    font: bold 13px/40px Segoeui, Arial, Verdana, serif;
+}
+.left_menu ul li a span{color: #777;}
+.left_menu ul li.current a span{
+    color: #fff;
+    font-weight: normal
+}
+
+.left_menu h3{
+	margin: 6px 0 15px;
+    padding: 0 0 17px 0;
+    border-bottom: 1px solid #e0e0e0;
+    color: #444;
+    font: normal 18px/18px Bitter, Myriad Pro, Verdana, serif;
+    width: 100%;
+}
+.best-items{
+    border-left: 10px solid #e0e0e0;
+    margin-top: 5px;
+    padding: 5px;
+    &:hover{
+        background: #f5f7f9;
+    }
+}

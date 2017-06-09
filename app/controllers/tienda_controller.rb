@@ -2,13 +2,30 @@
 class TiendaController < ApplicationController
   layout 'single'
   def index
-    @products = Product.paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
-
      render layout: "application"
   end
 
   def productos
     @products = Product.paginate(:page => params[:page], :per_page => 40).order('created_at DESC')
+    best_products = ProductosAPedido.group(:product_id).order('count_all desc').count
+    i = 0
+    array_p = []
+    best_products.each do |key,value|
+      @product = Product.find(key)
+      puts @product.nombre
+      array_p.push({
+       product: @product,
+       count: value
+      })
+      i = i + 1
+      if i == 2
+         @best_products = array_p
+          puts "#{@best_products}"
+        return false
+      end
+    end
+      
+   
   end
 
   def search
@@ -81,10 +98,29 @@ class TiendaController < ApplicationController
     @products = @products.riego(params[:search]) if params[:search].present?
     end
 
+    best_products = ProductosAPedido.group(:product_id).order('count_all desc').count
+    i = 0
+    array_p = []
+    best_products.each do |key,value|
+      @product = Product.find(key)
+      puts @product.nombre
+      array_p.push({
+       product: @product,
+       count: value
+      })
+      i = i + 1
+      if i == 2
+         @best_products = array_p
+          puts "#{@best_products}"
+        return false
+      end
+    end
+
   end
 
   def producto
     @product = Product.find(params[:id])
+
   end
 
   def carrito
