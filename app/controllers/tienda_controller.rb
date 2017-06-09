@@ -8,6 +8,9 @@ class TiendaController < ApplicationController
   def productos
     @products = Product.paginate(:page => params[:page], :per_page => 40).order('created_at DESC')
     best_products = ProductosAPedido.group(:product_id).order('count_all desc').count
+    if best_products.nil?
+      @best_products = []
+    else
     i = 0
     array_p = []
     best_products.each do |key,value|
@@ -23,6 +26,7 @@ class TiendaController < ApplicationController
           puts "#{@best_products}"
         return false
       end
+    end
     end
       
    
@@ -99,6 +103,9 @@ class TiendaController < ApplicationController
     end
 
     best_products = ProductosAPedido.group(:product_id).order('count_all desc').count
+    if best_products.nil?
+      @best_products = []
+    else
     i = 0
     array_p = []
     best_products.each do |key,value|
@@ -114,6 +121,7 @@ class TiendaController < ApplicationController
           puts "#{@best_products}"
         return false
       end
+    end
     end
 
   end
