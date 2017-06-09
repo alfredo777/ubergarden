@@ -1,3 +1,4 @@
+<% if mobile_device? %>
 <div class="cart">
 	<a href="<%= lista_de_productos_path %>" style="color: #fff;">
 	    <center>
@@ -9,6 +10,7 @@
 		</div>
 	</a>
 </div>
+<%end%>
 <div class="top-menu">
 	<div class="col-md-2">
 		<center>
@@ -90,8 +92,10 @@
 					
 				</div>
 				<ul class="nav navbar-nav navbar-right col-md-3">
+				<% unless mobile_device? %>
 					<li ><a href="<%= lista_de_productos_path %>" style="color: #000;"><span class="label label-warning" id="prodexp"><%= session[:product].size if !session[:product].nil? %></span> Total <i class="fa fa-shopping-cart" aria-hidden="true"></i>: $<span id="pricexp"><%= session[:price].to_f if !session[:price].nil? %><%= "0" if session[:price].nil? %></span> MXN</a></li>
 					<li><a href="<%=eliminar_items_del_carrito_path%>"><i class="fa fa-ban" aria-hidden="true"></i></a></li>
+				<%end%>
 				</ul>
 				</div><!-- /.navbar-collapse -->
 				</center>
