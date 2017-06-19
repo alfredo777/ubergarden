@@ -1,0 +1,29 @@
+<h1>Orden <%= @order.codigo %></h1>
+<table class="table table-bordered table-shop">
+	<thead >
+		<tr>
+			<th>Codigo interno</th>
+			<th>Codigo de pago</th>
+			<th>Nombre</th>
+			<th>Email</th>
+			<th>Teléfono</th>
+			<th>Metodo de pago</th>
+			<th>Estatus del pago</th>
+			<th>Monto Bancario del pago</th>
+			<th>Fecha de creación</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><%= @order.codigo %></td>
+			<td><%= @order.conekta_order %></td>
+			<td><%= "#{@order.nombre_persona_que_ordena} #{@order.apellidos_persona_que_ordena} "%>
+				<td><%= @order.email %></td>
+				<td><%= @order.telefono_celular %></td>
+				<td><%= @order.metodo_de_pago %></td>
+				<td><%= @order.status.payment_status if @order.status != nil %></td>
+				<td>$<%= @order.status.amount/100 if @order.status != nil %> <%= @order.status.currency if @order.status != nil %></td>
+				<td><%= @order.created_at.strftime('%D %R') %></td>
+			</tr>
+		</tbody>
+	</table>

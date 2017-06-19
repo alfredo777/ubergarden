@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :mobile_device?
+  helper_method :admin_filter
+
 
   def mobile_device?
     result  = request.env['HTTP_USER_AGENT']
@@ -28,4 +30,10 @@ class ApplicationController < ActionController::Base
     puts "********************** #{@browser} / Mobile: #{@mobile} ************************" 
        @mobile
   end
+
+  def admin_filter
+    if session[:admin] == nil
+      redirect_to login_path
+    end
+  end 
 end

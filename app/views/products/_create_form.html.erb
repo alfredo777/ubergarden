@@ -1,0 +1,226 @@
+<div class="container">
+  <div class="row">
+    <section>
+      <div class="wizard">
+        <div class="wizard-inner">
+          <div class="connecting-line"></div>
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+              <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Paso 1">
+                <span class="round-tab">
+                  <i class="glyphicon glyphicon-leaf"></i>
+                </span>
+              </a>
+            </li>
+            <li role="presentation" class="disabled">
+              <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Paso 2">
+                <span class="round-tab">
+                  <i class="glyphicon glyphicon-pencil"></i>
+                </span>
+              </a>
+            </li>
+            <li role="presentation" class="disabled">
+              <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Paso 3">
+                <span class="round-tab">
+                  <i class="glyphicon glyphicon-picture"></i>
+                </span>
+              </a>
+            </li>
+            <li role="presentation" class="disabled">
+              <a href="" data-toggle="tab" aria-controls="step3" role="tab" title="Listo 3">
+                <span class="round-tab">
+                  <i class="glyphicon glyphicon-ok"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <%= form_for(product, :html => { :multipart => true })  do |f| %>
+        <% if product.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+          <ul>
+            <% product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <div class="tab-content">
+          <div class="tab-pane active" role="tabpanel" id="step1">
+            <h3>Datos del producto</h3>
+            <p>Ingresa los datos del producto.</p>
+            <div class="field">
+              <%= f.label :nombre %>
+              <%= f.text_field :nombre, class: "form-control" %>
+            </div>
+            <div class="field">
+              <%= f.label :nombre_cientifico %>
+              <%= f.text_field :nombre_cientifico, class: "form-control" %>
+            </div>
+            <div class="field">
+              <%= f.label :familia %>
+              <%= f.text_field :familia, class: "form-control" %>
+            </div>
+            <div class="field">
+              <%= f.label :orden %>
+              <%= f.text_field :orden, class: "form-control" %>
+            </div>
+            <div class="field">
+              <%= f.label :necesidades %>
+              <%= f.text_area :necesidades, class: "form-control" %>
+            </div>
+            <div class="field">
+              <%= f.label :descripccion %>
+              <%= f.text_area :descripccion, class: "form-control" %>
+            </div>
+            <div class="field">
+              <label for="product[region_climatica]">Región Climatica</label>
+              <select name="product[region_climatica]"  class="form-control">
+                <option value="Mediterraneo">Clima Mediterraneo</option>
+                <option value="Arido">Clima Arido</option>
+                <option value="Intertropical">Clima Intertropical</option>
+                <option value="Contienetal">Clima Continental</option>
+                <option value="Oceánico">Clima Oceánico</option>
+                <option value="Polar">Clima Polar</option>
+              </select>
+            </div>
+            <div class="field">
+              <%= render partial: 'products/paises' %>
+              <br/><br/><br/><br/>
+            </div>
+            <ul class="list-inline pull-right">
+              <li><button type="button" class="btn btn-primary next-step">Continuar <i class="fa fa-arrow-right" aria-hidden="true"></i></button></li>
+            </ul>
+          </div>
+          <div class="tab-pane" role="tabpanel" id="step2">
+            <h3>Datos para venta</h3>
+            <p>Datos específicos del producto para su venta</p>
+            <div class="field">
+              <%= f.label :tamano %>
+              <%= f.text_field :tamano, class: "form-control" %>
+            </div>
+            <div class="field">
+              <%= f.label :luz %>
+              <%= f.text_field :luz, class: "form-control" %>
+            </div>
+            <div class="field">
+              <%= f.label :riego %>
+              <%= f.text_field :riego, class: "form-control" %>
+            </div>
+            <div class="field">
+              <label for="product[categoria_principal_interna]">Categoría Principal</label>
+              <%= render partial: 'products/categoria' %>
+            </div>
+            <div class="field">
+              <div class="col-lg-12">
+                <div class="col-md-6">
+                  <%= f.label :color1 %>
+                  <%= f.text_field :color1, class: "form-control", placeholder: "Color1" %>
+                </div>
+                <div class="col-md-6">
+                  <%= f.label :color2 %>
+                  <%= f.text_field :color2, class: "form-control", placeholder: "Color2" %>
+                </div>
+              </div>
+            </div><br/><br/>
+            <div class="field">
+              <div class="col-lg-12">
+                <div class="col-md-6">
+                  <%= f.label :color3 %>
+                  <%= f.text_field :color3, class: "form-control", placeholder: "Color3" %>
+                </div>
+                <div class="col-md-6">
+                  <%= f.label :color4 %>
+                  <%= f.text_field :color4, class: "form-control", placeholder: "Color4" %>
+                </div>
+              </div>
+            </div><br/><br/>
+            <div class="field">
+              <div class="col-lg-12">
+                <div class="col-md-6">
+                  <%= f.label :color5 %>
+                  <%= f.text_field :color5, class: "form-control", placeholder: "Color5" %>
+                </div>
+              </div>
+            </div>
+            <ul class="list-inline pull-right">
+              <li><button type="button" class="btn btn-default prev-step"><i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button></li>
+              <li><button type="button" class="btn btn-primary next-step">Continuar <i class="fa fa-arrow-right" aria-hidden="true"></i></button></li>
+            </ul>
+          </div>
+          <div class="tab-pane" role="tabpanel" id="step3">
+            <h3>Ingresar Imagenes</h3>
+            <p>Selecciona las imagenes que deseas agregar al proyecto y agrega el precio</p>
+            <%= file_field_tag 'product[file][]', multiple: true %>
+
+            <div class="field">
+              <%= f.label :precio %>
+              <%= f.text_field :precio, class: "form-control" %>
+            </div>
+            <br/><br/>
+
+            <ul class="list-inline pull-right">
+              <li><button type="button" class="btn btn-default prev-step"><i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button></li>
+
+              <li>
+              <button type="submit" class="btn btn-primary">Crear nuevo producto</button></li>
+            </ul>
+          </div>
+        </div>
+        <%end%>
+      </div>
+    </section>
+  </div>
+</div>
+<script>
+$(document).ready(function () {
+//Initialize tooltips
+$('.nav-tabs > li a[title]').tooltip();
+//Wizard
+$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+var $target = $(e.target);
+if ($target.parent().hasClass('disabled')) {
+return false;
+}
+});
+$(".next-step").click(function (e) {
+var $active = $('.wizard .nav-tabs li.active');
+$active.next().removeClass('disabled');
+nextTab($active);
+});
+$(".prev-step").click(function (e) {
+var $active = $('.wizard .nav-tabs li.active');
+prevTab($active);
+});
+});
+function nextTab(elem) {
+$(elem).next().find('a[data-toggle="tab"]').click();
+}
+function prevTab(elem) {
+$(elem).prev().find('a[data-toggle="tab"]').click();
+}
+
+$('#new_product').submit(function(e){
+    var url = $('#new_product').attr('action'); 
+    var formData = new FormData($('#new_product')[0]);
+
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: formData,
+           enctype: 'multipart/form-data',
+           processData: false, 
+           contentType: false, 
+           cache: false,
+           success: function(data)
+           {
+               alert('Se ha agregado correctamente el producto'); 
+               window.location.href = '/admin/products'
+           }
+         });
+
+    e.preventDefault()
+
+});
+</script>

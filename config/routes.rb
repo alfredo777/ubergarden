@@ -1,4 +1,29 @@
 Rails.application.routes.draw do
+
+  get 'admin/customers', to: 'customers#index',as: :customers
+  get 'admin/orders', to: 'customers#orders', as: :orders
+  get 'admin/order/:id', to: 'customers#order', as: :order
+  get 'admin/customers/acount', to: 'customers#acount_information', as: :acount
+  get 'admin/shipments', to: 'customers#shipments',as: :shipments
+  get 'admin/shipment', to: 'customers#shipment', as: :shipment
+  get 'admin/find_orders', to: 'customers#find_orders', as: :find_orders
+  post 'admin/find_orders', to: 'customers#find_orders'
+  get 'admin/today_orders', to: 'customers#today_orders', as: :today_orders
+  get 'admin/montly_orders', to: 'customers#montly_orders', as: :montly_orders
+  get 'admin/admins',to: 'admins#index', as: :admins
+  get 'admin/admins/new',   to: 'admins#new', as: :new_admin
+  get 'admin/admins/create',   to: 'admins#create', as: :create
+  post 'admin/admins/create',   to: 'admins#create'
+  get 'admin/admins/edit',  to: 'admins#edit', as: :edit_admin
+  get 'admin/admins/destroy',  to: 'admins#destroy', as: :destroy_admin
+  get 'admin/admins/update_admin', to: 'admins#update_admin', as: :update_admin
+  post 'admin/admins/update_admin', to: 'admins#update_admin'
+  get 'admin/login', to: "admins#login_admin", as: :login
+  get 'admin', to: "admins#admin", as: :admin_i
+  get 'admin/admins/verify_pass', to: "admins#verify_pass", as: :verify_pass
+  post 'admin/admins/verify_pass', to: "admins#verify_pass"
+  get 'admin/admins/log_out', to: "admins#log_out", as: :log_out
+
   root 'tienda#index'
   get 'all_items', to: 'tienda#productos', as: :all_items
   get 'search', to: 'tienda#search', as: :search
@@ -25,10 +50,8 @@ Rails.application.routes.draw do
 
   get 'payments/payment_proccess', as: :payment_proccess
   post 'payments/payment_proccess'
-
   get 'payments/tarjeta', as: :tarjeta
   post 'payments/tarjeta'
-
   get 'payments/oxxo', as: :oxxo
   post 'payments/oxxo'
 

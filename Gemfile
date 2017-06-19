@@ -36,6 +36,7 @@ gem "mini_magick"
 gem "wikipedia-client"
 gem "activerecord-session_store"
 gem 'conekta'
+gem 'rmagick'
 
 
 

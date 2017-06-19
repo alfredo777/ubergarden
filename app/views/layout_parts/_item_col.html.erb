@@ -7,7 +7,7 @@
 		<%end%>
 		<div class="caption">
 			<div class="col-md-9">
-				<h3><%= title %></h3>
+				<h3><%= title.truncate(11, separator: '...') %></h3>
 			</div>
 			<div class="col-md-3">
 				<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal<%= product.id %>">

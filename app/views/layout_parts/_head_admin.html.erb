@@ -9,37 +9,53 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				</button>
-				<%= link_to products_path do %> 
+				<%= link_to products_path do %>
 				<%= image_tag('logo_blanco.png', width: 80) %>
 				<%end%>
-
 			</div>
 			<center>
+			<% if !session[:admin].nil? %>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav col-md-10 pull-right">
-				   <li class="pull-right">
-					 <a href="#">Pedidos</a>
+					<li class="pull-right">
+						<%= link_to log_out_path do %>
+						  <i class="fa fa-sign-out" aria-hidden="true"></i>
+						<%end%>
 					</li>
 					<li class="pull-right">
-					 <a href="#">Clientes</a>
-					</li>
-					<li class="pull-right">
-					 <a href="#">Adminitradores</a>
-					</li>
-					<li class="dropdown pull-right">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Productos <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Listado de productos</a></li>
-							<li><a href="#">Nuevo Productos</a></li>
-							<li><a href="#">Nuevos Productos</a></li>
-						</ul>
+						<%=link_to customers_path do %>Clientes<%end%>
 					</li>
 					
-				</ul>
-				
-				</div><!-- /.navbar-collapse -->
-				</center>
-				</div><!-- /.container-fluid -->
-			</div>
-		</nav>
+					<li class="pull-right">
+						<li class="pull-right dropdown ">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administradores <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><%=link_to admins_path do %>Ver todos<%end%></li>
+								<li><%=link_to new_admin_path do %>Nuevo Administrador<%end%></li>
+							</ul>
+						</li>
+						<li class="pull-right dropdown ">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pedidos <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><%=link_to orders_path do %>Todos los pedidos<%end%></li>
+								<li><%=link_to today_orders_path do %> Pedidos de hoy <%end%></li>
+								<li><%=link_to  montly_orders_path do %> Pedidos del mes<%end%></li>
+							</ul>
+						</li>
+						<li class="dropdown pull-right">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Productos <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="<%= products_path %>">Listado de productos</a></li>
+								<li><a href="<%= new_product_path %>">Nuevo Producto</a></li>
+							</ul>
+						</li>
+						
+					</ul>
+					
+					</div><!-- /.navbar-collapse -->
+					</center>
+					</div><!-- /.container-fluid -->
+				</div>
+			<%end%>
+			</nav>

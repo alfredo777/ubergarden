@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   layout 'admin'
   before_action :set_product, only: [:show, :edit, :update, :destroy, :products_photos, :add_photos]
+  before_filter :admin_filter
 
   # GET /products
   # GET /products.json
@@ -50,10 +51,21 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
+    puts params[:product][:file]
+    if @product.save
+        params[:product][:file].each do |file|
+          puts "++++++++"
+          puts "#{file}"
+          @image = ImageProduct.new
+          @image.product_id = @product.id
+          @image.file = file
+          @image.save
+        end
+    end
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to gallery_path(@product.id), notice: 'Product was successfully created.' }
+        format.html { redirect_to product_path(@product.id), notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -94,6 +106,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:nombre, :precio, :nombre_cientifico, :luz, :riego, :necesidades, :descripccion, :tamano, :region_climatica, :pais_de_procedencia, :familia, :orden, :categoria_principal_interna, :publicado, :color1, :color2, :color3, :color4, :color5, :name_downcase_no_characters)
+      params.require(:product).permit(:nombre, :precio, :nombre_cientifico, :luz, :riego, :necesidades, :descripccion, :tamano, :region_climatica, :pais_de_procedencia, :familia, :orden, :categoria_principal_interna, :publicado, :color1, :color2, :color3, :color4, :color5, :name_downcase_no_characters, :file)
     end
 end

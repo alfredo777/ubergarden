@@ -1,0 +1,21 @@
+<h1>Admnistradores</h1>
+<table class="table table-bordered table-shop">
+	<caption>Tabla de admnistradores</caption>
+	<thead>
+		<tr>
+			<th>Nombre</th>
+			<th>Email</th>
+			<th colspan="2"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @admins.each do |admin| %>
+		<tr>
+			<td><%= admin.name %></td>
+			<td><%= admin.email %></td>
+			<td><%= link_to 'Editar', edit_admin_path(id: admin.id) %></td>
+			<td><%= link_to 'Eliminar', edit_admin_path(id: admin.id), data: { confirm: '¿Estas segura de eliminar el admnistador?' } %></td>
+		</tr>
+		<%end%>
+	</tbody>
+</table>

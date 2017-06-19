@@ -1,0 +1,17 @@
+<div class="col-lg-12" style="margin-top: 100px; ">
+	<div class=" col-md-3">
+	</div>
+	<div class="col-md-6 panel panel-default" style="background: #eee; padding: 30px;">
+		<%= form_tag verify_pass_path do -%>
+		<label>Email del admnistrador</label>
+		<%= text_field_tag 'email', '', placeholder: 'email', class: "form-control" %><br/>
+		<label>Contraseña del admnistrador</label>
+		<%= password_field_tag 'password', '', placeholder: 'password', class: "form-control" %><br/>
+		<%= submit_tag 'Ingresar al Admnistrador', class: 'btn btn-primary pull-right' %>
+		<%end%>
+	</div>
+</div>
+
+<script>
+	$('#body').css({'background':'url("/assets/banner/19.jpg")'});
+</script>

@@ -1,0 +1,27 @@
+<h1>Clientes</h1>
+<table class="table table-bordered table-shop">
+	<caption>tabla de clientes</caption>
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Nombre</th>
+			<th>Email</th>
+			<th>Teléfono</th>
+		    <th colspan="2"></th>
+		</tr>
+	</thead>
+	<tbody>
+	    <% @customers.each do |customer| %>
+		<tr>
+
+			<td><%= customer.customer_token_conekta %></td>
+			<td><%= customer.customer_name %></td>
+			<td><%= customer.customer_email %></td>
+			<td><%= customer.customer_phone %></td>
+			<td><%= link_to orders_path(customer: customer.customer_token_conekta) do %>Ordenes<%end%></td>
+			<td><%= link_to acount_path do %>Cuenta <%end%></td>
+		</tr>
+		<%end%>
+	</tbody>
+</table>
+<%= will_paginate @customers, :previous_label => '← Anterior', :next_label => 'Siguiente →', renderer: BootstrapPagination::Rails %>

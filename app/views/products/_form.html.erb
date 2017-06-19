@@ -86,10 +86,13 @@
   </div>
   <div class="field">
     <label for="product[categoria_principal_interna]">Categoría Principal</label>
-    <%= render partial: 'products/categoria' %>
+    <%#= render partial: 'products/categoria' %>
+    <%= f.text_field :categoria_principal_interna, class: "form-control", placeholder: 'Categoría principal interna' %>
   </div>
   <div class="field">
     <label for="product[region_climatica]">Región Climatica</label>
+    <%= f.text_field :region_climatica, class: "form-control" , placeholder: 'Región Climática' %>
+    <!--
     <select name="product[region_climatica]"  class="form-control">
       <option value="Mediterraneo">Clima Mediterraneo</option>
       <option value="Arido">Clima Arido</option>
@@ -98,9 +101,12 @@
       <option value="Oceánico">Clima Oceánico</option>
       <option value="Polar">Clima Polar</option>
     </select>
+    -->
   </div>
   <div class="field">
-    <%= render partial: 'products/paises' %>
+    <%#= render partial: 'products/paises' %>
+    <label for="product[pais_de_procedencia]">Región Climatica</label>
+    <%= f.text_field :pais_de_procedencia, class: "form-control", placeholder: 'Pais' %>
     <br/><br/><br/><br/>
   </div>
 </div>

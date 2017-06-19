@@ -1,0 +1,16 @@
+<h1>Crerar un administrador</h1>
+<div class="col-lg-12">
+	<div class=" col-md-3">
+	</div>
+	<div class="col-md-6 panel panel-default" style="background: #eee; padding: 30px;">
+		<%= form_tag create_path do -%>
+		<label>Nombre del admnistrador</label>
+		<%= text_field_tag 'name', '' , placeholder: 'nombre', class: "form-control" %><br/>
+		<label>Email del admnistrador</label>
+		<%= text_field_tag 'email', '', placeholder: 'email', class: "form-control" %><br/>
+		<label>Contraseña del admnistrador</label>
+		<%= text_field_tag 'password', '', placeholder: 'password', class: "form-control" %><br/>
+		<%= submit_tag 'Crear Admnistrador', class: 'btn btn-primary pull-right' %>
+		<%end%>
+	</div>
+</div>
