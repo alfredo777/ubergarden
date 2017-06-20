@@ -1,29 +1,189 @@
 <h1>Orden <%= @order.codigo %></h1>
-<table class="table table-bordered table-shop">
-	<thead >
-		<tr>
-			<th>Codigo interno</th>
-			<th>Codigo de pago</th>
-			<th>Nombre</th>
-			<th>Email</th>
-			<th>Teléfono</th>
-			<th>Metodo de pago</th>
-			<th>Estatus del pago</th>
-			<th>Monto Bancario del pago</th>
-			<th>Fecha de creación</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td><%= @order.codigo %></td>
-			<td><%= @order.conekta_order %></td>
-			<td><%= "#{@order.nombre_persona_que_ordena} #{@order.apellidos_persona_que_ordena} "%>
-				<td><%= @order.email %></td>
-				<td><%= @order.telefono_celular %></td>
-				<td><%= @order.metodo_de_pago %></td>
-				<td><%= @order.status.payment_status if @order.status != nil %></td>
-				<td>$<%= @order.status.amount/100 if @order.status != nil %> <%= @order.status.currency if @order.status != nil %></td>
-				<td><%= @order.created_at.strftime('%D %R') %></td>
-			</tr>
-		</tbody>
-	</table>
+<div class="col-lg-12">
+	<div class="btn-group pull-right">
+		<%= link_to 'Activar pedido', activate_order_path(code: @order.codigo), class: 'btn btn-success' unless @order.activacion_de_pedido %>
+
+		<% unless @order.finalizacion_de_pedido %>
+		<% if @order.estatus_del_pedido == "En trayecto" %>
+		<%= link_to 'Finalizar pedido', finish_order_path(code: @order.codigo), class: 'btn btn-warning' if @order.activacion_de_pedido %>
+		<%end%>
+		<%end%>
+
+		<% if @order.activacion_de_pedido %>
+		<% if @order.estatus_del_pedido == "En almacen" %>
+		<%= link_to send_order_path(code: @order.codigo), class: 'btn btn-default'  do%>
+		 Enviar pedido <i class="fa fa-truck" aria-hidden="true"></i>
+		<%end%>
+		<%end%>
+		<%end%>
+	</div>
+</div>
+<div class="col-lg-12">
+	<ul class="nav nav-tabs" role="tablist">
+		<li role="presentation" class="active"><a href="#orden" aria-controls="orden" role="tab" data-toggle="tab">Orden de compra</a></li>
+		<li role="presentation"><a href="#envio" aria-controls="envio" role="tab" data-toggle="tab">Datos de envio y estado</a></li>
+	</ul>
+	<div class="tab-content">
+		<div role="tabpanel" class="tab-pane active" id="orden">
+			<table class="table table-bordered table-shop">
+				<caption>Orden de compra</caption>
+				<thead>
+					<tr>
+						<th>Codigo interno</th>
+						<th>Codigo de pago</th>
+						<th>Nombre</th>
+						<th>Email</th>
+						<th>Teléfono</th>
+						<th>Metodo de pago</th>
+						<th>Estatus del pago</th>
+						<th>Monto Bancario del pago</th>
+						<th>Fecha de creación</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><%= @order.codigo %></td>
+						<td><%= @order.conekta_order %></td>
+						<td><%= "#{@order.nombre_persona_que_ordena} #{@order.apellidos_persona_que_ordena} "%></td>
+						<td><%= @order.email %></td>
+						<td><%= @order.telefono_celular %></td>
+						<td><%= @order.metodo_de_pago %></td>
+						<td><%= @order.status.payment_status if @order.status != nil %></td>
+						<td>$<%= @order.status.amount/100 if @order.status != nil %> <%= @order.status.currency if @order.status != nil %></td>
+						<td><%= @order.created_at.strftime('%D %R') %></td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table table-bordered table-shop table-striped">
+				<caption>Tabla de productos</caption>
+				<thead>
+					<tr>
+						<th>Producto</th>
+						<th>Color</th>
+						<th>Unitario</th>
+						<th>Cantidad </th>
+						<th>Totales</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @order.productos_a_pedidos.each do |pp| %>
+					<tr>
+						<td><%= pp.product.nombre %></td>
+						<td><% eval(pp.color).each do |color| %>
+							<ul>
+								<li><%=color%></li>
+							</ul>
+							<%end%>
+						</td>
+						<td>$<%= pp.product.precio %> MXN</td>
+						<td><%= pp.quanty %></td>
+						<td>$<%= pp.total_price %> MXN</td>
+					</tr>
+					<%end%>
+				</tbody>
+			</table>
+		</div>
+		<div role="tabpanel" class="tab-pane" id="envio">
+			<table class="table table-bordered table-shop table-striped">
+				<caption>Tabla de pedido</caption>
+				<thead>
+					<tr>
+						<th>Concepto</th>
+						<th>Dato</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Creado</td>
+						<td><%= @order.created_at.strftime('%D %R') %></td>
+					</tr>
+					<tr>
+						<td>Actualizado</td>
+						<td><%= @order.updated_at.strftime('%D %R') %></td>
+					</tr>
+					<tr>
+						<td>Dirección</td>
+						<td><%= @order.direccion %></td>
+					</tr>
+					<tr>
+						<td>Calle</td>
+						<td><%= @order.calle %></td>
+					</tr>
+					<tr>
+						<td>Colonia</td>
+						<td><%= @order.colonia %></td>
+					</tr>
+					<tr>
+						<td>Número Exterior</td>
+						<td><%= @order.numero_exterior %></td>
+					</tr>
+					<tr>
+						<td>Número Interior</td>
+						<td><%= @order.numero_interior %></td>
+					</tr>
+					<tr>
+						<td>Código postal</td>
+						<td><%= @order.cpostal %></td>
+					</tr>
+					<tr>
+						<td>Localidad</td>
+						<td><%= @order.localidad %></td>
+					</tr>
+					<tr>
+						<td>Estado</td>
+						<td><%= @order.estado %></td>
+					</tr>
+					<tr>
+						<td>País</td>
+						<% if @order.pais.nil? %>
+						<td>México</td>
+						<%else%>
+						<td><%= @order.pais %></td>
+						<%end%>
+					</tr>
+					<tr>
+						<td>Método de envio</td>
+						<td><%= @order.metodo_de_envio %></td>
+					</tr>
+					<tr>
+						<td>Costo de envio</td>
+						<td><%= @order.costo_de_envio %></td>
+					</tr>
+					<tr>
+						<td>Activación del pedido</td>
+						<td><%= @order.activacion_de_pedido %></td>
+					</tr>
+					<tr>
+						<td>Finalización del pedido</td>
+						<td><%= @order.finalizacion_de_pedido %></td>
+					</tr>
+					<tr>
+						<td>Estatus del pedido</td>
+						<td><%= @order.estatus_del_pedido %></td>
+					</tr>
+					<tr>
+						<td>Aceptación de términos el pedido</td>
+						<td><%= @order.aceptacion_de_terminos %></td>
+					</tr>
+					<tr>
+						<td>Email principal</td>
+						<td><%= @order.email %></td>
+					</tr>
+					<tr>
+						<td>Email secundario</td>
+						<td><%= @order.email2 %></td>
+					</tr>
+					<tr>
+						<td>Personas autorizadas a recoger</td>
+						<td>
+							<%= @order.persona_autorizada_a_recoger_1 %><br/>
+							<%= @order.persona_autorizada_a_recoger_2 %><br/>
+							<%= @order.persona_autorizada_a_recoger_3 %><br/>
+							<%= @order.persona_autorizada_a_recoger_4 %><br/>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

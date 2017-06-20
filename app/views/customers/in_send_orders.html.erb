@@ -1,4 +1,4 @@
-<h1>Pedidos de este mes - <%= @orders.count %></h1>
+<h1>Ordenes en proceso de envio</h1>
 <%= form_tag find_orders_path do -%>
 <div class="form-group">
 	<div class="input-group input-group-md">
@@ -9,15 +9,5 @@
 	</div>
 </div>
 <%end%>
-<br/>
-<%= link_to  montly_orders_path(format: "csv"), class: 'btn btn-info pull-right' do%>
-<i class="fa fa-cloud-download" aria-hidden="true"></i> Descargar datos Mensuales
-<%end%>
-<%if @orders.count != 0  %>
-<%= render partial: 'customers/orders', locals: {caption: "Tabla de ordenes del mes", orders: @orders}%>
+<%= render partial: 'customers/orders', locals: {caption: "Tabla de ordenes", orders: @orders}%>
 <%= will_paginate @orders, :previous_label => '← Anterior', :next_label => 'Siguiente →', renderer: BootstrapPagination::Rails %>
-<%else%>
-<center>
-<p>No se han encontrado ordenes para este mes</p>
-</center>
-<%end%>

@@ -1,7 +1,7 @@
 class Pedido < ApplicationRecord
 	has_many :productos_a_pedidos
-	scope :codigo, lambda { |codigo| where(["nombre LIKE ?", "#{codigo}"])}
-	scope :conekta_order, lambda { |conekta_order| where(["nombre LIKE ?", "#{conekta_order}"])}
+	scope :codigo, lambda { |codigo| where(["codigo LIKE ?", "#{codigo}"])}
+	scope :conekta_order, lambda { |conekta_order| where(["conekta_order LIKE ?", "#{conekta_order}"])}
 	scope :this_month, -> { where(created_at: Time.now.beginning_of_month..Time.now.end_of_month) }
 
 	def status
