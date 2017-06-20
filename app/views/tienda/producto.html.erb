@@ -2,10 +2,10 @@
 	<div class="p-head">
 		<h1><%= @product.nombre %></h1>
 		<h4><a href="<%= @product.wikipedia_link %>" target="_blank"><i><%= @product.nombre_cientifico %></i></a></h4>
-		<input type="hidden" class="rating" id="rating"/>
+		<!--<input type="hidden" class="rating" id="rating"/>
 		<script>
 		$('#rating').rating();
-		</script>
+		</script>-->
 	</div>
 	<div class="col-lg-4">
 		<% @product.image_products.each_with_index do |img, index| %>

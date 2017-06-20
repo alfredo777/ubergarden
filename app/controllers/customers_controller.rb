@@ -99,6 +99,8 @@ class CustomersController < ApplicationController
 
 
   def acount_information
+    @customer = CustomerRegister.find_by_customer_email(params[:email])
+    @orders = @customer.pedidos.last(10)
   end
 
   def shipments

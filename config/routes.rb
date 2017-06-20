@@ -16,9 +16,6 @@ Rails.application.routes.draw do
   get 'admin/inprocess_orders', to: 'customers#inprocess_orders', as: :inprocess_orders
   get 'admin/finish_orders', to: 'customers#finish_orders', as: :finish_orders
   get 'admin/in_send_orders', to: 'customers#in_send_orders', as: :in_send_orders
-
-
-
   get 'admin/activate_order', to: 'customers#activate_order', as: :activate_order
   post 'admin/activate_order', to: 'customers#activate_order'
   get 'admin/send_order', to: 'customers#send_order', as: :send_order

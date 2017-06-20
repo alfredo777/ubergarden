@@ -28,21 +28,21 @@
         <td><%= product.descripccion.truncate(27, separator: '...') %></td>
         <td><%= product.tamano %></td>
         <td>
-            <%= link_to product  do %>
+            <%= link_to product, class: "btn btn-success"  do %>
             <i class="fa fa-folder-open" aria-hidden="true"></i>
             <%end%>
         </td>
         <td>
-            <%= link_to edit_product_path(product) do %>
+            <%= link_to edit_product_path(product), class: "btn btn-info" do %>
             <i class="fa fa-pencil" aria-hidden="true"></i>
             <%end%>
         </td>
         <td>
-            <%= link_to gallery_path(product) do %>
+            <%= link_to gallery_path(product), class: "btn btn-default" do %>
             <i class="fa fa-camera-retro" aria-hidden="true"></i>
             <%end%>
         </td>
-        <td><%= link_to  product, method: :delete, data: { confirm: '¿Estas segura de eliminar el producto?' } do %>
+        <td><%= link_to  product, method: :delete, data: { confirm: '¿Estas segura de eliminar el producto?' }, class: "btn btn-danger"  do %>
         <i class="fa fa-trash-o" aria-hidden="true"></i>
 
             <%end%>

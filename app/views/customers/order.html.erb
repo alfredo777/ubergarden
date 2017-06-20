@@ -68,7 +68,7 @@
 				<tbody>
 					<% @order.productos_a_pedidos.each do |pp| %>
 					<tr>
-						<td><%= pp.product.nombre %></td>
+						<td><%= link_to pp.product.nombre, product_path(pp.product_id), target: '_blank' %></td>
 						<td><% eval(pp.color).each do |color| %>
 							<ul>
 								<li><%=color%></li>
