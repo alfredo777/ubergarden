@@ -45,6 +45,16 @@ Rails.application.routes.draw do
   get 'tienda/eliminar_items_del_carrito', as: :eliminar_items_del_carrito
   get 'tienda/crear_pedido', as: :crear_pedido
   post 'tienda/crear_pedido' 
+  get 'tienda/buscar_pedido', as: :buscar_pedido
+  post 'tienda/buscar_pedido'
+  get 'tienda/ver_pedido', as: :ver_pedido
+  post 'tienda/ver_pedido'
+  get 'tienda/producto_no_encontrado', as: :producto_no_encontrado
+  post 'tienda/producto_no_encontrado'
+  get 'tienda/contacto', as: :contacto
+  post 'tienda/contacto'
+  get 'tienda/contactado', as: :contactado
+  post 'tienda/contactado'
   get 'admin/products/:id/products_photos',to: 'products#products_photos', as: :gallery
   get 'admin/products/:id/add_photos',to: 'products#add_photos', as: :add_photos
   post 'admin/products/:id/add_photos',to: 'products#add_photos'

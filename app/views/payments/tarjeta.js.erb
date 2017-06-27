@@ -1,1 +1,1 @@
-$('#card-id').html("<%= escape_javascript render(:partial => '/payments/order_payment', :locals => { :pedido => @pedido, printer: true }) %>");
+$('#card-id').html("<%= escape_javascript render(:partial => '/payments/order_payment', :locals => { :pedido => @pedido, printer: true, shipment_cost: @shipment_cost }) %>");

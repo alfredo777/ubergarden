@@ -1,3 +1,5 @@
+<%= render partial: '/tienda/contacto' %>
+
 <% if mobile_device? %>
 <div class="cart">
 	<a href="<%= lista_de_productos_path %>" style="color: #fff;">
@@ -44,7 +46,8 @@
 		</a>
 		<a>
 		<i class="fa fa-youtube-square" aria-hidden="true"></i> </a>
-		<a>
+		
+		<a href="#" data-toggle="modal" data-target="#contactModal">
 			<i class="fa fa-envelope" aria-hidden="true"></i>
 		</a>
 		</h3>

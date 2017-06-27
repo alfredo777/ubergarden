@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :mobile_device?
   helper_method :admin_filter
+  helper_method :transport_cost
 
 
   def mobile_device?
@@ -36,4 +37,62 @@ class ApplicationController < ActionController::Base
       redirect_to login_path
     end
   end 
+
+  def transport_cost(qdep)
+   fixed_cost = {
+      salary: 10000,
+      secure: 2000
+    }
+
+    variable_cost = {
+      gasoline: (16.28*0.30)+16.28,
+      mantemince: 5000,
+      neumatics: 2500 * 4,
+      oil: 1800
+    }
+
+    day_route_kilometers = 350
+    day_salary = fixed_cost[:salary]/30
+    day_secure = fixed_cost[:secure]/30
+    gasoline_day = variable_cost[:gasoline] * (day_route_kilometers/8)
+    puts "Day Gasoline #{gasoline_day}"
+    distance_to_mantamance = day_route_kilometers.to_f/25000.to_f
+    puts "Porcent to mantemince #{distance_to_mantamance.to_f}"
+    mantamance_daily_cost = variable_cost[:mantemince] * distance_to_mantamance 
+    puts "mantemince daily cost #{mantamance_daily_cost}"
+    oil_daily = variable_cost[:oil] * distance_to_mantamance.to_f
+    neumatic_devast_cost = day_route_kilometers.to_f/50000.to_f
+    puts "Neumatic devast #{neumatic_devast_cost.to_f}"
+    neumatic_devast_cost = variable_cost[:neumatics] * neumatic_devast_cost
+    puts "Neumatic devast #{neumatic_devast_cost}"
+    broute_variable_cost = gasoline_day + mantamance_daily_cost + oil_daily + neumatic_devast_cost + neumatic_devast_cost
+    broute_fixed_cost = day_salary + day_secure
+    puts "Varaible Cost in broute #{broute_variable_cost}"
+    puts "Fixed cost in broute #{broute_fixed_cost}"
+    value_of_vehicle = 250000
+    util_live =  5
+    value_rescue = value_of_vehicle / util_live
+    factor_rescue = 100/util_live
+    puts "Rescue factor #{factor_rescue}"
+    deprecate_mont = (factor_rescue * 2)/100.to_f
+    active_deprecate_per_year = value_of_vehicle * deprecate_mont
+    dayli_active_deprecate_per_year = active_deprecate_per_year / 365
+    variable_cost = broute_variable_cost + dayli_active_deprecate_per_year
+    puts "Variable cost #{variable_cost}"
+    total_cost = broute_fixed_cost + variable_cost
+    puts "Total cost #{total_cost}"
+    tg = 0.30
+    price_transport = (total_cost * tg) + total_cost
+    transport_taxes = 0.25 
+    price_transport_whit_taxes = (price_transport * transport_taxes) + price_transport
+    puts "Price transport $ #{price_transport} MXN"
+    puts "Price transport + taxes $ #{price_transport_whit_taxes} MXN"
+    min_clients_route = price_transport_whit_taxes / 100
+    puts "Quanty clientes or products required to send charge #{min_clients_route.round()}"
+    cost_by_client = price_transport_whit_taxes / min_clients_route.round()
+    cost_by_client = cost_by_client.to_f/5
+    puts "Price for transport $ #{cost_by_client.round(2)} MXN"
+    unit_cost =  cost_by_client.to_f * qdep
+    unit_cost = unit_cost.round(2)
+  end
 end

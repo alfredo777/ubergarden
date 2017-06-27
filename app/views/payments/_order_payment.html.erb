@@ -63,9 +63,16 @@
 				<td>$<%= pp.total_price %> MXN</td>
 			</tr>
 			<%end%>
+			<tr>
+			  <td>Envio</td>
+			  <td></td>
+			  <td></td>
+			  <td></td>
+			  <td>$ <%= @shipment_cost.to_f %> MXN</td>
+			</tr>
 		</tbody>
 	</table>
-	<h2>Monto total: <span class="pull-right">$<%= @pedido.total %> MXN</span></h2>
+	<h2>Monto total: <span class="pull-right">$<%= @pedido.total + @shipment_cost.to_f%> MXN</span></h2>
 </div>
 <%if printer %>
 <script>

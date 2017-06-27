@@ -152,10 +152,24 @@ class TiendaController < ApplicationController
       end
     end
 
+
+
     puts "#{session[:product]}"
     puts "#{session[:price]}"
     puts "#{session[:color]}"
     @q = q
+    
+    if session[:qdep].nil?
+      session[:qdep] = 0
+      session[:qdep] = session[:qdep] + @q
+      else
+      session[:qdep] = session[:qdep] + @q
+    end
+
+    session[:shipment_cost] = transport_cost(session[:qdep])
+
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>>> #{session[:qdep]}"
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>>> #{session[:shipment_cost]}"
     respond_to do |format|
       format.js
     end
@@ -168,6 +182,8 @@ class TiendaController < ApplicationController
       session[:pedido_final] = nil
       session[:line_items] = nil
       session[:productos_in_line] = nil
+      session[:qdep] = nil
+      session[:shipment_cost] = nil
        line_items_x = LineItem.find_by_session_token(session[:session_token])
        unless line_items_x.nil?
         line_items_x.destroy
@@ -299,6 +315,8 @@ class TiendaController < ApplicationController
     pedido.total = session[:price].to_i
     pedido.session_token =  session[:session_token]
     pedido.aceptacion_de_terminos = params[:conditions]
+    pedido.metodo_de_envio = "Uber Garden"
+    pedido.costo_de_envio = session[:shipment_cost].round()
      if current_user
       pedido.user_id = current_user.id
      end
@@ -306,6 +324,7 @@ class TiendaController < ApplicationController
     else
       pedido = pdx 
       pedido.total = session[:price].to_i
+      pedido.costo_de_envio = session[:shipment_cost].round()
       pedido.conekta_customer = nil
       pedido.conekta_order = nil
       pedido.customer_register_id = nil
@@ -331,5 +350,77 @@ class TiendaController < ApplicationController
 
   def confirmacion_pago
     @pedido = Pedido.find(params[:id])
+  end
+
+  def buscar_pedido
+      @order = Pedido.find_by_codigo(params[:search])
+      if @order.nil?
+        @order = Pedido.find_by_conekta_order(params[:search])
+        if @order.nil?
+          flash[:notice] = "No se ha encontrado el pedido que se busca"
+          redirect_to producto_no_encontrado_path
+          else
+          redirect_to ver_pedido_path(id: @order.id)
+        end
+
+        else
+        redirect_to ver_pedido_path(id: @order.id)
+      end
+  end
+
+  def ver_pedido
+    @order = Pedido.find(params[:id])
+    best_products = ProductosAPedido.group(:product_id).order('count_all desc').count
+    if best_products.nil?
+      @best_products = []
+    else
+    i = 0
+    array_p = []
+    best_products.each do |key,value|
+      @product = Product.find(key)
+      puts @product.nombre
+      array_p.push({
+       product: @product,
+       count: value
+      })
+      i = i + 1
+      if i == 2
+         @best_products = array_p
+          puts "#{@best_products}"
+        return false
+      end
+    end
+    end
+  end
+
+  def producto_no_encontrado
+  end
+
+  def contacto
+    redirect_to contactado_path
+  end
+
+  def contactado
+     best_products = ProductosAPedido.group(:product_id).order('count_all desc').count
+    if best_products.nil?
+      @best_products = []
+    else
+    i = 0
+    array_p = []
+    best_products.each do |key,value|
+      @product = Product.find(key)
+      puts @product.nombre
+      array_p.push({
+       product: @product,
+       count: value
+      })
+      i = i + 1
+      if i == 2
+         @best_products = array_p
+          puts "#{@best_products}"
+        return false
+      end
+    end
+    end
   end
 end

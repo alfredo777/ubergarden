@@ -31,7 +31,7 @@
 	</div>
 </div>
 <div>
-	<%= render partial: '/payments/order_payment', :locals => { :pedido => @pedido, printer: false } %>
+	<%= render partial: '/payments/order_payment', :locals => { :pedido => @pedido, printer: false, shipment_cost: @shipment_cost } %>
 </div>
 <script>
 $('#ficha').click(function(){

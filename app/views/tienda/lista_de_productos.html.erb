@@ -28,15 +28,29 @@
 			<%end%>
 		</tbody>
 	</table>
-	<div class="well" style="height: 90px;">
+	<div class="well" style="height: 130px;">
 		<div class="col-md-6">
-		  <span style="font-size: 30px;">
-		  	
-		  </style>Total:</span>
+		  <span style="font-size: 20px;">
+		  Subtotal:</span>
 		</div>
 		<div class="col-md-6">
-		  <span style="font-size: 30px; float: right;">$<%= @total.to_f %> MXN</span>
+		  <span style="font-size: 20px; float: right;">$<%= @total.to_f %> MXN</span>
 		</div>
+		<div class="col-md-6">
+		  <span style="font-size: 20px;">
+		  Costo de envio:</span>
+		</div>
+		<div class="col-md-6">
+		  <span style="font-size: 20px; float: right;">$<%= session[:shipment_cost].to_f %> MXN</span>
+		</div>
+		<div class="col-md-6">
+		  <span style="font-size: 20px;">
+		  Total:</span>
+		</div>
+		<div class="col-md-6">
+		  <span style="font-size: 20px; float: right;">$<%= session[:shipment_cost].to_f +  @total.to_f %> MXN</span>
+		</div>
+
 	</div>
 </div>
 <div class="col-md-5 panel panel-default">
@@ -48,7 +62,7 @@
 <%= form_tag crear_pedido_path, multipart: true do -%>
 <input type="checkbox" name="conditions" required> Acepto<br/><br/>
 <div class="col-md-6">
-<span style="font-size: 25px; float: right;">$<%= @total.to_f %> MXN</span>
+<span style="font-size: 25px; float: right;">$<%= session[:shipment_cost].to_f + @total.to_f %> MXN</span>
 </div>
 <div class="col-md-6">
 <button class="btn btn-primary pull-right">Finalizar Compra</button><br/><br/>

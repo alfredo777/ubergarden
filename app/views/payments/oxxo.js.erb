@@ -1,1 +1,1 @@
-$('#oxxo').html("<%= escape_javascript render(:partial => '/payments/oxxo', :locals => { :pedido => @pedido, orden: @orden }) %>");
+$('#oxxo').html("<%= escape_javascript render(:partial => '/payments/oxxo', :locals => { :pedido => @pedido, orden: @orden, shipment_cost: @shipment_cost }) %>");

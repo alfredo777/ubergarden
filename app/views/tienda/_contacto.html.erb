@@ -1,0 +1,29 @@
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1> <i class="fa fa-envelope" aria-hidden="true"></i> Contacto</h1>
+			</div>
+			<%= form_tag contacto_path do -%>
+				<div class="modal-body">
+				  <label>¿Porque nos contactas?</label>
+					<%= text_field_tag 'subject', '', placeholder: "¿Porque nos contactas?", required: true, class: "form-control" %>
+					<label>Escribe tu nombre</label>
+					<%= text_field_tag 'nombre', '', placeholder: "Escribe tu nombre", required: true, class: "form-control" %>
+					<label>Email de contacto</label>
+					<%= email_field_tag 'email', '', placeholder: "Email de contacto", required: true, class: "form-control" %>
+				  <label>Teléfono de contacto</label>
+					<%= text_field_tag 'telefono', '', placeholder: "Teléfono de contacto", required: true, class: "form-control" %>
+					<label>Lugar de donde nos contacta</label>
+					<%= text_field_tag 'lugar', '', placeholder: "Lugar de donde nos contacta", required: true, class: "form-control" %>
+					<label>Contenido</label>
+					<%= text_area_tag 'contenido', '', placeholder: "Explique la razón por la que nos contacta", required: true, class: "form-control" %>
+				</div>
+				<div class="modal-footer">
+					<a  class="btn btn-default" data-dismiss="modal">Cerrar</a>
+					<button type="submit" class="btn btn-primary">Contactar</button>
+				</div>
+			<%end%>
+		</div>
+	</div>
+</div>

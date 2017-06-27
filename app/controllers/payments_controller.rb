@@ -28,10 +28,10 @@ layout 'single'
 
   end
 
-	def tarjeta
-		@pedido = Pedido.find(params[:id])
+  def tarjeta
+	@pedido = Pedido.find(params[:id])
 
-		if @pedido.conekta_customer.nil?
+	if @pedido.conekta_customer.nil?
 		@customer = create_customer("#{@pedido.nombre_persona_que_ordena} #{@pedido.apellidos_persona_que_ordena}", "#{@pedido.email}" ,"#{@pedido.telefono_celular}", 'card', "#{params[:conektaTokenId]}" )
 		puts @customer.customer_token_conekta
 		puts @customer.customer_name
@@ -52,15 +52,15 @@ layout 'single'
 
     if @pedido.conekta_order.nil?
 	  p_in = LineItem.find_by_session_token(session[:session_token])
-    line_items = p_in.line_items
-    shipping_lines = []
+      line_items = p_in.line_items
+      shipping_lines = []
 	  @order = create_order(line_items, "#{@customer.customer_token_conekta}", shipping_lines, @pedido, @card_token_required, "#{params[:conektaTokenId]}" )
     
 	    ty = @order.id
       else
       ty = @pedido.conekta_order
     end
-
+        @shipment_cost = session[:shipment_cost]
 	    @pedido.conekta_customer = tx
 	    @pedido.conekta_order = ty
 	    @pedido.customer_register_id = tz
@@ -73,6 +73,8 @@ layout 'single'
 		  session[:pedido_final] = nil
 		  session[:line_items] = nil
 		  session[:productos_in_line] = nil
+		  session[:shipment_cost] = nil
+	      session[:qdep] = nil
 
 	  respond_to do |format|
 	  	format.js
@@ -80,7 +82,7 @@ layout 'single'
 	end
 
 	def oxxo
-		@pedido = Pedido.find(params[:id])
+    @pedido = Pedido.find(params[:id])
     p_in = LineItem.find_by_session_token(session[:session_token])
     line_items = p_in.line_items
     expire = Time.now + 5.days
@@ -88,24 +90,24 @@ layout 'single'
     order = Conekta::Order.create({
 		  :line_items => eval(line_items),
 		  :shipping_lines => [{
-		      :amount => 1500,
-		      :carrier => "mi compañia"
+		      :amount => session[:shipment_cost].round() * 100,
+		      :carrier => "Uber Garden"
 		  }],
 		  :currency => "MXN",
 		  :customer_info => {
 		      :name => "#{@pedido.nombre_persona_que_ordena} #{@pedido.apellidos_persona_que_ordena}",
 		      :email => "#{@pedido.email}",
-		      :phone => "#{@pedido.telefono_celular}777"
+		      :phone => "#{@pedido.telefono_celular}"
 		  },
 		  :shipping_contact => {
-		      :phone => "+525555555555",
-		      :receiver => "Bruce Wayne",
+		      :phone => "#{@pedido.telefono_celular}",
+		      :receiver => "#{@pedido.nombre_persona_que_ordena} #{@pedido.apellidos_persona_que_ordena}",
 		      :address => {
-		          :street1 => "Calle 123 int 2 Col. Chida",
-		          :city => "Cuahutemoc",
-		          :state => "Ciudad de Mexico",
+		          :street1 => "#{@pedido.direccion}",
+		          :city => "#{@pedido.localidad}",
+		          :state => "#{@pedido.estado}",
 		          :country => "MX",
-		          :postal_code => "06100",
+		          :postal_code => "#{@pedido.cpostal}",
 		          :residential => true
 		      }
 		  }, 
@@ -130,14 +132,17 @@ layout 'single'
 
 	  @pedido.conekta_order = @order.id
 	  @pedido.save
+	  @shipment_cost = session[:shipment_cost]
 
-    session[:session_token] = SecureRandom.hex(45)
-    session[:product] = nil
+      session[:session_token] = SecureRandom.hex(45)
+      session[:product] = nil
 	  session[:price] = nil
 	  session[:color] = nil
 	  session[:pedido_final] = nil
 	  session[:line_items] = nil
 	  session[:productos_in_line] = nil
+	  session[:shipment_cost] = nil
+	  session[:qdep] = nil
 
 
 		respond_to do |format|
@@ -174,6 +179,8 @@ layout 'single'
 	end
 
 	def create_order(line_items, customer_id, shipping_lines, pedido, card_or_token, token_id)
+		@pedido = pedido
+
 		array_to_order = {
 		  :currency => "MXN",
 		  :customer_info => {
@@ -181,21 +188,21 @@ layout 'single'
 		  },
 		  :line_items => eval(line_items),
 			  :shipping_lines => [{
-			      :amount => 1500,
-			      :carrier => "mi compañia"
+			      :amount => session[:shipment_cost].round() * 100,
+			      :carrier => "Uber Garden"
 			}],
-			:shipping_contact => {
-	      :phone => "52181818181",
-	      :receiver => "Bruce Wayne",
-	      :address => {
-	          :street1 => "Calle 123 int 2 Col. Chida",
-	          :city => "Cuahutemoc",
-	          :state => "Ciudad de Mexico",
-	          :country => "MX",
-	          :postal_code => "06100",
-	          :residential => true
-	      }
-      },
+		  :shipping_contact => {
+		      :phone => "#{@pedido.telefono_celular}",
+		      :receiver => "#{@pedido.nombre_persona_que_ordena} #{@pedido.apellidos_persona_que_ordena}",
+		      :address => {
+		          :street1 => "#{@pedido.direccion}",
+		          :city => "#{@pedido.localidad}",
+		          :state => "#{@pedido.estado}",
+		          :country => "MX",
+		          :postal_code => "#{@pedido.cpostal}",
+		          :residential => true
+		      }
+		  },
 		  :charges => [{
 	      :payment_method => {
 	      		:token_id => token_id,
