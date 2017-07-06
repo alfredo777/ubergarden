@@ -1,13 +1,44 @@
+<script>
+var end = new Date('08/01/2017 10:1 AM');
+var _second = 1000;
+var _minute = _second * 60;
+var _hour = _minute * 60;
+var _day = _hour * 24;
+var timer;
+function showRemaining() {
+var now = new Date();
+var distance = end - now;
+if (distance < 0) {
+clearInterval(timer);
+document.getElementById('countdown').innerHTML = 'EXPIRED!';
+return;
+}
+var days = Math.floor(distance / _day);
+var hours = Math.floor((distance % _day) / _hour);
+var minutes = Math.floor((distance % _hour) / _minute);
+var seconds = Math.floor((distance % _minute) / _second);
+document.getElementById('countdown').innerHTML = 'Faltan: '+ days + ' dias ';
+document.getElementById('countdown').innerHTML += hours + 'hrs ';
+document.getElementById('countdown').innerHTML += minutes + 'mins ';
+document.getElementById('countdown').innerHTML += seconds + 'secs';
+}
+timer = setInterval(showRemaining, 1000);
+</script>
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
 			<center>
 			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-			<h1 class="titlexx">!Proximamente¡</h1>
+			<div class="col-lg-12">
+				<h1 class="titlexx">!Proximamente¡</h1>
+			</div>
 			<br/>
 			</center>
-			<%= form_tag '' do -%>
+			<%= form_tag generate_subscriber_path do -%>
 			<div class="panel panel-defualt col-lg-12" style="padding: 20px; background: rgba(28, 28, 36, 0.7); color: #fff;">
+				<center>
+				<div id="countdown" class="titlexxx"></div>
+				</center>
 				<div class="col-lg-12">
 					<div class="col-md-1">
 					</div>
@@ -25,15 +56,20 @@
 				</div>
 				
 				<div class="col-lg-12 pull-left">
-				    <div class="pull-right">
-					<br/>
-					Encuentranos en las redes sociales ➔
-					<a class="btn btn-info" href="https://twitter.com/ubergardenMX" target="_blank">
-						<i class="fa fa-twitter" aria-hidden="true"></i> Twitter
-					</a>
-					<a class="btn btn-primary" href="https://twitter.com/ubergardenMX" target="_blank">
-						<i class="fa fa-facebook" aria-hidden="true"></i> Facebook
-					</a>
+					
+					<div class="pull-right">
+						<br/>
+						Encuentranos en las redes sociales ➔
+						<a class="btn btn-info" href="https://twitter.com/ubergardenMX" target="_blank">
+							<i class="fa fa-twitter" aria-hidden="true"></i> Twitter
+						</a>
+						<a class="btn btn-primary" href="https://fb.me/ubergardenMX" target="_blank">
+							<i class="fa fa-facebook" aria-hidden="true"></i> Facebook
+						</a>
+
+						<a class="btn btn-primary" href="https://m.me/ubergardenMX." target="_blank">
+							<i class="fa fa-facebook" aria-hidden="true"></i> Mensaje Facebook
+						</a>
 					</div>
 				</div>
 				
@@ -44,10 +80,9 @@
 			</center>
 			<br/>
 			<br/>
-
 			<center>
 			<div class="panel panel-defualt col-lg-12" style="padding: 20px; background: rgba(28, 28, 36, 0.7); color: #fff;">
-			<h4> www.ubergarden.com.mx  © Todos los derechos reservados 2017 </h4>
+				<h4> www.ubergarden.com.mx  © Todos los derechos reservados 2017 </h4>
 			</div>
 			</center>
 		</div>

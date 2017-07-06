@@ -1,6 +1,6 @@
 
 class TiendaController < ApplicationController
-  before_filter :fancy_filter!, except: [:fancy]
+  before_filter :fancy_filter!, except: [:fancy, :generate_subscriber]
   layout 'single'
 
   def index
@@ -428,6 +428,15 @@ class TiendaController < ApplicationController
 
   def fancy
     render layout: "fancy"
+  end
+
+  def generate_subscriber
+    @suscriptor = Suscriptor.new
+    @suscriptor.name = params[:name]
+    @suscriptor.email = params[:email]
+    @suscriptor.save
+    flash[:notice] = "Gracias por suscribirte a Uber Garden"
+    redirect_to fancy_path
   end
 
   def fancy_filter!
