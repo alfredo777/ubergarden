@@ -61,7 +61,7 @@
 	border-radius: 100px;
 }
 
-@media all and (min-width: 1px) and (max-width: 959px) {
+@media all and (min-width: 1px) and (max-width: 1050px) {
     .search-top{
         display:none;
         width:0;
@@ -90,7 +90,7 @@
 }
 
 
-@media all and (min-width: 959px) and (max-width: 50000px) {
+@media all and (min-width: 1050px) and (max-width: 50000px) {
     .search-mobile{
     	display:none;
         width:0;

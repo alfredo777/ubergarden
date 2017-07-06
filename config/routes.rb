@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-
   root 'tienda#index'
+  get 'tienda/fancy', as: :fancy
   devise_for :users
   resources :products, path: 'admin/products'
   get 'admin/customers', to: 'customers#index',as: :customers

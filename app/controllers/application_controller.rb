@@ -40,8 +40,8 @@ class ApplicationController < ActionController::Base
 
   def transport_cost(qdep)
    fixed_cost = {
-      salary: 10000,
-      secure: 2000
+      salary: 5000,
+      secure: 1000
     }
 
     variable_cost = {
@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
       oil: 1800
     }
 
-    day_route_kilometers = 350
+    day_route_kilometers = 70
     day_salary = fixed_cost[:salary]/30
     day_secure = fixed_cost[:secure]/30
     gasoline_day = variable_cost[:gasoline] * (day_route_kilometers/8)
@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
     mantamance_daily_cost = variable_cost[:mantemince] * distance_to_mantamance 
     puts "mantemince daily cost #{mantamance_daily_cost}"
     oil_daily = variable_cost[:oil] * distance_to_mantamance.to_f
-    neumatic_devast_cost = day_route_kilometers.to_f/50000.to_f
+    neumatic_devast_cost = day_route_kilometers.to_f/100000.to_f
     puts "Neumatic devast #{neumatic_devast_cost.to_f}"
     neumatic_devast_cost = variable_cost[:neumatics] * neumatic_devast_cost
     puts "Neumatic devast #{neumatic_devast_cost}"
@@ -87,7 +87,7 @@ class ApplicationController < ActionController::Base
     price_transport_whit_taxes = (price_transport * transport_taxes) + price_transport
     puts "Price transport $ #{price_transport} MXN"
     puts "Price transport + taxes $ #{price_transport_whit_taxes} MXN"
-    min_clients_route = price_transport_whit_taxes / 100
+    min_clients_route = price_transport_whit_taxes / 20
     puts "Quanty clientes or products required to send charge #{min_clients_route.round()}"
     cost_by_client = price_transport_whit_taxes / min_clients_route.round()
     cost_by_client = cost_by_client.to_f/5

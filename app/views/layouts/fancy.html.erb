@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ubergarden | Tu jardín a domicilio, la primera tienda en linea especializada en jardinería en latino México. </title>
+		<%= csrf_meta_tags %>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+		<%= favicon_link_tag 'favicon.png', type: 'image/png' %>
+		<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+		<style>
+		  .titlexx{
+		  	font-family: 'Pacifico', cursive;
+		  	font-size: 70px;
+		  	color:#424242;
+		  }
+		</style>
+	</head>
+	<body id="all" style="background: url('/assets/banner/18.jpg'); width:100%; background-size: 100% 100%; margin-top: 0; margin-bottom: 0; bottom: 0; top: 0;">
+			<%= yield %>
+	</body>
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+	    setTimeout(function(){
+	    var wg = $(window).height();
+		$('#all').height(wg);
+	    });
+    }, 1000);
+</script>

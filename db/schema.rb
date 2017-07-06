@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607221314) do
+ActiveRecord::Schema.define(version: 20170705175448) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -157,6 +157,13 @@ ActiveRecord::Schema.define(version: 20170607221314) do
     t.datetime "updated_at"
     t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
+  end
+
+  create_table "suscriptors", force: :cascade do |t|
+    t.string   "email"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tag_id_and_product_ids", force: :cascade do |t|

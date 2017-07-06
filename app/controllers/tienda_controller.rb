@@ -1,6 +1,8 @@
 
 class TiendaController < ApplicationController
+  before_filter :fancy_filter!, except: [:fancy]
   layout 'single'
+
   def index
      render layout: "application"
   end
@@ -421,6 +423,16 @@ class TiendaController < ApplicationController
         return false
       end
     end
+    end
+  end
+
+  def fancy
+    render layout: "fancy"
+  end
+
+  def fancy_filter!
+    if $FANCY 
+      redirect_to fancy_path
     end
   end
 end
