@@ -12,4 +12,4 @@ module Ubergarden
   end
 end
 
-$FANCY = true
+$FANCY = false
