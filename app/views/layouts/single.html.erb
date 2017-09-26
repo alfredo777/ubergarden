@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Ubergarden</title>
+		<title>Uber Garden | La primera tienda online especializada en jardinería en Latinoamérica</title>
 		<%= csrf_meta_tags %>
 		<% if session[:session_token].nil? %>
 		<% session[:session_token] = SecureRandom.hex(45) %>
@@ -25,21 +25,22 @@
 			<%= yield %>
 		</div>
 	</body>
+	<%= render partial: '/layout_parts/footer' %>
 </html>
 <script>
 	var wh = $(window).height();
 		var wh2 = wh/2;
 	$('.blur-load').height(wh);
 	$('#blur').css({'margin-top': wh2 + 'px'});
-    $(document).ajaxStart(function() {
-	    $('#blur-msg').html('<h4>Procesando ...</h4>');
+$(document).ajaxStart(function() {
+	$('#blur-msg').html('<h4>Procesando ...</h4>');
 		$('.blur-load').show();
 		$('#blur').show();
 	});
 	$(document).ajaxComplete(function() {
 		setTimeout(function(){
-	        $('.blur-load').hide();
-		    $('#blur').hide();
+	$('.blur-load').hide();
+		$('#blur').hide();
 		},2300);
 	});
 </script>

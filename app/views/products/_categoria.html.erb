@@ -1,17 +1,5 @@
 <select name="product[categoria_principal_interna]" class="form-control">
-	<option value="arboles">Arboles</option>
-	<option value="arboles frutales">Arboles Frutales</option>
-	<option value="arborescentes">Plantas Arborescentes</option>
-	<option value="palmas">Palmas</option>
-	<option value="arbustos">Arbustos</option>
-	<option value="enredaderas trepadoras">Enredaderas o Trepadoras</option>
-	<option value="enredaderas sol">Enredaderas Para el Sol</option>
-	<option value="plantas de sol">Plantas de Sol</option>
-	<option value="plantas de sol y sombra">Plantas de Sol y Sombra</option>
-	<option value="follaje y flor para sombra y media sombra">Plantas de follaje y flor para sombra y media sombra</option>
-	<option value="setos">Plantas para setos</option>
-	<option value="cubrepisos">Plantas para cubrepisos</option>
-	<option value="anuales y perenes con flores">Plantas anuales y perenes con flores de poca duración</option>
-	<option value="follaje ornamental">Plantas con follaje ornamental</option>
-	<option value="flor cortada">Flor Cortada</option>
+    <% $CATEGORIAS.each do |categoria| %>
+	<option value="<%= categoria[:serach]%>"><%= categoria[:name] %></option>
+    <%end%>
 </select>

@@ -7,29 +7,51 @@
 		<h3><span class="glyphicon glyphicon-bookmark" aria-hidden="true" style="color:#FF8000;"></span> Categorías </h3>
 	</div>
 	<div class="col-lg-12">
-	<ul>
-		<%= render partial: '/layout_parts/cat_list' %>
-	</ul>
+		<ul>
+			<%= render partial: '/layout_parts/cat_list' %>
+		</ul>
 	</div>
+	<div class="col-lg-12">
+		<a href="#">
+			<%= image_tag('promo/destacado.jpg', width: "100%") %>
+		</a>
+		<!--<h3 style="margin-top: 20px;"><span class="glyphicon glyphicon-globe" aria-hidden="true" style="color:#00BFFF;"></span> En redes sociales </h3>-->
+	</div>
+
+	<div class="col-lg-12">
+		<% random_offer_products.each do |product| %>
+		    <br/><br/>
+		    <%= link_to item_path(product.id) do %>
+			<%= image_tag(product.image_products.first.file.standar.url, width: "100%") %>
+			<div style="background: #eee;">
+			<h2 style="margin-top: -50px; margin-bottom: 50px;"><%= product.nombre %></h2>
+		    </div>
+			<%end%>
+		<%end%>
+	</div>
+
 	<div class="col-lg-12">
 		<h3><span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" style="color:#5FB404;"></span> Mas vendido </h3>
 	</div>
 	<% if bp != nil  %>
 	<% bp.each do |p| %>
 	<div class="col-lg-12 best-items">
-	    <a href="<%= item_path(p[:product].id) %>">
-		<div class="col-md-5">
-			<%= image_tag(p[:product].image_products.last.file.standar, width: '100%') %>
-		</div>
-		<div class="col-md-7">
-			<%= p[:product].nombre %><br/>
-			<span class="label label-default">Adquirido por <%= p[:count] %></span>
-		</div>
+		<a href="<%= item_path(p[:product].id) %>">
+			<div class="col-md-5">
+				<%= image_tag(p[:product].image_products.last.file.standar, width: '100%') %>
+			</div>
+			<div class="col-md-7">
+				<%= p[:product].nombre %><br/>
+				<span class="label label-default">Adquirido por <%= p[:count] %></span>
+			</div>
 		</a>
 	</div>
 	<%end%>
 	<%end%>
-	<div class="col-lg-12">
-		<h3 style="margin-top: 20px;"><span class="glyphicon glyphicon-globe" aria-hidden="true" style="color:#00BFFF;"></span> En redes sociales </h3>
+	<div class="col-lg-12" >
+		<br/><br/>
+		<%= link_to terminos_path do %>
+		<%= image_tag('promo/terminos-02.jpg', width: "100%", style:"border:solid 1px #BDBDBD;") %>
+		<%end%>
 	</div>
 </div>

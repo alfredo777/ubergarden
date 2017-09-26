@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170705175448) do
+ActiveRecord::Schema.define(version: 20170710214807) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 20170705175448) do
     t.string   "color3"
     t.string   "color4"
     t.string   "color5"
+    t.integer  "oferta"
   end
 
   create_table "sessions", force: :cascade do |t|

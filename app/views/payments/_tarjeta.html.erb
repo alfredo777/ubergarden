@@ -47,7 +47,7 @@ return false;
 		<br/><br/>
 		<div class="col-md-12" style="background: #eee;">
 			<center>
-			<h2>Monto total: $<%= pedido.total %> MXN</h2>
+			<h2>Monto total: $<%= pedido.total.to_f + session[:shipment_cost].to_f %> MXN</h2>
 			</center>
 		</div>
 		<div class="col-md-12 panel panel-default" style="background: url('/assets/micro_carbon.png'); border: solid 2px #010101; color:#fff;">

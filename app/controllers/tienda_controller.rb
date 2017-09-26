@@ -4,11 +4,32 @@ class TiendaController < ApplicationController
   layout 'single'
 
   def index
+    @products_offer = Product.where("oferta > 0").where(publicado: true).limit(6)
+    @products = Product.where(publicado: true).order("RANDOM()").limit(6)
+    best_products = ProductosAPedido.limit(100).group(:product_id).order('count_all desc').count
+    if best_products.nil?
+      @best_products = []
+    else
+    i = 0
+    ids = []
+    best_products.each do |key,value|
+      ids.push(key)
+    end
+    end
+
+    @best_products = Product.find(ids)
      render layout: "application"
   end
 
+  
+  def terminos_y_condiciones
+  end
+
+  def aviso_de_privacidad
+  end
+  
   def productos
-    @products = Product.paginate(:page => params[:page], :per_page => 40).order('created_at DESC')
+    @products = Product.where(publicado: true).paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
     best_products = ProductosAPedido.group(:product_id).order('count_all desc').count
     if best_products.nil?
       @best_products = []
@@ -30,12 +51,37 @@ class TiendaController < ApplicationController
       end
     end
     end
-      
-   
   end
 
+  def offers
+    @products = Product.where(publicado: true).where('oferta > 0').paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    best_products = ProductosAPedido.group(:product_id).order('count_all desc').count
+    if best_products.nil?
+      @best_products = []
+    else
+    i = 0
+    array_p = []
+    best_products.each do |key,value|
+      @product = Product.find(key)
+      puts @product.nombre
+      array_p.push({
+       product: @product,
+       count: value
+      })
+      i = i + 1
+      if i == 2
+         @best_products = array_p
+          puts "#{@best_products}"
+        return false
+      end
+    end
+    end
+  end
+
+  def nosotros
+  end
   def search
-    @products = Product.all
+    @products = Product.where(publicado: true)
     
     @products = @products.nombre(params[:search]) if params[:search].present?
 
@@ -231,11 +277,11 @@ class TiendaController < ApplicationController
        img = inject.image_products.first.file.standar.url
        nombre = inject.nombre 
        id = inject.id
-       unit_price = inject.precio
-       unit_price_x = inject.precio * 100
+       unit_price = inject.precio_final
+       unit_price_x = inject.precio_final * 100
        quantity = product[1].to_i
        order = ""
-       total_product = inject.precio.round * product[1].to_i
+       total_product = inject.precio_final.round * product[1].to_i
 
        @colors.each do |color|
           if color["#{inject.id}"]

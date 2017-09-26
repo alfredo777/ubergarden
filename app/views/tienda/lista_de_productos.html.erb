@@ -55,10 +55,8 @@
 </div>
 <div class="col-md-5 panel panel-default">
 <center><h2>Confirmar la compra.</h2></center>
-<p style="text-align: justify;">
-    <b>Terminos y condiciones de la compra:</b><br/><br/>
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a venenatis diam, id fermentum dui. Nulla id mollis dui. Aenean ut ex eu nisi feugiat elementum quis non metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris rutrum blandit est. Phasellus laoreet egestas sapien vel faucibus. Phasellus dignissim rutrum risus at blandit. Ut a enim scelerisque, ultricies nulla sed, aliquet justo. Suspendisse varius sit amet lectus vitae molestie. Aenean at eros quis nisi elementum fermentum. Morbi magna mauris, hendrerit sit amet orci sed, mollis efficitur lectus. Maecenas faucibus dolor mollis, convallis tortor ut, pretium lectus. Vivamus eu sagittis turpis, a lacinia dui. Nam auctor nisi vitae odio pretium laoreet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed ante urna.
-</p><br/><br/>
+<%= truncate( (render partial: 'layout_parts/terminos').html_safe, escape: false, length: 500){ link_to "(continuar leyendo)", terminos_path, target: 'blank_' }  %>
+<br/><br/>
 <%= form_tag crear_pedido_path, multipart: true do -%>
 <input type="checkbox" name="conditions" required> Acepto<br/><br/>
 <div class="col-md-6">

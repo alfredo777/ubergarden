@@ -20,7 +20,7 @@
 				<ul class="nav navbar-nav col-md-10 pull-right">
 					<li class="pull-right">
 						<%= link_to log_out_path do %>
-						  <i class="fa fa-sign-out" aria-hidden="true"></i>
+						<i class="fa fa-sign-out" aria-hidden="true"></i>
 						<%end%>
 					</li>
 					<li class="pull-right">
@@ -50,7 +50,9 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Productos <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="<%= products_path %>">Listado de productos</a></li>
+								<li><%=link_to productos_no_publicados_path do %> Productos sin publicar <%end%> </li>
 								<li><a href="<%= new_product_path %>">Nuevo Producto</a></li>
+								<li><%=link_to import_list_path do %> Importación de lista <%end%> </li>
 							</ul>
 						</li>
 						
@@ -60,5 +62,5 @@
 					</center>
 					</div><!-- /.container-fluid -->
 				</div>
-			<%end%>
+				<%end%>
 			</nav>

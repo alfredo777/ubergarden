@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'tienda#index'
+  get '/terminos_y_condiciones', to: 'tienda#terminos_y_condiciones', as: :terminos
+  get '/aviso_de_privacidad', to: 'tienda#aviso_de_privacidad', as: :aviso_de_privacidad
   get 'tienda/fancy', as: :fancy
   get 'tienda/generate_subscriber', as: :generate_subscriber
   post 'tienda/generate_subscriber'
@@ -13,6 +15,8 @@ Rails.application.routes.draw do
   get 'admin/shipment', to: 'customers#shipment', as: :shipment
   get 'admin/find_orders', to: 'customers#find_orders', as: :find_orders
   post 'admin/find_orders', to: 'customers#find_orders'
+  get 'admin/import_products', to: 'products#import_products', as: :import_products
+  post 'admin/import_products', to: 'products#import_products'
   get 'admin/today_orders', to: 'customers#today_orders', as: :today_orders
   get 'admin/montly_orders', to: 'customers#montly_orders', as: :montly_orders
   get 'admin/inprocess_orders', to: 'customers#inprocess_orders', as: :inprocess_orders
@@ -57,9 +61,21 @@ Rails.application.routes.draw do
   post 'tienda/contacto'
   get 'tienda/contactado', as: :contactado
   post 'tienda/contactado'
+  get 'tienda/offers', as: :offers
+  get 'nosotros', to: 'tienda#nosotros', as: :about_us
   get 'admin/products/:id/products_photos',to: 'products#products_photos', as: :gallery
   get 'admin/products/:id/add_photos',to: 'products#add_photos', as: :add_photos
   post 'admin/products/:id/add_photos',to: 'products#add_photos'
+  get 'admin/productos_no_publicados',to: 'products#productos_no_publicados', as: :productos_no_publicados
+  post 'admin/productos_no_publicados',to: 'products#productos_no_publicados'
+  get 'admin/destroy_photos/:id',to: 'products#destroy_photos', as: :destroy_photos
+  post 'admin/destroy_photos/:id',to: 'products#destroy_photos'
+  get 'admin/products/:id/activate_inactive',to: 'products#activate_inactive', as: :active_inactive
+  post 'admin/products/:id/activate_inactive',to: 'products#activate_inactive'
+  get 'admin/active_all',to: 'products#active_all', as: :active_all
+  post 'admin/active_all',to: 'products#active_all'
+  get 'admin/unactive_all',to: 'products#unactive_all', as: :unactive_all
+  post 'admin/unactive_all',to: 'products#unactive_all'
   get 'admin/products_import_list', to: 'products#import_list', as: :import_list
   get 'admin/categoria-de-producto', to: 'products#categoria', as: :categoria
   get 'admin/nueva_etiqueta',  to: 'tags_and_categories#nueva_etiqueta', as: :nueva_etiqueta 
@@ -69,5 +85,15 @@ Rails.application.routes.draw do
   post 'payments/tarjeta'
   get 'payments/oxxo', as: :oxxo
   post 'payments/oxxo'
+
+  ######## api routes ########
+  get 'api/list_products', :defaults => { :format => 'json' }
+  get 'api/best_produtcs', :defaults => { :format => 'json' }
+  get 'api/my_products', :defaults => { :format => 'json' }
+  get 'api/categorias', :defaults => { :format => 'json' }
+  post 'api/my_products', :defaults => { :format => 'json' }
+  post 'api/image_products', :defaults => { :format => 'json' }
+  get 'api/search', :defaults => { :format => 'json' }
+
 
 end

@@ -153,16 +153,25 @@
             <h3>Ingresar Imagenes</h3>
             <p>Selecciona las imagenes que deseas agregar al proyecto y agrega el precio</p>
             <%= file_field_tag 'product[file][]', multiple: true %>
-
             <div class="field">
               <%= f.label :precio %>
-              <%= f.text_field :precio, class: "form-control" %>
+              <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <%= f.text_field :precio, class: "form-control" %>
+                <span class="input-group-addon">.00 MXN</span>
+              </div>
+            </div>
+            <div class="field">
+              <%= f.label :oferta %>
+              <div class="input-group">
+                <span class="input-group-addon">Oferta en porcentaje</span>
+                <%= f.text_field :oferta, class: "form-control" %>
+                <span class="input-group-addon">%</span>
+              </div>
             </div>
             <br/><br/>
-
             <ul class="list-inline pull-right">
               <li><button type="button" class="btn btn-default prev-step"><i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar</button></li>
-
               <li>
               <button type="submit" class="btn btn-primary">Crear nuevo producto</button></li>
             </ul>
@@ -200,27 +209,23 @@ $(elem).next().find('a[data-toggle="tab"]').click();
 function prevTab(elem) {
 $(elem).prev().find('a[data-toggle="tab"]').click();
 }
-
 $('#new_product').submit(function(e){
-    var url = $('#new_product').attr('action'); 
-    var formData = new FormData($('#new_product')[0]);
-
-    $.ajax({
-           type: "POST",
-           url: url,
-           data: formData,
-           enctype: 'multipart/form-data',
-           processData: false, 
-           contentType: false, 
-           cache: false,
-           success: function(data)
-           {
-               alert('Se ha agregado correctamente el producto'); 
-               window.location.href = '/admin/products'
-           }
-         });
-
-    e.preventDefault()
-
+var url = $('#new_product').attr('action');
+var formData = new FormData($('#new_product')[0]);
+$.ajax({
+type: "POST",
+url: url,
+data: formData,
+enctype: 'multipart/form-data',
+processData: false,
+contentType: false,
+cache: false,
+success: function(data)
+{
+alert('Se ha agregado correctamente el producto');
+window.location.href = '/admin/products'
+}
+});
+e.preventDefault()
 });
 </script>

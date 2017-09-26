@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :mobile_device?
   helper_method :admin_filter
   helper_method :transport_cost
+  helper_method :random_offer_products
 
 
   def mobile_device?
@@ -30,6 +31,10 @@ class ApplicationController < ActionController::Base
       end
     puts "********************** #{@browser} / Mobile: #{@mobile} ************************" 
        @mobile
+  end
+
+  def random_offer_products
+    @products_offer = Product.where("oferta > 0").where(publicado: true).order("RANDOM()").limit(2)
   end
 
   def admin_filter

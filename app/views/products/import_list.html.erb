@@ -1,1 +1,7 @@
 <h1>Importación de una lista de productos.</h1>
+<div class="col-md-5">
+<%= form_tag import_products_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Importación", class: 'btn btn-default pull-right' %>
+<% end %>
+</div>

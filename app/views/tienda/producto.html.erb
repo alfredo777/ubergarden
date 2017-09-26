@@ -99,32 +99,49 @@
 		</div>
 	</div>
 	<div class="col-lg-4">
-		<h3 style="color:#ea2840;"><b>$ <%= @product.precio %> MXN </b></h3><br/><br/>
+	    <% if @product.oferta.nil? %>
+		<h3 style="color:#ea2840;"><b>$ <%= @product.precio_final %> MXN </b></h3><br/><br/>
+		<%else%>
+		<%= image_tag 'oferta.png', width: '50%', style: 'position: relative;' %>
+		<h3><strike style="color: red;">$<%=@product.precio%></strike> &#x2192; <b style="color:#D6CA27;"> $<%= @product.precio_final %> MXN </b></h3>
+		<h4> Estas ahorrando $<%= @product.descuento %> pesos. </h4>
+		<%end%>
+
 		<i>Opcciones</i><br/>
-		    <% if @product.color1 != "" %>
+		    <% if @product.color1 != ""  %>
+		    <% if @product.color1 != nil %>
 			<div id="p1" class="colorem btn btn-single btn-small bnt-active-green" style="margin-top:10px;" onclick="color_select('p1','<%= @product.color1 %>')">
 				<%= @product.color1 %>
 			</div>
 			<%end%>
+			<%end%>
 			<% if @product.color2 != "" %>
+			<% if @product.color2 != nil %>
 			<div id="p2" class="colorem btn btn-single btn-small" style="margin-top:10px;" onclick="color_select('p2','<%= @product.color2 %>')">
 				<%= @product.color2 %>
 			</div>
 			<%end%>
+			<%end%>
 			<% if @product.color3 != "" %>
+			<% if @product.color3 != nil %>
 			<div id="p3" class="colorem btn btn-single btn-small" style="margin-top:10px;" onclick="color_select('p3','<%= @product.color3 %>')">
 				<%= @product.color3 %>
 			</div>
 			<%end%>
+			<%end%>
 			<% if @product.color4 != "" %>
+			<% if @product.color4 != nil %>
 			<div id="p4" class="colorem btn btn-single btn-small" style="margin-top:10px;" onclick="color_select('p4','<%= @product.color4%>')">
 				<%= @product.color4 %>
 			</div>
 			<%end%>
+			<%end%>
 			<% if @product.color5 != "" %>
+			<% if @product.color5 != nil %>
 			<div id="p5" class="colorem btn btn-single btn-small" style="margin-top:10px;" onclick="color_select('p5','<%= @product.color5 %>')">
 				<%= @product.color5 %>
 			</div>
+			<%end%>
 			<%end%>
 		<br/><br/>
 		<i>¡Estas listo!</i><br/>

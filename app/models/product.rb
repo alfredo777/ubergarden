@@ -26,13 +26,39 @@ class Product < ApplicationRecord
 
 
     def wikipedia_link
+      if self.nombre_cientifico != nil
     	page = Wikipedia.find( "#{self.nombre_cientifico}" )
     	@url = page.fullurl
+      else
+      @url = ''
+      end
+
     end
 
     def wikipedia_content
+      if self.nombre_cientifico != nil
     	page = Wikipedia.find( "#{self.nombre_cientifico}" )
     	@text = page.text
+      else
+      @text = ''
+      end
     end
+
+    def descuento
+       if !self.oferta.nil?
+       oferta = self.oferta.to_f / 100
+       descuento = self.precio.to_f * oferta.to_f
+       descuento = descuento.round(2)
+       else
+        descuento = 0
+       end
+
+    end
+
+    def precio_final
+       precio_final = self.precio.to_f - descuento.to_f
+       precio_final = precio_final.round(2)
+    end
+
 
 end

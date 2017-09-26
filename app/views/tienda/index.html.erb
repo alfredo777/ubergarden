@@ -1,11 +1,152 @@
-<!--
-<div class="col-lg-12">
-	<div class="col-md-8">
-		<%# @products.each do |product| %>
-		<%#= render partial: "/layout_parts/item_col_two", locals: {title: "#{product.nombre}", price: "#{product.precio}", descript: "#{product.descripccion}", img: product.image_products.last, product: product} %>
-		<%#end%>
+<div class="container">
+	<% unless mobile_device? %>
+	<div class="row">
+		<div class="col-md-12" >
+			<a href="<%= all_items_path %>">
+				<%= image_tag('promo/ubergarden.jpg', width: "100%") %>
+			</a>
+		</div>
 	</div>
-	<div class="col-md-4">
+	<%end%>
+	<br/>
+	<div class="row">
+		<div class="col-md-6">
+			<% unless mobile_device? %>
+			<a href="<%= search_path(search: 'orquidea') %>">
+				<%= image_tag('promo/orquideas.jpg', width: "122%") %><br/><br/>
+			</a>
+			<a href="<%= search_path(search: 'flores') %>">
+				<%= image_tag('promo/flores.jpg', width: "122%") %>
+			</a>
+			<%end%>
+		</div>
+		<div class="col-md-1">
+		</div>
+		
+		<div class="col-md-5">
+			<a href="#">
+				<%= image_tag('promo/destacado.jpg', width: "100%") %>
+			</a>
+		</div>
+		
 	</div>
+	<br/>
+	<% unless mobile_device? %>
+	<div class="row">
+		<div class="col-md-12" >
+			<%= link_to offers_path do %>
+			<%= image_tag('promo/oferta.jpg', width: "100%") %>
+			<%end%>
+		</div>
+	</div>
+	<%end%>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h3>Ofertas</h3>
+				<% @products_offer.each do |product| %>
+				<%= render partial: "/layout_parts/item_col_two", locals: {title: "#{product.nombre}", price: "#{product.precio}", descript: "#{product.descripccion}", img: product.image_products.last, product: product} %>
+				<%end%>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div clas="col-lg-12" style="width: auto;">
+			<%= link_to search_path(search: 'macetas') do %>
+			<%= image_tag('promo/macetas.jpg', width: "100%") %>
+			<%end%>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h3>Productos recomendados</h3>
+				<% @products.each do |product| %>
+				<%= render partial: "/layout_parts/item_col_two", locals: {title: "#{product.nombre}", price: "#{product.precio}", descript: "#{product.descripccion}", img: product.image_products.last, product: product} %>
+				<%end%>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div clas="col-lg-12" style="width: auto;">
+			<%= link_to search_path(search: 'muebles') do %>
+			<%= image_tag('promo/muebles2.jpg', width: "100%") %>
+			<%end%>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<h3>Categorías</h3>
+				<% $CATEGORIAS.each do |categoria| %>
+				<a href="<%= search_path(search: categoria[:search]) %>" class="tagx" >
+					<center>
+					<h5><%= truncate(categoria[:name], length: 35, separator: ' ', omission: '...')%></h5>
+					</center>
+				</a>
+				<%end%>
+			</div>
+			<div class="col-md-4">
+				<div class="col-md-2">
+					<div style="margin-top: 40px;">
+						<%= image_tag('escudo.png', width: "50px") %>
+					</div>
+				</div>
+				<div class="col-md-10">
+					<h3>Protegemos tu compra</h3>
+					<ul>
+						<li>Paga en linea o en el OXXO.</li>
+						<li>No conservamos datos bancarios.</li>
+						<li>Tenemos nuestro propio servicio de entregas.</li>
+						<li>Rastrea tu compra desde nuestra web.</li>
+						<li>Envios solo en D.F. y area metropolitana.</li>
+					</ul>
+					<div class="col-lg-12 pull-right">
+						<%= image_tag 'cards2.png', width: "40%" %>
+						<%= image_tag 'oxxo.png', width: "20%" %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<div class="row">
+		<div class="col-md-12" >
+			<%= link_to about_us_path do %>
+			<%= image_tag('promo/medioambiente.jpg', width: "100%") %>
+			<%end%>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h3>Lo más vendido</h3>
+				<% @best_products.each do |product| %>
+				<%= render partial: "/layout_parts/item_col_two", locals: {title: "#{product.nombre}", price: "#{product.precio}", descript: "#{product.descripccion}", img: product.image_products.last, product: product} %>
+				<%end%>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<% unless mobile_device? %>
+			<%= link_to search_path(search: 'herramientas') do %>
+			<%= image_tag('promo/herramientas.jpg', width: "122%") %>
+			<%end%>
+			<br/><br/>
+			<%= link_to search_path(search: 'tierra') do %>
+			<%= image_tag('promo/tierra.jpg', width: "122%") %>
+			<%end%>
+			<%end%>
+		</div>
+		<div class="col-md-1">
+		</div>
+		
+		<div class="col-md-5" >
+			<%= link_to terminos_path do %>
+			<%= image_tag('promo/terminos-02.jpg', width: "100%", style:"border:solid 1px #BDBDBD;") %>
+			<%end%>
+		</div>
+	</div>
+	<br/><br/><br/>
 </div>
--->

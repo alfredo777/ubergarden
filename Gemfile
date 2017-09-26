@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+#rvm use 2.3.1
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -37,6 +37,7 @@ gem "wikipedia-client"
 gem "activerecord-session_store"
 gem 'conekta'
 gem 'rmagick'
+gem "roo"
 
 
 

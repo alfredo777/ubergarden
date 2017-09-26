@@ -16,7 +16,19 @@
   </div>
   <div class="field">
     <%= f.label :precio %>
-    <%= f.text_field :precio, class: "form-control" %>
+    <div class="input-group">
+      <span class="input-group-addon">$</span>
+      <%= f.text_field :precio, class: "form-control" %>
+      <span class="input-group-addon">.00 MXN</span>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :oferta %>
+    <div class="input-group">
+      <span class="input-group-addon">Oferta en porcentaje</span>
+      <%= f.text_field :oferta, class: "form-control" %>
+      <span class="input-group-addon">%</span>
+    </div>
   </div>
   <div class="field">
     <%= f.label :nombre_cientifico %>

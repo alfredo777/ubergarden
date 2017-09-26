@@ -1,0 +1,75 @@
+<p id="notice"><%= notice %></p>
+<h1>Lista de productos</h1>
+<div class="btn-group pull-right">
+  <%= link_to active_all_path, data: { confirm: '¿Estas segur@ de querer activar todos los productos?' } , class: 'btn btn-success btn-small' do %>
+  Activar todos los producto  <i class="fa fa-toggle-on" aria-hidden="true"></i>
+  <%end%>
+  <%= link_to unactive_all_path, data: { confirm: '¿Estas segur@ de querer desactivar todos los  productos?' }, class: 'btn btn-warning btn-small'  do %>
+  Desactivar todos los productos <i class="fa fa-toggle-off" aria-hidden="true"></i>
+  <%end%>
+</div>
+<br/><br/>
+<table class="table table-bordered table-shop">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Nombre cientifico</th>
+      <th>Tamaño</th> 
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+    <tr>
+      <td><%= product.nombre %></td>
+      <td><%= product.precio %></td>
+      <td><%= product.nombre_cientifico %></td>
+      <td><%= product.tamano %></td>
+      <center>
+      <td>
+        <%= link_to product, class: "btn btn-success",  "data-toggle": "tooltip", "data-placement": "top", "title": "Ver datos del producto"  do %>
+        <i class="fa fa-folder-open" aria-hidden="true"></i>
+        <%end%>
+      </td>
+      <td>
+        <%= link_to edit_product_path(product), class: "btn btn-info",  "data-toggle": "tooltip", "data-placement": "top", "title": "Editar producto" do %>
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+        <%end%>
+      </td>
+      <td>
+        <%= link_to gallery_path(product), class: "btn btn-default",  "data-toggle": "tooltip", "data-placement": "top", "title": "Imagenes del producto" do %>
+        <i class="fa fa-camera-retro" aria-hidden="true"></i>
+        <%end%>
+      </td>
+      <td>
+        <% if product.publicado %>
+        <%= link_to active_inactive_path(id: product.id), class: 'btn btn-success btn-small',  "data-toggle": "tooltip", "data-placement": "top", "title": "Cambiar estado de activación del producto" do %>
+        <i class="fa fa-toggle-on" aria-hidden="true"></i>
+        <%end%>
+        <%else%>
+        <%= link_to active_inactive_path(id: product.id), class: 'btn btn-warning btn-small',  "data-toggle": "tooltip", "data-placement": "top", "title": "Cambiar estado de activación del producto"  do %>
+        <i class="fa fa-toggle-off" aria-hidden="true"></i>
+        <%end%>
+        <%end%>
+      </td>
+      
+      <td><%= link_to  product, method: :delete, data: { confirm: '¿Estas segur@ de eliminar el producto?' }, class: "btn btn-danger",  "data-toggle": "tooltip", "data-placement": "top", "title": "Eliminar producto"  do %>
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+        <%end%>
+      </td>
+      </center>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<center>
+<%= will_paginate @products, :previous_label => '← Anterior', :next_label => 'Siguiente →', renderer: BootstrapPagination::Rails %>
+</center>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>

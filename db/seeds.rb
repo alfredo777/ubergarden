@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+array_products = [
+	{nombre:, nombre_cientifico:, descripccion:, tamano:, precio:. }
+
+]

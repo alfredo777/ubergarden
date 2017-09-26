@@ -6,7 +6,11 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.paginate(:page => params[:page], :per_page => 20)
+    @products = Product.paginate(:page => params[:page], :per_page => 40)
+  end
+
+  def productos_no_publicados
+    @products = Product.where(publicado: false).paginate(:page => params[:page], :per_page => 20)
   end
 
 
@@ -24,9 +28,31 @@ class ProductsController < ApplicationController
     end
     redirect_to :back
   end
+
+  def destroy_photos
+    @image = ImageProduct.find(params[:id])
+    @image.destroy
+    redirect_to :back
+  end
   
   def import_list
+  end
 
+  def import_products
+    require 'csv' 
+    file = params[:file]
+    uploaded_io = file
+    File.open(Rails.root.join('tmp', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
+
+
+    csv_text = File.read("#{Rails.root}/tmp/uploads/#{uploaded_io.original_filename}")
+    csv = CSV.parse(csv_text, :headers => true)
+    csv.each do |row|
+      Product.create!(row.to_hash)
+    end
+    redirect_to root_url, notice: 'Productos importados.'
   end
 
   def categoria
@@ -45,6 +71,28 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+  end
+
+  def activate_inactive
+   product = Product.find(params[:id])
+   if product.publicado
+     product.publicado = false
+   else
+      product.publicado = true
+   end
+   product.save
+
+   redirect_to :back
+  end
+
+  def active_all
+    Product.update_all publicado: true
+    redirect_to :back
+  end
+
+  def unactive_all
+    Product.update_all publicado: false
+    redirect_to :back
   end
 
   # POST /products
@@ -106,6 +154,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:nombre, :precio, :nombre_cientifico, :luz, :riego, :necesidades, :descripccion, :tamano, :region_climatica, :pais_de_procedencia, :familia, :orden, :categoria_principal_interna, :publicado, :color1, :color2, :color3, :color4, :color5, :name_downcase_no_characters, :file)
+      params.require(:product).permit(:nombre, :precio, :nombre_cientifico, :luz, :riego, :necesidades, :descripccion, :tamano, :region_climatica, :pais_de_procedencia, :familia, :orden, :categoria_principal_interna, :publicado, :color1, :color2, :color3, :color4, :color5, :name_downcase_no_characters, :file, :oferta)
     end
 end

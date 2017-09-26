@@ -3,8 +3,11 @@
 		<%= render partial: '/layout_parts/left_menu', locals: {bp: @best_products} %>
 		<div class="col-lg-9">
 			<% @products.each do |product| %>
-			<%= render partial: "/layout_parts/item_col", locals: {title: "#{product.nombre}", price: "#{product.precio}", descript: "#{product.descripccion}", img: product.image_products.last, product: product} %>
+			<%= render partial: "/layout_parts/item_col", locals: {title: "#{product.nombre}", price: "#{product.precio_final}", descript: "#{product.descripccion}", img: product.image_products.last, product: product} %>
 			<%end%>
+			<center>
+			<%= will_paginate @products, :previous_label => '← Anterior', :next_label => 'Siguiente →', renderer: BootstrapPagination::Rails %>
+			</center>
 		</div>
 	</div>
 </div>

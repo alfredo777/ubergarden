@@ -19,6 +19,12 @@
 </div>
 
 <div class="col-lg-12">
+<% if !@product.oferta.nil? %>
+  <%= image_tag 'oferta.png', width: '30%' %>
+  <h3>
+  <%= @product.precio %> -  <%= @product.descuento %> =  <%= @product.precio_final %>
+  </h3>
+<%end%>
 <br/><br/>
 
     <% @product.image_products.each do |img| %>
@@ -97,6 +103,11 @@
       </tr><tr>
         <td>Precio</td>
         <td><%= @product.precio %></td>
+      </tr><tr>
+        <td>oferta </td>
+        <td>
+          <%= @product.oferta %>%
+        </td>
       </tr>
     </tbody>
   </table>

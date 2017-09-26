@@ -160,3 +160,47 @@
         background: #f5f7f9;
     }
 }
+.banner0{
+    background: #fff;
+    padding: 40px;
+    height: auto;
+    margin-top: 240px;
+    float: none;
+}
+.banner1{
+    background: rgba(34, 36, 40, 0.7);
+    margin-bottom: 50px;
+    padding: 40px;
+    height: 500px;
+    float: none;
+}
+
+.tagx{
+    display: inline-block;
+    text-decoration: none;
+    color: #666;
+    background-color: #fff;
+    border: 1px solid #333;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 4px 8px 4px 0;
+    padding: 2px 8px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.img-border{
+    border: solid 1px #fff;
+    width: auto;
+}
+
+.p-description{
+    width: 100%;
+    background: #F4F7F3;
+    color: #808180 !important;
+    & .caption{
+        color: #494A48 !important;
+    }
+}
+
+
