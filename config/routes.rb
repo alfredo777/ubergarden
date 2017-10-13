@@ -94,6 +94,11 @@ Rails.application.routes.draw do
   post 'api/my_products', :defaults => { :format => 'json' }
   post 'api/image_products', :defaults => { :format => 'json' }
   get 'api/search', :defaults => { :format => 'json' }
+  post 'api/favoritos', :defaults => { :format => 'json' }
+  post 'api/generate_mobile_order', :defaults => { :format => 'json' }
+  post 'api/tarjeta_pago_mobil', :defaults => { :format => 'json' }
+  get 'api/find_order', :defaults => { :format => 'json' }
+
 
 
 end

@@ -131,6 +131,7 @@ layout 'single'
 		puts @order.charges.first.payment_method.reference
 
 	  @pedido.conekta_order = @order.id
+	  @pedido.oxxocode = @order.charges.first.payment_method.reference
 	  @pedido.save
 	  @shipment_cost = session[:shipment_cost]
 
@@ -220,7 +221,4 @@ layout 'single'
 		end
 		order
 	end
-
-
-  
 end

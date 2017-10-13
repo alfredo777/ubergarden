@@ -15,7 +15,7 @@ class CustomersController < ApplicationController
     if params[:customer] 
     @orders = Pedido.where(conekta_customer: params[:customer]).paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
     else
-    @orders = Pedido.paginate(:page => params[:page], :per_page => 20)
+    @orders = Pedido.paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
     end
    end
   end

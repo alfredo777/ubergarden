@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :admin_filter
   helper_method :transport_cost
   helper_method :random_offer_products
+  helper_method :transport_cost_by_cuanty
 
 
   def mobile_device?
@@ -43,20 +44,27 @@ class ApplicationController < ActionController::Base
     end
   end 
 
+  def transport_cost_by_cuanty(qdep)
+   factor_inicial = 60
+   transport = qdep.to_f * 0.33
+   transport = factor_inicial + transport - (transport * 0.25)
+   transport = transport.round(2)
+  end
+
   def transport_cost(qdep)
    fixed_cost = {
-      salary: 5000,
-      secure: 1000
+      salary: 10000,
+      secure: 5000
     }
 
     variable_cost = {
-      gasoline: (16.28*0.30)+16.28,
+      gasoline: (17.28*0.30)+17.28,
       mantemince: 5000,
       neumatics: 2500 * 4,
       oil: 1800
     }
 
-    day_route_kilometers = 70
+    day_route_kilometers = 360
     day_salary = fixed_cost[:salary]/30
     day_secure = fixed_cost[:secure]/30
     gasoline_day = variable_cost[:gasoline] * (day_route_kilometers/8)
@@ -79,7 +87,7 @@ class ApplicationController < ActionController::Base
     value_rescue = value_of_vehicle / util_live
     factor_rescue = 100/util_live
     puts "Rescue factor #{factor_rescue}"
-    deprecate_mont = (factor_rescue * 2)/100.to_f
+    deprecate_mont = (factor_rescue * 4)/100.to_f
     active_deprecate_per_year = value_of_vehicle * deprecate_mont
     dayli_active_deprecate_per_year = active_deprecate_per_year / 365
     variable_cost = broute_variable_cost + dayli_active_deprecate_per_year

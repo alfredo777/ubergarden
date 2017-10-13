@@ -293,6 +293,8 @@ class TiendaController < ApplicationController
          my_colors.push( "#{mm[0]} = #{mm.count}" )
        end
 
+       puts "**************************** #{my_colors} colors"
+
        productos_in_line.push({
         id: id,
         img: img,
