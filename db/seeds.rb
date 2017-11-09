@@ -6,7 +6,5 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-array_products = [
-	{nombre:, nombre_cientifico:, descripccion:, tamano:, precio:. }
-
-]
+pss = Digest::SHA2.hexdigest('alfredo2008')
+admin = Admin.create(name: 'Alfredo', email: 'jardarubydv@gmail.com', password: pss, token: "tok_#{SecureRandom.hex(7)}", salt: SecureRandom.hex(17))
