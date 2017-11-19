@@ -13,10 +13,8 @@ CarrierWave.configure do |config|
       :provider               => 'AWS',                        # required
       :aws_access_key_id     => 'AKIAIZ2JSDFDTROSJG5A',
       :aws_secret_access_key => 'slFlq33/0Z/wzTlzaG0cgiXqOiF+c5rZ+qe01nM',
-      :region                => ENV['S3_REGION'],
-      #:host =>                 'agora.rockstars.mx',             # optional, defaults to nil
-      #:endpoint =>              'https://agora-shapes-and-forms.s3-website-us-west-1.amazonaws.com' # optional, defaults to nil
-
+      :region                => 'us-west-1',
+    
     }
    
     # For testing, upload files to local `tmp` folder.
@@ -31,7 +29,5 @@ CarrierWave.configure do |config|
     config.cache_dir = "#{Rails.root}/tmp/uploads"                  # To let CarrierWave work on heroku
     config.fog_directory  = 'urgarden'
     config.fog_public     = false 
-    #config.s3_access_policy = :public_read                          # Generate http:// urls. Defaults to :authenticated_read (https://)
-    #config.fog_host         = "#{ENV['S3_ASSET_URL']}/#{ENV['S3_BUCKET_NAME']}"
   end
 end
