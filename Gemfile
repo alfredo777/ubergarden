@@ -69,7 +69,9 @@ group :production do
   gem 'rails_12factor'
   gem "informant-rails"
   gem 'newrelic_rpm'
-  gem 'fog'
+  #gem 'fog'
+  gem 'fog-aws'
+  gem 'excon'
 end
 
 
