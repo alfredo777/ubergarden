@@ -6,11 +6,11 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.paginate(:page => params[:page], :per_page => 40)
+    @products = Product.paginate(:page => params[:page], :per_page => 50)
   end
 
   def productos_no_publicados
-    @products = Product.where(publicado: false).paginate(:page => params[:page], :per_page => 20)
+    @products = Product.where(publicado: false).paginate(:page => params[:page], :per_page => 50)
   end
 
   def eliminar_todos_los_productos_sin_publicar
