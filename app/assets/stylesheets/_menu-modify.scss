@@ -38,6 +38,47 @@
 	
 }
 
+.top-menu-2{
+	position: relative;
+	width: 100%;
+	padding: 20px;
+	text-align: justify;
+	color: #fff;
+	background: rgba(13, 24, 20, 0.6);
+	top: 0;
+	height: 100px;
+	margin-bottom: 0px;
+}
+
+.menu-change-colors-2{
+	& a{
+	color: #2B2D2D !important;
+	font-size: 18px;
+	padding: 3px;
+	margin: 3px;
+	}
+	& a:hover{
+	  color: #fff !important;
+	}
+	& .dropdown-menu{
+		background: #ef0f1c;
+		& li a{
+			color:#fff !important;
+			font-size: 15px;
+			border: none !important;
+		}
+		& li a:hover{
+			color:#58b031 !important;
+			cursor:pointer;
+		}
+		& .divider{
+			background: #BFEB81 !important;
+		}
+	}
+
+	
+}
+
 .cart{
 	margin-top: 220px;
 	float: right;

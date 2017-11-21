@@ -1,5 +1,10 @@
 <div class="col-lg-3 left_menu">
 	<div class="col-lg-12">
+		<a href="#">
+			<%= image_tag('promo2/destacado-nochebuena.jpg', width: "100%") %>
+		</a>
+	</div>
+	<div class="col-lg-12">
 		<h3><span class="glyphicon glyphicon-map-marker" aria-hidden="true" style="color:#DA81F5;"></span> Buscar Mercancia </h3>
 		<%= render partial: '/layout_parts/search_shipment' %>
 	</div>
@@ -13,13 +18,13 @@
 	</div>
 	<div class="col-lg-12">
 		<a href="#">
-			<%= image_tag('promo2/destacado.jpg', width: "100%") %>
+			<%= image_tag('promo2/destacado-nochebuena.jpg', width: "100%") %>
 		</a>
 		<!--<h3 style="margin-top: 20px;"><span class="glyphicon glyphicon-globe" aria-hidden="true" style="color:#00BFFF;"></span> En redes sociales </h3>-->
 	</div>
 
 	<div class="col-lg-12">
-		<% random_offer_products.each do |product| %>
+		<!--<% random_offer_products.each do |product| %>
 		    <br/><br/>
 		    <%= link_to item_path(product.id) do %>
 			<%= image_tag(product.image_products.first.file.standar.url, width: "100%") %>
@@ -27,7 +32,7 @@
 			<h2 style="margin-top: -50px; margin-bottom: 50px;"><%= product.nombre %></h2>
 		    </div>
 			<%end%>
-		<%end%>
+		<%end%>-->
 	</div>
 
 	<div class="col-lg-12">

@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1>Lista de productos</h1>
+<h3>Productos: <%=Product.count %></h3>
 <div class="btn-group pull-right">
   <%= link_to active_all_path, data: { confirm: '¿Estas segur@ de querer activar todos los productos?' } , class: 'btn btn-success btn-small' do %>
   Activar todos los producto  <i class="fa fa-toggle-on" aria-hidden="true"></i>

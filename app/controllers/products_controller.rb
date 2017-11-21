@@ -13,6 +13,14 @@ class ProductsController < ApplicationController
     @products = Product.where(publicado: false).paginate(:page => params[:page], :per_page => 20)
   end
 
+  def eliminar_todos_los_productos_sin_publicar
+    @products = Product.where(publicado: false)
+    @products.each do |p|
+      p.destroy
+    end
+    redirect_to :back
+  end
+
 
   def products_photos
   end

@@ -68,6 +68,8 @@ Rails.application.routes.draw do
   post 'admin/products/:id/add_photos',to: 'products#add_photos'
   get 'admin/productos_no_publicados',to: 'products#productos_no_publicados', as: :productos_no_publicados
   post 'admin/productos_no_publicados',to: 'products#productos_no_publicados'
+  get 'admin/eliminar_todos_los_productos_sin_publicar',to: 'products#eliminar_todos_los_productos_sin_publicar', as: :eliminar_todos_los_productos_sin_publicar
+  post 'admin/eliminar_todos_los_productos_sin_publicar',to: 'products#eliminar_todos_los_productos_sin_publicar'
   get 'admin/destroy_photos/:id',to: 'products#destroy_photos', as: :destroy_photos
   post 'admin/destroy_photos/:id',to: 'products#destroy_photos'
   get 'admin/products/:id/activate_inactive',to: 'products#activate_inactive', as: :active_inactive
