@@ -110,7 +110,15 @@ class ProductsController < ApplicationController
   end
 
   def active_all
-    Product.update_all publicado: true
+    products = Product.where(publicado: false)
+
+    products.each do |product|
+      if product.image_products.count != 0
+        product.publicado = true
+        product.save 
+      end
+    end
+    
     redirect_to :back
   end
 
