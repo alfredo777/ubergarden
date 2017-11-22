@@ -45,7 +45,7 @@
 		<% @product.image_products.each do |img| %>
 		<div class="col-xs-6 col-md-3">
 			<div class="thumbnail">
-				<img src="<%= img.file.standar%>" alt="img.file">
+				<img src="<%= img.file.big%>" alt="img.file">
 				<div class="caption">
 					<%= link_to "Borrar Imagen", destroy_photos_path(id: img.id), class: "btn btn-warning btn-large", data: { confirm: '¿Estas segur@ de eliminar esta fotografía?' }%>
 				</div>
