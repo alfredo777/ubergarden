@@ -13,12 +13,14 @@ class TiendaController < ApplicationController
     i = 0
     ids = []
     best_products.each do |key,value|
+      if Product.exists?(key)
       ids.push(key)
+      end
     end
     end
 
     @best_products = Product.find(ids)
-     render layout: "application"
+    render layout: "application"
   end
 
   
@@ -37,6 +39,7 @@ class TiendaController < ApplicationController
     i = 0
     array_p = []
     best_products.each do |key,value|
+      if Product.exists?(key)
       @product = Product.find(key)
       puts @product.nombre
       array_p.push({
@@ -48,6 +51,7 @@ class TiendaController < ApplicationController
          @best_products = array_p
           puts "#{@best_products}"
         return false
+      end
       end
     end
     end
@@ -62,6 +66,7 @@ class TiendaController < ApplicationController
     i = 0
     array_p = []
     best_products.each do |key,value|
+      if Product.exists?(key)
       @product = Product.find(key)
       puts @product.nombre
       array_p.push({
@@ -73,6 +78,7 @@ class TiendaController < ApplicationController
          @best_products = array_p
           puts "#{@best_products}"
         return false
+      end
       end
     end
     end
@@ -157,6 +163,7 @@ class TiendaController < ApplicationController
     i = 0
     array_p = []
     best_products.each do |key,value|
+      if Product.exists?(key)
       @product = Product.find(key)
       puts @product.nombre
       array_p.push({
@@ -168,6 +175,7 @@ class TiendaController < ApplicationController
          @best_products = array_p
           puts "#{@best_products}"
         return false
+      end
       end
     end
     end
