@@ -25,6 +25,16 @@ class ProductsController < ApplicationController
   def products_photos
   end
 
+  def search_product
+    @products = Product.all
+    @products = @products.nombre(params[:search]) if params[:search].present?
+    if @products.count == 0
+      @products = Product.all
+      @products = @products.nombre_cientifico(params[:search]) if params[:search].present?
+    end
+  end
+
+
   def add_photos 
     params[:file].each do |file|
       puts "++++++++"
@@ -86,8 +96,14 @@ class ProductsController < ApplicationController
    if product.publicado
      product.publicado = false
    else
+      if product.image_products.count != 0
+      puts "El producto se publicara"
       product.publicado = true
+       else
+      puts "Productos sin imagenes"
+     end
    end
+  
    product.save
 
    redirect_to :back

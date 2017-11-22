@@ -2,6 +2,7 @@
 <h1>Lista de productos</h1>
 <h3>Productos: <%=Product.count %></h3>
 <%= render partial: '/products/search_products' %>
+
 <div class="btn-group pull-right">
   <%= link_to active_all_path, data: { confirm: '¿Estas segur@ de querer activar todos los productos?' } , class: 'btn btn-success btn-small' do %>
   Activar todos los producto  <i class="fa fa-toggle-on" aria-hidden="true"></i>
@@ -18,6 +19,7 @@
       <th>Precio</th>
       <th>Nombre cientifico</th>
       <th>Tamaño</th> 
+      <th>Imagenes</th>
       <th colspan="5"></th>
     </tr>
   </thead>
@@ -28,6 +30,8 @@
       <td><%= product.precio %></td>
       <td><%= product.nombre_cientifico %></td>
       <td><%= product.tamano %></td>
+      <td><%= product.image_products.count %></td>
+
       <center>
       <td>
         <%= link_to product, class: "btn btn-success",  "data-toggle": "tooltip", "data-placement": "top", "title": "Ver datos del producto"  do %>
@@ -66,9 +70,6 @@
   </tbody>
 </table>
 <br>
-<center>
-<%= will_paginate @products, :previous_label => '← Anterior', :next_label => 'Siguiente →', renderer: BootstrapPagination::Rails %>
-</center>
 
 <script>
 $(function () {

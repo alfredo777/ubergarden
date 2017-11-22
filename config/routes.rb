@@ -74,6 +74,8 @@ Rails.application.routes.draw do
   post 'admin/destroy_photos/:id',to: 'products#destroy_photos'
   get 'admin/products/:id/activate_inactive',to: 'products#activate_inactive', as: :active_inactive
   post 'admin/products/:id/activate_inactive',to: 'products#activate_inactive'
+  get 'admin/search_product', to: 'products#search_product', as: :search_product
+  post 'admin/search_product', to: 'products#search_product' 
   get 'admin/active_all',to: 'products#active_all', as: :active_all
   post 'admin/active_all',to: 'products#active_all'
   get 'admin/unactive_all',to: 'products#unactive_all', as: :unactive_all
