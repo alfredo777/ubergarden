@@ -45,7 +45,7 @@ class Product < ApplicationRecord
       if page != nil
     	@text = page.text
       else
-      @text = ''
+      @text = 'No se encontro información para este producto...'
       end
       else
       @text = ''
