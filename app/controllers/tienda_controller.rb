@@ -31,7 +31,7 @@ class TiendaController < ApplicationController
   end
   
   def productos
-    @products = Product.where(publicado: true).paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    @products = Product.where(publicado: true).paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
     best_products = ProductosAPedido.group(:product_id).order('count_all desc').count
     if best_products.nil?
       @best_products = []
