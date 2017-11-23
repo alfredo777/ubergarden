@@ -1,7 +1,7 @@
 <div class="col-sm-2 col-md-2" >
 	<div class="thumbnail"  style="height: auto !important; background: #fff; padding: 0px;">
 		<div class="img-border">
-		  <%= link_to item_path(product.id) do -%>
+			<%= link_to item_path(product.id) do -%>
 			<% if img != nil %>
 			<% unless mobile_device? %>
 			<img src="<%= img.file.standar%>" alt="img.file" width="100%">
@@ -15,11 +15,16 @@
 		</div>
 		<div class="p-description">
 			<div class="caption">
+				
+				<% if mobile_device? %>
+				<h4><%= title.truncate(60, separator: '...') %> <% if !product.oferta.nil?%>  <i style="color:red;"></i> <%end%> </h4>
+				<%else%>
 				<div class="col-md-12"  style="height: 50px;">
 					<h4><%= title.truncate(20, separator: '...') %></h4>
 				</div>
+				<%end%>
 				<!--<div class="col-md-3">
-							<a href="#" class="btn btn-info " role="button"><i class="fa fa-pagelines" aria-hidden="true"></i></a>
+								<a href="#" class="btn btn-info " role="button"><i class="fa fa-pagelines" aria-hidden="true"></i></a>
 				</div>-->
 				<div class="col-lg-12">
 					<% if product.oferta.nil? %>

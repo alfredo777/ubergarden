@@ -16,7 +16,11 @@
 		<div class="p-description">
 			<div class="caption">
 				<div class="col-md-9">
-					<h4><%= title.truncate(11, separator: '...') %> <% if !product.oferta.nil?%>  <i style="color:red;"></i> <%end%> </h4>
+					<% if mobile_device? %>
+					<h4><%= title.truncate(60, separator: '...') %> <% if !product.oferta.nil?%>  <i style="color:red;"></i> <%end%> </h4>
+					<%else%>
+					<h4><%= title.truncate(15, separator: '...') %> <% if !product.oferta.nil?%>  <i style="color:red;"></i> <%end%> </h4>
+					<%end%>
 					
 				</div>
 				<div class="col-md-3">
