@@ -44,6 +44,9 @@ class Product < ApplicationRecord
     	page = Wikipedia.find( "#{self.nombre_cientifico}" )
       if page != nil
     	@text = page.text
+       if @text == nil 
+        @text = 'No se encontro información para este producto...'
+       end
       else
       @text = 'No se encontro información para este producto...'
       end
