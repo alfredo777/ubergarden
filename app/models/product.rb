@@ -28,7 +28,7 @@ class Product < ApplicationRecord
     def wikipedia_link
       if self.nombre_cientifico != nil
     	page = Wikipedia.find( "#{self.nombre_cientifico}" )
-      if page == nil
+      if page != nil
     	@url = page.fullurl
       else
       @url = ''
@@ -42,7 +42,7 @@ class Product < ApplicationRecord
     def wikipedia_content
       if self.nombre_cientifico != nil
     	page = Wikipedia.find( "#{self.nombre_cientifico}" )
-      if page == nil
+      if page != nil
     	@text = page.text
       else
       @text = ''
