@@ -636,28 +636,19 @@ class ApiController < ApplicationController
 
 	def oppen_images(imagen)
 		urlx = imagen.file.big.url
-		puts "#{url}"
 	    if urlx.nil?
 	      url = nil
 	      else
 	      if Rails.env == 'production'
-	      puts "Entrando en producción"
-	      filename ||= "#{urlx}"
+	      filename ||= "#{imagen.file.big.url}"
 	      else
-	      filename ||= "#{Rails.root}/public#{urlx}"
-	      puts filename
+	      filename ||= "#{Rails.root}/public#{imagen.file.big.url}"
 	      end
-	      if Rails.env == 'development'
-		      if File.exist?(filename)
-		      puts "El archivo existe"
-		      url = Base64.strict_encode64(open(filename).to_a.join)
-		      end
-	      else
-	     	 puts "Leyendo de amazon"
-	     	 url = Base64.strict_encode64(open(filename).to_a.join)
-	      end
+	      #if File.exist?(filename)
+	      #puts "El archivo existe"
+	      url = Base64.strict_encode64(open(filename).to_a.join)
+	      #end
 	    end
-	    puts url
 	    url
 	end
 
