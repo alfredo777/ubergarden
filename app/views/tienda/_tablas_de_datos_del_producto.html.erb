@@ -1,7 +1,9 @@
 <% if mobile_device? %>
+<% if !product.oferta.nil? %>
 <div class="col-lg-12" style="margin-top: -10px;">
 	<%= image_tag 'oferta.png', width: '50%', style: 'position: relative;' %>
 </div>
+<%end%>
 <%end%>
 <% product.image_products.each_with_index do |img, index| %>
 <% if index == 0 %>
