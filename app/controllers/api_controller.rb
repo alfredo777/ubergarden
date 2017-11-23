@@ -652,6 +652,7 @@ class ApiController < ApplicationController
 
 	      end
 	    end
+	    puts url
 	    url
 	end
 
