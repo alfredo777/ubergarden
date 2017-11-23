@@ -1,0 +1,77 @@
+<% if mobile_device? %>
+<div class="col-lg-12" style="margin-top: -10px;">
+	<%= image_tag 'oferta.png', width: '50%', style: 'position: relative;' %>
+</div>
+<%end%>
+<% product.image_products.each_with_index do |img, index| %>
+<% if index == 0 %>
+<div class="col-lg-12">
+	<div id="open">
+		<img src="<%= img.file.big%>" alt="img.file" width="100%" id="openx" >
+	</div>
+</div>
+<%end%>
+<% end %>
+<div class="row">
+	<div class="col-lg-12" style="margin-top: 10px;">
+		<% product.image_products.each_with_index do |img, index| %>
+		<div class="p-image">
+			<a id="imagen-<%= index %>" onclick="altavista('imagen-<%= index %>')" data-image="<%= img.file.big%>" data-index='<%= index %>' data-target="openx" style="width: 100%;">
+				<img src="<%= img.file.standar%>" alt="img.file" width="100%">
+			</a>
+		</div>
+		<%end%>
+	</div>
+</div>
+<% if mobile_device? %>
+<div class="col-lg-12" style="margin-top: 20px;">
+	<%= render partial: '/tienda/boton_agregar_carrito', locals: {product: @product} %>
+</div>
+<%end%>
+<table class="table table-bordered">
+	<caption>Necesidades</caption>
+	<thead>
+		<tr>
+			<th>Luz</th>
+			<th>Riego</th>
+			<th>Tamaño</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><%= product.luz %></td>
+			<td><%= product.riego %></td>
+			<td><%= product.tamano %></td>
+		</tr>
+	</tbody>
+</table>
+<table class="table table-bordered">
+	<caption>Datos Geográficos</caption>
+	<thead>
+		<tr>
+			<th>Pais</th>
+			<th>Región climática</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><%= product.pais_de_procedencia %></td>
+			<td><%= product.region_climatica %></td>
+		</tr>
+	</tbody>
+</table>
+<table class="table table-bordered">
+	<caption>Datos Científicos</caption>
+	<thead>
+		<tr>
+			<th>Familia</th>
+			<th>Orden</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><%= product.familia %></td>
+			<td><%= product.orden %></td>
+		</tr>
+	</tbody>
+</table>

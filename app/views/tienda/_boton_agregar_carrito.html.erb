@@ -1,0 +1,128 @@
+<% unless mobile_device? %>
+<% if product.oferta.nil? %>
+<h3 style="color:#ea2840;"><b>$ <%= product.precio_final %> MXN </b></h3><br/><br/>
+<%else%>
+<%= image_tag 'oferta.png', width: '50%', style: 'position: relative;' %>
+<h3><strike style="color: red;">$<%=product.precio%></strike> &#x2192; <b style="color:#D6CA27;"> $<%= product.precio_final %> MXN </b></h3>
+<h4> Estas ahorrando $<%= product.descuento %> pesos. </h4>
+<%end%>
+<i>Opcciones</i><br/>
+<% if product.color1 != ""  %>
+<% if product.color1 != nil %>
+<div id="p1" class="colorem btn btn-single btn-small bnt-active-green" style="margin-top:10px;" onclick="color_select('p1','<%= product.color1 %>')">
+	<%= product.color1 %>
+</div>
+<%end%>
+<%end%>
+<% if product.color2 != "" %>
+<% if product.color2 != nil %>
+<div id="p2" class="colorem btn btn-single btn-small" style="margin-top:10px;" onclick="color_select('p2','<%= product.color2 %>')">
+	<%= product.color2 %>
+</div>
+<%end%>
+<%end%>
+<% if product.color3 != "" %>
+<% if product.color3 != nil %>
+<div id="p3" class="colorem btn btn-single btn-small" style="margin-top:10px;" onclick="color_select('p3','<%= product.color3 %>')">
+	<%= product.color3 %>
+</div>
+<%end%>
+<%end%>
+<% if product.color4 != "" %>
+<% if product.color4 != nil %>
+<div id="p4" class="colorem btn btn-single btn-small" style="margin-top:10px;" onclick="color_select('p4','<%= product.color4%>')">
+	<%= product.color4 %>
+</div>
+<%end%>
+<%end%>
+<% if product.color5 != "" %>
+<% if product.color5 != nil %>
+<div id="p5" class="colorem btn btn-single btn-small" style="margin-top:10px;" onclick="color_select('p5','<%= product.color5 %>')">
+	<%= product.color5 %>
+</div>
+<%end%>
+<%end%>
+<br/><br/>
+<i>¡Estas listo!</i><br/>
+<div class="col-md-4" style="margin-top: 20px;">
+	<%= number_field_tag 'cantidad', 1, class: "form-control" %>
+</div>
+<div class="col-md-8" style="margin-top: 20px;">
+	<h4>Cantidad</h4>
+</div>
+<div class="col-lg-12" style="margin-top: 20px;">
+	<%= link_to actualizar_carrito_path(product: product.id, price: product.precio, color: product.color1, cantidad: 1), class: "btn btn-buy ", id: "carrito_link",remote: true do %>
+	Comprar ahora <i class="fa fa-cart-plus" aria-hidden="true"></i>
+	<%end%>
+</div>
+<%else%>
+<div class="row">
+	<% if product.oferta.nil? %>
+	<div class="panel panel-default" style="background: rgba(13, 24, 20, 0.9);">
+		<div class="row">
+			<div class="col-lg-12">
+				<center>
+				<h3 style="color:#fff;">Precio:  <b style="color:#ea2840; "> $<%= product.precio_final %> MXN </b></h3><br/>
+				</center>
+			</div>
+		</div>
+	</div>
+	<%else%>
+	<div class="panel panel-default" style="background: rgba(13, 24, 20, 0.9);">
+		<center>
+		<h3><p style="color:#fff;"> De </p><strike style="color: red;"> $<%=product.precio%></strike><p style="color:#fff;"> a tan solo </p><b style="color:#fff;"> $<%= product.precio_final %> MXN </b></h3>
+		<h4 style="color: #fff;"> Estas ahorrando $<%= product.descuento %> pesos. </h4>
+		</center>
+	</div>
+	<%end%>
+</div>
+<i>Opcciones</i><br/>
+<% if product.color1 != ""  %>
+<% if product.color1 != nil %>
+<div id="p1" class="colorem btn btn-single btn-small bnt-active-green" style="margin-top:10px;" onclick="color_select('p1','<%= product.color1 %>')">
+	<%= product.color1 %>
+</div>
+<%end%>
+<%end%>
+<% if product.color2 != "" %>
+<% if product.color2 != nil %>
+<div id="p2" class="colorem btn btn-single btn-small" style="margin-top:10px;" onclick="color_select('p2','<%= product.color2 %>')">
+	<%= product.color2 %>
+</div>
+<%end%>
+<%end%>
+<% if product.color3 != "" %>
+<% if product.color3 != nil %>
+<div id="p3" class="colorem btn btn-single btn-small" style="margin-top:10px;" onclick="color_select('p3','<%= product.color3 %>')">
+	<%= product.color3 %>
+</div>
+<%end%>
+<%end%>
+<% if product.color4 != "" %>
+<% if product.color4 != nil %>
+<div id="p4" class="colorem btn btn-single btn-small" style="margin-top:10px;" onclick="color_select('p4','<%= product.color4%>')">
+	<%= product.color4 %>
+</div>
+<%end%>
+<%end%>
+<% if product.color5 != "" %>
+<% if product.color5 != nil %>
+<div id="p5" class="colorem btn btn-single btn-small" style="margin-top:10px;" onclick="color_select('p5','<%= product.color5 %>')">
+	<%= product.color5 %>
+</div>
+<%end%>
+<%end%>
+<br/><br/>
+<i>¡Estas listo!</i><br/>
+<div class="col-md-4" style="margin-top: 20px;">
+	<%= number_field_tag 'cantidad', 1, class: "form-control" %>
+</div>
+<div class="col-md-8" style="margin-top: 20px;">
+	<h4>Cantidad</h4>
+</div>
+<div class="col-lg-12" style="margin-top: 20px;">
+	<%= link_to actualizar_carrito_path(product: product.id, price: product.precio, color: product.color1, cantidad: 1), class: "btn btn-buy ", id: "carrito_link",remote: true do %>
+	Comprar ahora <i class="fa fa-cart-plus" aria-hidden="true"></i>
+	<%end%>
+</div>
+<%end%>

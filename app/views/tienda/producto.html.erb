@@ -7,168 +7,32 @@
 		$('#rating').rating();
 		</script>-->
 	</div>
+	
+	<% unless mobile_device? %>
 	<div class="col-lg-4">
-		<% @product.image_products.each_with_index do |img, index| %>
-		<% if index == 0 %>
-		<div class="col-lg-12">
-			<div id="open">
-				<img src="<%= img.file.big%>" alt="img.file" width="100%" id="openx" >
-			</div>
-		</div>
-		<%end%>
-		<% end %>
-		<div class="col-lg-12" style="margin-top: 10px;">
-			<% @product.image_products.each_with_index do |img, index| %>
-			<div class="p-image">
-				<a id="imagen-<%= index %>" onclick="altavista('imagen-<%= index %>')" data-image="<%= img.file.big%>" data-index='<%= index %>' data-target="openx" style="width: 100%;">
-					<img src="<%= img.file.standar%>" alt="img.file" width="100%">
-				</a>
-			</div>
-			<%end%>
-		</div>
-
-		<table class="table table-bordered">
-			<caption>Necesidades</caption>
-			<thead>
-				<tr>
-					<th>Luz</th>
-					<th>Riego</th>
-					<th>Tamaño</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><%= @product.luz %></td>
-					<td><%= @product.riego %></td>
-					<td><%= @product.tamano %></td>
-				</tr>
-			</tbody>
-		</table>
-
-		<table class="table table-bordered">
-			<caption>Datos Geográficos</caption>
-			<thead>
-				<tr>
-					<th>Pais</th>
-					<th>Región climática</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><%= @product.pais_de_procedencia %></td>
-					<td><%= @product.region_climatica %></td>
-				</tr>
-			</tbody>
-		</table>
-
-		<table class="table table-bordered">
-			<caption>Datos Científicos</caption>
-			<thead>
-				<tr>
-					<th>Familia</th>
-					<th>Orden</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><%= @product.familia %></td>
-					<td><%= @product.orden %></td>
-				</tr>
-			</tbody>
-		</table>
-		
+		<%= render partial: '/tienda/tablas_de_datos_del_producto', locals: {product: @product} %>
 	</div>
 	<div class="col-lg-4 p-descript justify">
-		<ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" class="active"><a href="#wikipedia" aria-controls="needs" role="tab" data-toggle="tab"><i class="fa fa-wikipedia-w" aria-hidden="true"></i>ikipedia</a></li>			
-			<li role="presentation" ><a href="#descript" aria-controls="descript" role="tab" data-toggle="tab">
-			<i class="fa fa-database" aria-hidden="true"></i> Datos y Necesidades</a></li>
-		</ul>
-		
-		<div class="tab-content">
-		    <div role="tabpanel" class="tab-pane active" id="wikipedia"><p><%= simple_format(@product.wikipedia_content.truncate(1027, separator: '...')) %></p>
-			    <a href="<%= @product.wikipedia_link %>" target="_blank" class="pull-right"><i>Ver mas en <i class="fa fa-wikipedia-w" aria-hidden="true"></i>ikipedia</i></a>
-			</div>
-			<div role="tabpanel" class="tab-pane " id="descript">
-			<b>Descripcción:</b><br/><br/>
-			<p><%= @product.descripccion %></p>
-			<b>Necesidades:</b><br/><br/>
-			<p><%= @product.necesidades %></p>
-			</div>
-
-		</div>
+		<%= render partial: '/tienda/acerca_del_producto', locals: {product: @product} %>
 	</div>
 	<div class="col-lg-4">
-	    <% if @product.oferta.nil? %>
-		<h3 style="color:#ea2840;"><b>$ <%= @product.precio_final %> MXN </b></h3><br/><br/>
-		<%else%>
-		<%= image_tag 'oferta.png', width: '50%', style: 'position: relative;' %>
-		<h3><strike style="color: red;">$<%=@product.precio%></strike> &#x2192; <b style="color:#D6CA27;"> $<%= @product.precio_final %> MXN </b></h3>
-		<h4> Estas ahorrando $<%= @product.descuento %> pesos. </h4>
-		<%end%>
-
-		<i>Opcciones</i><br/>
-		    <% if @product.color1 != ""  %>
-		    <% if @product.color1 != nil %>
-			<div id="p1" class="colorem btn btn-single btn-small bnt-active-green" style="margin-top:10px;" onclick="color_select('p1','<%= @product.color1 %>')">
-				<%= @product.color1 %>
-			</div>
-			<%end%>
-			<%end%>
-			<% if @product.color2 != "" %>
-			<% if @product.color2 != nil %>
-			<div id="p2" class="colorem btn btn-single btn-small" style="margin-top:10px;" onclick="color_select('p2','<%= @product.color2 %>')">
-				<%= @product.color2 %>
-			</div>
-			<%end%>
-			<%end%>
-			<% if @product.color3 != "" %>
-			<% if @product.color3 != nil %>
-			<div id="p3" class="colorem btn btn-single btn-small" style="margin-top:10px;" onclick="color_select('p3','<%= @product.color3 %>')">
-				<%= @product.color3 %>
-			</div>
-			<%end%>
-			<%end%>
-			<% if @product.color4 != "" %>
-			<% if @product.color4 != nil %>
-			<div id="p4" class="colorem btn btn-single btn-small" style="margin-top:10px;" onclick="color_select('p4','<%= @product.color4%>')">
-				<%= @product.color4 %>
-			</div>
-			<%end%>
-			<%end%>
-			<% if @product.color5 != "" %>
-			<% if @product.color5 != nil %>
-			<div id="p5" class="colorem btn btn-single btn-small" style="margin-top:10px;" onclick="color_select('p5','<%= @product.color5 %>')">
-				<%= @product.color5 %>
-			</div>
-			<%end%>
-			<%end%>
-		<br/><br/>
-		<i>¡Estas listo!</i><br/>
-		 <div class="col-md-4" style="margin-top: 20px;">
-		 <%= number_field_tag 'cantidad', 1, class: "form-control" %>
-		 </div>
-		 <div class="col-md-8" style="margin-top: 20px;">
-		  <h4>Cantidad</h4>
-		 </div>
-		 <div class="col-lg-12" style="margin-top: 20px;">
-		 <%= link_to actualizar_carrito_path(product: @product.id, price: @product.precio, color: @product.color1, cantidad: 1), class: "btn btn-buy ", id: "carrito_link",remote: true do %>
-			 Comprar ahora <i class="fa fa-cart-plus" aria-hidden="true"></i>
-		<%end%>
-		</div>
-	
+		<%= render partial: '/tienda/boton_agregar_carrito', locals: {product: @product} %>
 	</div>
+	<%else%>	
+		<%= render partial: '/tienda/tablas_de_datos_del_producto', locals: {product: @product} %>
+	</div>
+	<%end%>
 </div>
 <script>
-     window.sessionStorage.setItem('current_color', '<%= @product.color1 %>');
-     window.sessionStorage.setItem('current_cantidad', 1);
-    $("#cantidad").on("change keyup paste", function(){
-    	var q = $('#cantidad').val();
-    	window.sessionStorage.setItem('current_cantidad', q);
-    	var color = window.sessionStorage.getItem('current_color');
-    	var new_link = "/tienda/actualizar_carrito?color="+color+"&amp;price=<%=@product.precio%>&amp;product=<%=@product.id%>&amp;cantidad="+q;
-    	$('#carrito_link').attr('href',new_link);
-    });
+window.sessionStorage.setItem('current_color', '<%= @product.color1 %>');
+window.sessionStorage.setItem('current_cantidad', 1);
+$("#cantidad").on("change keyup paste", function(){
+	var q = $('#cantidad').val();
+	window.sessionStorage.setItem('current_cantidad', q);
+	var color = window.sessionStorage.getItem('current_color');
+	var new_link = "/tienda/actualizar_carrito?color="+color+"&amp;price=<%=@product.precio%>&amp;product=<%=@product.id%>&amp;cantidad="+q;
+	$('#carrito_link').attr('href',new_link);
+});
 	function altavista(id){
 		var altavista = $('#'+id)
 			var target =  altavista.attr('data-target');
@@ -178,13 +42,12 @@
 	$('#'+target).attr('src', image)
 			
 	}
-
 	function color_select(id,color){
 		var q = window.sessionStorage.getItem('current_cantidad');
-	    var new_link = "/tienda/actualizar_carrito?color="+color+"&amp;price=<%=@product.precio%>&amp;product=<%=@product.id%>&amp;cantidad="+q;
-	    window.sessionStorage.setItem('current_color', color);
-	    $('.colorem').removeClass('bnt-active-green');
-	    $('#'+id).addClass('bnt-active-green');
-	    $('#carrito_link').attr('href',new_link);
+	var new_link = "/tienda/actualizar_carrito?color="+color+"&amp;price=<%=@product.precio%>&amp;product=<%=@product.id%>&amp;cantidad="+q;
+	window.sessionStorage.setItem('current_color', color);
+	$('.colorem').removeClass('bnt-active-green');
+	$('#'+id).addClass('bnt-active-green');
+	$('#carrito_link').attr('href',new_link);
 	}
 </script>
