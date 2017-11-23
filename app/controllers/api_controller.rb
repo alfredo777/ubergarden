@@ -641,15 +641,15 @@ class ApiController < ApplicationController
 	      else
 	      if Rails.env == 'production'
 	      filename ||= "#{urlx}"
-	      console.log(filename)
+	      puts filename
 	      else
 	      filename ||= "#{Rails.root}/public#{urlx}"
-	      console.log(filename)
+	      puts filename
 	      end
 	      if File.exist?(filename)
 	      puts "El archivo existe"
 	      url = Base64.strict_encode64(open(filename).to_a.join)
-	      
+
 	      end
 	    end
 	    url
