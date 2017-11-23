@@ -2,7 +2,7 @@ $CATEGORIAS = [
 	{search: 'arboles' , name: 'Arboles', img: '/imgcategorias/9.jpg'},
 	{search: 'arboles frutales' , name: 'Arboles Frutales', img: '/imgcategorias/25.jpg'},
 	{search: 'arborescentes' , name: 'Plantas Arborescentes',  img: '/imgcategorias/81.png'},
-	{search: 'orquideas', name: 'Orquideas',  img: '/imgcategorias/128.jpg'},
+	{search: 'orquideas', name: 'Orquídea',  img: '/imgcategorias/128.jpg'},
 	{search: 'semillas', name: 'Semillas', img: '/imgcategorias/semillas.jpg'},
 	{search: 'palmas' , name: 'Palmas', img: '/imgcategorias/31.jpg'},
 	{search: 'arbustos' , name: 'Arbustos',  img: '/imgcategorias/11.jpg'},
