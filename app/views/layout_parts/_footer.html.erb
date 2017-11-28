@@ -22,15 +22,21 @@
 				</div>
 				<ul>
 					<li>
-						<%= link_to "¿Que es Ur.Garden?", terminos_path %>
+						<%= link_to "¿Que es Ur.Garden?", about_us_path %>
 					</li>
 					<li>
-						<%= link_to "Nosotros", terminos_path %>
+						<%= link_to "Contactanos", "mailto:contactourgarden@gmail.com" %>
+					</li>
+					<!--<li>
+						<%= link_to "Nosotros", about_us_path %>
 					</li>
 					<li>
 						<%= link_to "Socios estratégicos", terminos_path %>
-					</li>
+					</li>-->
 				</ul>
+				
+			</div>
+			<div class="col-md-4">
 				<div class="li-divition">
 					Legal
 				</div>
@@ -42,9 +48,7 @@
 						<%= link_to "Aviso de privacidad", aviso_de_privacidad_path %>
 					</li>
 				</ul>
-			</div>
-			<div class="col-md-4">
-				<div class="li-divition">
+				<!--<div class="li-divition">
 					Redes Sociales
 				</div>
 				<ul>
@@ -68,7 +72,7 @@
 					<li><a  href="https://fb.me/ubergardenMX" target="_blank">
 						<i class="fa fa-phone" aria-hidden="true"></i> 4444-4444
 					</a>  </li>
-				</ul>
+				</ul>-->
 			</div>
 			<div class="col-md-4">
 				<br/><br/>
@@ -78,6 +82,7 @@
 				<span class="text-muted">Ur Garden © Todos los derechos reservados <%=  DateTime.now.strftime('%Y')%> </span>
 				<br/>
 				</center>
+				<br/><br/>
 			</div>
 		</div>
 		<%end%>
