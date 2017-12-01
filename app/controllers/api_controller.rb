@@ -310,7 +310,7 @@ class ApiController < ApplicationController
 
 		       line_items.push({
 		        name: lista[:nombre],
-		        unit_price: lista[:precio_final] * 100,
+		        unit_price: (lista[:precio_final] * 100).to_i,
 		        quantity: lista[:quantity]
 		       })
 	       end
