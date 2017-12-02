@@ -6,7 +6,7 @@ class TiendaController < ApplicationController
   def index
     @products_offer = Product.where("oferta > 0").where(publicado: true).limit(6)
     @products = Product.where(publicado: true).order("RANDOM()").limit(6)
-    best_products = ProductosAPedido.limit(100).group(:product_id).order('count_all desc').count
+    best_products = ProductosAPedido.limit(6).group(:product_id).order('count_all desc').count
     if best_products.nil?
       @best_products = []
     else
