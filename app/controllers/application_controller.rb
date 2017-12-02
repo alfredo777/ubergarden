@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
   def transport_cost_by_cuanty(qdep)
    factor_inicial = 60
    transport = qdep.to_f * 0.33
-   transport = factor_inicial + transport - (transport * 0.25)
+   transport = factor_inicial + transport #- (transport * 0.25)
    transport = transport.round(2)
   end
 
