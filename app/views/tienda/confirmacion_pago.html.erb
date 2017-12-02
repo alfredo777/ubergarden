@@ -166,14 +166,22 @@
 			<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 				<div class="panel-body">
 					<div class="col-md-6">
+						<% tx = (@pedido.total.to_f + session[:shipment_cost].to_f).round(2) %>
+						<% if tx > $LIMITCONKETA %> 
+						<center>
+							<i>El límite para pago con tarjeta es de $2000.00 MXN por pedido.</i>
+							<h4>Por su compresión gracias.</h4>
+							<%=image_tag('cards.png', width: "100%")%>
+						</center>
+						<%else%>
 						<label style="cursor: pointer;">
 						  <center>
 							<input type="radio" name="payment_method" value="card"  required>
 							</center>
 							<i>Mediante este método aceptadomos tus pagos con todos los tipos de tarjetas visa/mastercard/american express.</i>
 							<%=image_tag('cards.png', width: "100%")%>
-							
 						</label>
+						<%end%>
 					</div>
 					<div class="col-md-6">
 					  <label style="cursor: pointer;">

@@ -7,6 +7,7 @@ $PUBLIC_KEY_CONEKTA = "key_exdkyZDp1qKhk4xkugHY1Aw"
 $PRIVATE_KEY_CONEKTA = "key_MVgA2Xxiuu3mzHWPrJjnbA"
 end
 
+$LIMITCONKETA = 2000
 
 Conekta.config do |c|
   c.locale = :es
