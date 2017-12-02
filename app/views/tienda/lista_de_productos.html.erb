@@ -37,14 +37,14 @@
 		  Subtotal:</span>
 		</div>
 		<div class="col-md-6">
-		  <span style="font-size: 20px; float: right;">$<%= @total.to_f %> MXN</span>
+		  <span style="font-size: 20px; float: right;">$<%= (@total.to_f).round(2) %> MXN</span>
 		</div>
 		<div class="col-md-6">
 		  <span style="font-size: 20px;">
 		  Costo de envio:</span>
 		</div>
 		<div class="col-md-6">
-		  <span style="font-size: 20px; float: right;">$<%= session[:shipment_cost].to_f %> MXN</span>
+		  <span style="font-size: 20px; float: right;">$<%= (session[:shipment_cost].to_f).round(2) %> MXN</span>
 		</div>
 		<div class="col-md-6">
 		  <span style="font-size: 20px;">
