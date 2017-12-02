@@ -222,7 +222,7 @@ class TiendaController < ApplicationController
       session[:qdep] = session[:qdep] + @q
     end
 
-    session[:shipment_cost] = transport_cost(session[:qdep])
+    session[:shipment_cost] = transport_cost_by_cuanty(session[:qdep])
 
     puts ">>>>>>>>>>>>>>>>>>>>>>>>>> #{session[:qdep]}"
     puts ">>>>>>>>>>>>>>>>>>>>>>>>>> #{session[:shipment_cost]}"
