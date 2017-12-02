@@ -42,7 +42,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<h2>Monto total: <span class="pull-right">$<%= @pedido.total.to_f + session[:shipment_cost].to_f  %> MXN</span></h2>
+		<h2>Monto total: <span class="pull-right">$<%= (@pedido.total.to_f + session[:shipment_cost].to_f).round(2)  %> MXN</span></h2>
 	</div>
 	
 </div>
