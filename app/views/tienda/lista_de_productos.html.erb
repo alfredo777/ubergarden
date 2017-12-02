@@ -63,7 +63,7 @@
 <%= form_tag crear_pedido_path, multipart: true do -%>
 <input type="checkbox" name="conditions" required> Acepto<br/><br/>
 <div class="col-md-6">
-<span style="font-size: 25px; float: right;">$<%= (session[:shipment_cost].to_f + @total.to_f)).round(2) %> MXN</span>
+<span style="font-size: 25px; float: right;">$<%= (session[:shipment_cost].to_f + @total.to_f).round(2) %> MXN</span>
 </div>
 <div class="col-md-6">
 <button class="btn btn-primary pull-right">Finalizar Compra</button><br/><br/>
