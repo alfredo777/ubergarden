@@ -38,6 +38,7 @@ gem "activerecord-session_store"
 gem 'conekta'
 gem 'rmagick'
 gem "roo"
+gem "recaptcha", require: "recaptcha/rails"
 
 
 
