@@ -249,7 +249,7 @@ class TiendaController < ApplicationController
        unless productos_in_line_x.nil?
         productos_in_line_x.destroy
        end
-      redirect_to :back
+      redirect_to all_items_path
   end
 
   def lista_de_productos
