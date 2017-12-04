@@ -2,7 +2,7 @@ class PaymentsController < ApplicationController
 layout 'single'
     skip_before_action :verify_authenticity_token
 	def payment_proccess
-
+		if verify_recaptcha
 		@pedido = Pedido.find(params[:id])
 		@pedido.nombre_persona_que_ordena = params[:nombre_persona_que_ordena]
 		@pedido.apellidos_persona_que_ordena = params[:apellidos_persona_que_ordena]
@@ -25,6 +25,10 @@ layout 'single'
 		@pedido.persona_autorizada_a_recoger_4 = params[:persona_autorizada_a_recoger_4]
 		@pedido.metodo_de_pago = params[:payment_method]
 		@pedido.save
+		else
+		redirect_to :back
+		end
+
 
   end
 
