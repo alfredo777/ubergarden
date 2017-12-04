@@ -28,8 +28,6 @@ layout 'single'
 		else
 		redirect_to :back
 		end
-
-
   end
 
   def tarjeta
