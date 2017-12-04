@@ -36,7 +36,7 @@ class CustomersController < ApplicationController
   def montly_orders
     require 'csv'
 
-    @orders = Pedido.this_month.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    @orders = Pedido.this_month.where("conekta_order <> ''").paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
 
     respond_to do |format|
       format.html
