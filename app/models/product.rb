@@ -71,7 +71,7 @@ class Product < ApplicationRecord
 
     def precio_final
        precio_final = self.precio.to_f - descuento.to_f
-       precio_final = precio_final.round(2)
+       precio_final = precio_final.round()
     end
 
 
