@@ -26,7 +26,7 @@ layout 'single'
 		@pedido.metodo_de_pago = params[:payment_method]
 		@pedido.save
 		else
-		flash[:notice] = "Usted necesita dar click en reCaptcha"
+		flash[:notice] = "Usted necesita dar click en 'No soy un robot.' (al final del formulario)"
 		redirect_to :back
 		end
   end

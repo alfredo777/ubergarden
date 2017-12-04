@@ -249,7 +249,6 @@ class TiendaController < ApplicationController
        unless productos_in_line_x.nil?
         productos_in_line_x.destroy
        end
-      flash[:notice] = "Se han eliminado los items del carrito"
       redirect_to :back
   end
 
