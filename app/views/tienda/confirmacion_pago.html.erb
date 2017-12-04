@@ -2,6 +2,11 @@
 <h1>Confirmación de pago</h1>
 <p><i>Instrucciones: Llena todos los campos.</i></p>
 <div class="col-md-6">
+	<% if flash[:notice] %>
+	<div class="alert alert-danger">
+		<%= flash[:notice] %>
+	</div>
+	<%end%>
 	<% if !current_user %>
 	<b>Clave del pedido: <%= @pedido.codigo %></b><br/><br/>
 	<i>Es muy importante que conservers el código de pedido para poder realizar un rastreo en la plataforma.</i><br/><br/>
