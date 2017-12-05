@@ -39,11 +39,11 @@
 				</tr>
 				<%end%>
 				<tr>
-				  <td>Envio</td>
-				  <td></td>
-				  <td></td>
-				  <td></td>
-				  <td>$ <%= session[:shipment_cost].to_f %> MXN</td>
+					<td>Envio</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>$ <%= session[:shipment_cost].to_f %> MXN</td>
 				</tr>
 			</tbody>
 		</table>
@@ -54,156 +54,143 @@
 <div class="col-md-6">
 	<%= form_tag payment_proccess_path do -%>
 	<%= hidden_field_tag 'id', @pedido.id %>
-	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-		<div class="panel panel-default">
-			<div class="panel-heading" role="tab" id="headingOne">
-				<h4 class="panel-title">
-				<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-					1) Datos del Cliente (Ingresa tus datos)
-				</a>
-				</h4>
-			</div>
-			<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-				<div class="panel-body">
-					<label class="col-lg-12">
-						<b>Nombre *</b>
-						<%= text_field_tag 'nombre_persona_que_ordena', '', placeholder: 'Ingresa tu nombre', class: "form-control", required: true%>
-					</label>
-					<label class="col-lg-12">
-						<b>Apellidos *</b>
-						<%= text_field_tag 'apellidos_persona_que_ordena', '', placeholder: 'Ingresa tus apellidos', class: "form-control", required: true %>
-					</label>
-					<label class="col-lg-12">
-						<b>Email *</b>
-						<%= email_field_tag 'email', '', placeholder: 'Ingresa tu email', class: "form-control", required: true %>
-					</label>
-					<label class="col-lg-12">
-						<b>Otro Email </b>
-						<%= email_field_tag 'email2', '', placeholder: 'Ingresa un email de respaldo', class: "form-control" %>
-					</label>
-					<label class="col-md-4">
-						<b>Télefono Fijo *</b>
-						<%= text_field_tag 'telefono_fijo', '', placeholder: 'Teléfono Fijo', class: "form-control", required: true %>
-					</label>
-					<label class="col-md-4">
-						<b>Teléfono de Oficina</b>
-						<%= text_field_tag 'telefono_oficina', '', placeholder: 'Teléfono de Oficina', class: "form-control" %>
-					</label>
-					<label class="col-md-4">
-						<b>Movil o Celular *</b>
-						<%= text_field_tag 'telefono_celular', '', placeholder: 'Teléfono Movil', class: "form-control", required: true %>
-					</label>
-					
-				</div>
-			</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+			1) Datos del Cliente (Ingresa tus datos)
+			</h4>
 		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading" role="tab" id="headingTwo">
-				<h4 class="panel-title">
-				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-					2) Datos de envio (Ingresa tus datos de envio)
-				</a>
-				</h4>
-			</div>
-			<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-				<div class="panel-body">
-					<label class="col-lg-12">
-						<b>Dirección *</b>
-						<%= text_field_tag 'direccion', '', placeholder: 'Ingresa tu Dirección', class: "form-control", required: true %>
-					</label>
-					<label class="col-lg-6">
-						<b>Calle *</b>
-						<%= text_field_tag 'calle', '', placeholder: 'Ingresa tu calle', class: "form-control", required: true %>
-					</label>
-					<label class="col-lg-6">
-						<b>Colonia *</b>
-						<%= text_field_tag 'colonia', '', placeholder: 'Colonia', class: "form-control", required: true %>
-					</label>
-					<label class="col-lg-6">
-						<b>Número exterior *</b>
-						<%= text_field_tag 'numero_exterior', '', placeholder: 'Número exterior', class: "form-control", required: true %>
-					</label>
-					<label class="col-lg-6">
-						<b>Número Interior</b>
-						<%= text_field_tag 'numero_interior', '', placeholder: 'Número interior', class: "form-control" %>
-					</label>
-					<label class="col-lg-12">
-						<b>Estado al que perteneces *</b>
-						<%= render partial: '/tienda/select_states_mexico' %>
-					</label>
-					<label class="col-lg-6">
-						<b>Localidad o municipio *</b>
-						<%= text_field_tag 'localidad', '', placeholder: 'Ingresa tu localidad o municipio', class: "form-control", required: true %>
-					</label>
-					<label class="col-lg-6">
-						<b>Código Postal *</b>
-						<%= text_field_tag 'cpostal', '', placeholder: 'Ingresa tu código postal', class: "form-control", required: true %>
-					</label>
-
-					<label class="col-lg-12">
-						<b>Persona autorizada a recibir 1 </b>
-						<%= text_field_tag 'persona_autorizada_a_recoger_1', '', placeholder: 'Ingresa otra persona que pueda recibir tu paquete', class: "form-control" %>
-					</label>
-					<label class="col-lg-12">
-						<b>Persona autorizada a recibir 2 </b>
-						<%= text_field_tag 'persona_autorizada_a_recoger_2', '', placeholder: 'Ingresa otra persona que pueda recibir tu paquete', class: "form-control" %>
-					</label>
-					<label class="col-lg-12">
-						<b>Persona autorizada a recibir 3 </b>
-						<%= text_field_tag 'persona_autorizada_a_recoger_3', '', placeholder: 'Ingresa otra persona que pueda recibir tu paquete', class: "form-control" %>
-					</label>
-					<label class="col-lg-12">
-						<b>Persona autorizada a recibir 4 </b>
-						<%= text_field_tag 'persona_autorizada_a_recoger_4', '', placeholder: 'Ingresa otra persona que pueda recibir tu paquete', class: "form-control" %>
-					</label>
-					
-				</div>
-			</div>
+		<div class="panel-body">
+			<label class="col-lg-12">
+				<b>Nombre (obligatorio) *</b>
+				<%= text_field_tag 'nombre_persona_que_ordena', '', placeholder: 'Ingresa tu nombre', class: "form-control", required: true%>
+			</label>
+			<label class="col-lg-12">
+				<b>Apellidos (obligatorio) *</b>
+				<%= text_field_tag 'apellidos_persona_que_ordena', '', placeholder: 'Ingresa tus apellidos', class: "form-control", required: true %>
+			</label>
+			<label class="col-lg-12">
+				<b>Email (obligatorio) *</b>
+				<%= email_field_tag 'email', '', placeholder: 'Ingresa tu email', class: "form-control", required: true %>
+			</label>
+			<label class="col-lg-12">
+				<b>Otro Email </b>
+				<%= email_field_tag 'email2', '', placeholder: 'Ingresa un email de respaldo', class: "form-control" %>
+			</label>
+			<label class="col-md-4">
+				<b>Movil o Celular (obligatorio) *</b>
+				<%= text_field_tag 'telefono_celular', '', placeholder: 'Teléfono Movil', class: "form-control", required: true %>
+			</label>
+			<label class="col-md-4">
+				<b>Télefono Fijo</b>
+				<%= text_field_tag 'telefono_fijo', '', placeholder: 'Teléfono Fijo', class: "form-control"%>
+			</label>
+			
+			<label class="col-md-4">
+				<b>Teléfono de Oficina</b>
+				<%= text_field_tag 'telefono_oficina', '', placeholder: 'Teléfono de Oficina', class: "form-control" %>
+			</label>
+			
+			
 		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading" role="tab" id="headingThree">
-				<h4 class="panel-title">
-				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-					3) Selecciona tu método de pago
-				</a>
-				</h4>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading" >
+			<h4 class="panel-title">
+			2) Datos de envio (Ingresa tus datos de envio)
+			</h4>
+		</div>
+		<div class="panel-body">
+			<label class="col-lg-12">
+				<b>Dirección (obligatorio) *</b>
+				<%= text_field_tag 'direccion', '', placeholder: 'Ingresa tu Dirección', class: "form-control", required: true %>
+			</label>
+			<label class="col-lg-6">
+				<b>Calle (obligatorio) *</b>
+				<%= text_field_tag 'calle', '', placeholder: 'Ingresa tu calle', class: "form-control", required: true %>
+			</label>
+			<label class="col-lg-6">
+				<b>Colonia (obligatorio) *</b>
+				<%= text_field_tag 'colonia', '', placeholder: 'Colonia', class: "form-control", required: true %>
+			</label>
+			<label class="col-lg-6">
+				<b>Número exterior (obligatorio) *</b>
+				<%= text_field_tag 'numero_exterior', '', placeholder: 'Número exterior', class: "form-control", required: true %>
+			</label>
+			<label class="col-lg-6">
+				<b>Número Interior</b>
+				<%= text_field_tag 'numero_interior', '', placeholder: 'Número interior', class: "form-control" %>
+			</label>
+			<label class="col-lg-12">
+				<b>Estado al que perteneces (obligatorio) *</b>
+				<%= render partial: '/tienda/select_states_mexico' %>
+			</label>
+			<label class="col-lg-6">
+				<b>Localidad o municipio (obligatorio) *</b>
+				<%= text_field_tag 'localidad', '', placeholder: 'Ingresa tu localidad o municipio', class: "form-control", required: true %>
+			</label>
+			<label class="col-lg-6">
+				<b>Código Postal (obligatorio) *</b>
+				<%= text_field_tag 'cpostal', '', placeholder: 'Ingresa tu código postal', class: "form-control", required: true %>
+			</label>
+			<label class="col-lg-12">
+				<b>Persona autorizada a recibir 1 </b>
+				<%= text_field_tag 'persona_autorizada_a_recoger_1', '', placeholder: 'Ingresa otra persona que pueda recibir tu paquete', class: "form-control" %>
+			</label>
+			<label class="col-lg-12">
+				<b>Persona autorizada a recibir 2 </b>
+				<%= text_field_tag 'persona_autorizada_a_recoger_2', '', placeholder: 'Ingresa otra persona que pueda recibir tu paquete', class: "form-control" %>
+			</label>
+			<label class="col-lg-12">
+				<b>Persona autorizada a recibir 3 </b>
+				<%= text_field_tag 'persona_autorizada_a_recoger_3', '', placeholder: 'Ingresa otra persona que pueda recibir tu paquete', class: "form-control" %>
+			</label>
+			<label class="col-lg-12">
+				<b>Persona autorizada a recibir 4 </b>
+				<%= text_field_tag 'persona_autorizada_a_recoger_4', '', placeholder: 'Ingresa otra persona que pueda recibir tu paquete', class: "form-control" %>
+			</label>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading" >
+			<h4 class="panel-title">
+			3) Selecciona tu método de pago
+			</h4>
+		</div>
+		<div class="panel-body">
+			<div class="col-md-6">
+				<% tx = (@pedido.total.to_f + session[:shipment_cost].to_f).round(2) %>
+				<% if tx > $LIMITCONKETA %>
+				<center>
+				<i>El límite para pago con tarjeta es de $2000.00 MXN por pedido.</i>
+				<h4>Por su compresión gracias.</h4>
+				<%=image_tag('cards.png', width: "100%")%>
+				</center>
+				<%else%>
+				<label style="cursor: pointer;">
+					<center>
+					<input type="radio" name="payment_method" value="card"  required>
+					</center>
+					<i>Mediante este método aceptadomos tus pagos con todos los tipos de tarjetas visa/mastercard/american express.</i>
+					<%=image_tag('cards.png', width: "100%")%>
+				</label>
+				<%end%>
 			</div>
-			<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-				<div class="panel-body">
-					<div class="col-md-6">
-						<% tx = (@pedido.total.to_f + session[:shipment_cost].to_f).round(2) %>
-						<% if tx > $LIMITCONKETA %> 
-						<center>
-							<i>El límite para pago con tarjeta es de $2000.00 MXN por pedido.</i>
-							<h4>Por su compresión gracias.</h4>
-							<%=image_tag('cards.png', width: "100%")%>
-						</center>
-						<%else%>
-						<label style="cursor: pointer;">
-						  <center>
-							<input type="radio" name="payment_method" value="card"  required>
-							</center>
-							<i>Mediante este método aceptadomos tus pagos con todos los tipos de tarjetas visa/mastercard/american express.</i>
-							<%=image_tag('cards.png', width: "100%")%>
-						</label>
-						<%end%>
-					</div>
-					<div class="col-md-6">
-					  <label style="cursor: pointer;">
-					  <center>
-						<input type="radio" name="payment_method" value="oxxo" checked="checked" required>
-						</center>
-						<i>Si quieres pagar en oxxo seleccióna esta opcción, el pago con tarjeta no será permitido en esta orden.</i><br/><br/>
-						<i>El periodo límite para pago en oxxo es de 3 días despues de eso eliminaremos le pedido.</i><br/><br/><br/>
-						<%=image_tag('oxxo.png', width: "100%")%>
+			<div class="col-md-6">
+				<label style="cursor: pointer;">
+					<center>
+					<input type="radio" name="payment_method" value="oxxo" checked="checked" required>
+					</center>
+					<i>Si quieres pagar en oxxo seleccióna esta opcción, el pago con tarjeta no será permitido en esta orden.</i><br/><br/>
+					<i>El periodo límite para pago en oxxo es de 3 días despues de eso eliminaremos le pedido.</i><br/><br/><br/>
+					<%=image_tag('oxxo.png', width: "100%")%>
 					
-						</label>
-					</div>
-				</div>
+				</label>
 			</div>
 		</div>
 	</div>
-	<%= recaptcha_tags %>
-	 <%= submit_tag 'Generar la orden', class: "btn btn-primary btn-large pull-right" %>
-	<%end%>
+</div>
+<%= recaptcha_tags %>
+<%= submit_tag 'Generar la orden', class: "btn btn-primary btn-large pull-right" %>
+<%end%>
 </div>
