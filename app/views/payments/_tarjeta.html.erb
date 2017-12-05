@@ -47,7 +47,7 @@ return false;
 		<br/><br/>
 		<div class="col-md-12" style="background: #eee;">
 			<center>
-			<h2>Monto total: $<%= pedido.total.to_f + session[:shipment_cost].to_f %> MXN</h2>
+			<h2>Monto total: $<%= (pedido.total.to_f + session[:shipment_cost].to_f).round() %> MXN</h2>
 			</center>
 		</div>
 		<div class="col-md-12 panel panel-default" style="background: url('/assets/micro_carbon.png'); border: solid 2px #010101; color:#fff;">
@@ -84,7 +84,7 @@ return false;
 				<div class="col-lg-12">
 					<br/><br/>
 					<label>
-						<span>Fecha de expiración (MM/AAAA)</span>
+						<span>Fecha de expiración (MM/AAAA) -> (01/2018)</span>
 					</label>
 				</div>
 				<div class="col-lg-12">
