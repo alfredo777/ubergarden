@@ -1,6 +1,7 @@
 <script type="text/javascript" src="https://conektaapi.s3.amazonaws.com/v0.3.2/js/conekta.js"></script>
 <h1>Confirmación de pago</h1>
 <p><i>Instrucciones: Llena todos los campos.</i></p>
+
 <div class="col-md-6">
 	<% if flash[:notice] %>
 	<div class="alert alert-danger">
@@ -191,6 +192,9 @@
 		</div>
 	</div>
 	<%= recaptcha_tags %>
+	<h3 style="color:red;">(El tiempo de entrega es de 4 a 6 días hábiles)</h3>
+
 	<%= submit_tag 'Generar la orden', class: "btn btn-primary btn-large pull-right" %>
     <%end%>
 </div>
+
