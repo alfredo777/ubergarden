@@ -82,11 +82,12 @@
 				<%= text_field_tag 'telefono_celular', '', placeholder: 'Teléfono Movil', class: "form-control", required: true %>
 			</label>
 			<label class="col-md-4">
-				<b>Télefono Fijo</b>
-				<%= text_field_tag 'telefono_fijo', '', placeholder: 'Teléfono Fijo', class: "form-control"%>
+				<b>Télefono Fijo (obligatorio) *</b>
+				<%= text_field_tag 'telefono_fijo', '', placeholder: 'Teléfono Fijo', class: "form-control", required: true%>
 			</label>
 			
 			<label class="col-md-4">
+				<br/>
 				<b>Teléfono de Oficina</b>
 				<%= text_field_tag 'telefono_oficina', '', placeholder: 'Teléfono de Oficina', class: "form-control" %>
 			</label>
