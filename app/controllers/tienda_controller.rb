@@ -252,6 +252,34 @@ class TiendaController < ApplicationController
       redirect_to all_items_path
   end
 
+  def eliminar_item
+    puts params[:id]
+    puts "Productos === > #{session[:product]}"
+    puts "Precios ====> #{session[:price]}"
+    puts "Colores ====> #{session[:color]}"
+
+    productos = session[:product]
+    hashp = productos.group_by(&:itself).map { |k,v| [k, v.count] }.to_h
+
+
+    productos.delete(params[:id])
+
+    times = hashp["#{params[:id]}"]
+    puts times
+    preciox = session[:price]
+    descuento = params[:precio].to_i * times
+    session[:price] = preciox.to_i - descuento
+    puts "Productos === > #{session[:product]}"
+
+    colores = session[:color]
+    puts colores.count
+    colores.delete_if { |key| key.include?("#{params[:id]}") }
+    puts colores.count
+    session[:color] = colores
+
+    redirect_to :back
+  end
+
   def lista_de_productos
     require 'json'
     @products = session[:product]

@@ -8,75 +8,85 @@
 				<th width="5%">Cantidad</th>
 				<th width="7%">Precio</th>
 				<th >Total</th>
+				<th><center><i class="fa fa-trash-o" aria-hidden="true"></i></center></th>
 			</tr>
 		</thead>
 		<tbody>
+			<%= @productos %>
 			<%@productos.each do |product|%>
 			<tr>
 				<td width="70px"><%= image_tag(product[:img], width: '50px') %></td>
 				<td><%= product[:nombre] %></td>
 				<td>
-                 <% product[:my_colors].each do |c| %>
-                   <%= c %> <br/>
-                 <%end%>
+					<% product[:my_colors].each do |c| %>
+					<%= c %> <br/>
+					<%end%>
 				</td>
-
 				<td><span class="pull-right"><%= product[:quantity] %></span></td>
 				<td><span class="pull-right"><%= product[:unit_price] %></span></td>
 				<td ><span class="pull-right">$ <%= product[:total_product]%> MXN</span></td>
+				<th>
+					<center>
+					<%= link_to  eliminar_item_path(id: product[:id], precio: product[:unit_price].to_i), data: { confirm: '¿Estas segur@ de quitar el producto del carrito?' },  "data-toggle": "tooltip", "data-placement": "right", "title": "Quitar producto" do %>
+					<i class="fa fa-trash-o" aria-hidden="true"></i>
+					<%end%>
+				    </center>
+				</th>
 			</tr>
 			<%end%>
 		</tbody>
 	</table>
 	<center><p><b>Actualmente envios soloamente en Ciudad de México y Zona Metropolitana del Valle de México</b></p>
-     <h3 style="color:red;">(El tiempo de entrega es de 4 a 6 días hábiles)</h3>
-
+	<h3 style="color:red;">(El tiempo de entrega es de 4 a 6 días hábiles)</h3>
 	</center>
-
 	<div class="well" style="height: 130px;">
-
 		<div class="col-md-6">
-		  <span style="font-size: 20px;">
-		  Subtotal:</span>
+			<span style="font-size: 20px;">
+			Subtotal:</span>
 		</div>
 		<div class="col-md-6">
-		  <span style="font-size: 20px; float: right;">$<%= (@total.to_f).round(2) %> MXN</span>
+			<span style="font-size: 20px; float: right;">$<%= (@total.to_f).round(2) %> MXN</span>
 		</div>
 		<div class="col-md-6">
-		  <span style="font-size: 20px;">
-		  Costo de envio:</span>
+			<span style="font-size: 20px;">
+			Costo de envio:</span>
 		</div>
 		<div class="col-md-6">
-		  <span style="font-size: 20px; float: right;">$<%= (session[:shipment_cost].to_f).round(2) %> MXN</span>
+			<span style="font-size: 20px; float: right;">$<%= (session[:shipment_cost].to_f).round(2) %> MXN</span>
 		</div>
 		<div class="col-md-6">
-		  <span style="font-size: 20px;">
-		  Total:</span>
+			<span style="font-size: 20px;">
+			Total:</span>
 		</div>
 		<div class="col-md-6">
-		  <span style="font-size: 20px; float: right;">$<%= (session[:shipment_cost].to_f +  @total.to_f).round(2) %> MXN</span>
+			<span style="font-size: 20px; float: right;">$<%= (session[:shipment_cost].to_f +  @total.to_f).round(2) %> MXN</span>
 		</div>
 	</div>
-
 </div>
 <div class="col-md-5 panel panel-default">
-<center><h2>Confirmar la compra.</h2></center>
-<%= truncate( (render partial: 'layout_parts/terminos').html_safe, escape: false, length: 500){ link_to "(continuar leyendo)", terminos_path, target: 'blank_' }  %>
-<br/><br/>
-<%= form_tag crear_pedido_path, multipart: true do -%>
-<input type="checkbox" name="conditions" required> Acepto<br/><br/>
-<div class="col-md-6">
-<span style="font-size: 25px; float: right;">$<%= (session[:shipment_cost].to_f + @total.to_f).round(2) %> MXN</span>
-</div>
-<div class="col-md-6">
-<button class="btn btn-primary pull-right">Finalizar Compra</button><br/><br/>
-</div><br/><br/><br/><br/>
-<%end%>
+	<center><h2>Confirmar la compra.</h2></center>
+	<%= truncate( (render partial: 'layout_parts/terminos').html_safe, escape: false, length: 500){ link_to "(continuar leyendo)", terminos_path, target: 'blank_' }  %>
+	<br/><br/>
+	<%= form_tag crear_pedido_path, multipart: true do -%>
+	<input type="checkbox" name="conditions" required> Acepto<br/><br/>
+	<div class="col-md-6">
+		<span style="font-size: 25px; float: right;">$<%= (session[:shipment_cost].to_f + @total.to_f).round(2) %> MXN</span>
+	</div>
+	<div class="col-md-6">
+		<button class="btn btn-primary pull-right">Finalizar Compra</button><br/><br/>
+	</div><br/><br/><br/><br/>
+	<%end%>
 </div>
 <%else%>
-  <center>
-    <%= image_tag('sakura.png', width: '30%')%>
-    <h3>Para poder comprar necesitas tener seleccionados productos.</h3>
-    <%= link_to 'Ir a los productos', all_items_path %>
-  </center>
+<center>
+<%= image_tag('sakura.png', width: '30%')%>
+<h3>Para poder comprar necesitas tener seleccionados productos.</h3>
+<%= link_to 'Ir a los productos', all_items_path %>
+</center>
 <%end%>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>

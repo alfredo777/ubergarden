@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   post 'tienda/contacto'
   get 'tienda/contactado', as: :contactado
   post 'tienda/contactado'
+  get 'tienda/eliminar_item', as: :eliminar_item
   get 'tienda/offers', as: :offers
   get 'nosotros', to: 'tienda#nosotros', as: :about_us
   get 'admin/products/:id/products_photos',to: 'products#products_photos', as: :gallery
