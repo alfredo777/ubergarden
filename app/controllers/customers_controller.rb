@@ -26,7 +26,7 @@ class CustomersController < ApplicationController
 
   def today_orders
     require 'csv'
-    @orders = Pedido.where("created_at >= ?", Time.zone.now.beginning_of_day).where("conekta_order <> ''").paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    @orders = Pedido.where("conekta_order <> ''").where("created_at >= ?", Time.zone.now.beginning_of_day).paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
     respond_to do |format|
       format.html
       format.csv { render text: @orders.to_csv }
