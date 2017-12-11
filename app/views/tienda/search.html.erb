@@ -4,7 +4,7 @@
 		<div class="col-lg-9">
 			<% unless @products.count == 0 %>
 			<% @products.each do |product| %>
-			<%= render partial: "/layout_parts/item_col", locals: {title: "#{product.nombre}", price: "#{product.precio}", descript: "#{product.descripccion}", img: product.image_products.last, product: product} %>
+			<%= render partial: "/layout_parts/item_col", locals: {title: "#{product.nombre}", price: "#{product.precio_final}", descript: "#{product.descripccion}", img: product.image_products.last, product: product} %>
 			<%end%>
 			<%else%>
 			<center>

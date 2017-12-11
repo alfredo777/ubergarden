@@ -70,12 +70,13 @@ return false;
 				<div class="col-lg-12">
 					<br/><br/>
 					<label>
-						<span>Número de tarjeta de crédito</span>
+						<span>Número de tarjeta de crédito (16 dígitos)</span>
 					</label>
 				</div>
 				<div class="col-lg-12">
 					<div class="input-group">
-						<input type="text" size="20" data-conekta="card[number]" class="form-control" value="">
+						
+						<input type="text" size="20" data-conekta="card[number]" class="form-control" value="" maxlength="16">
 						<div class="input-group-addon">
 							<span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
 						</div>
@@ -88,14 +89,14 @@ return false;
 					</label>
 				</div>
 				<div class="col-lg-12">
-					<div class="col-md-5">
-						<input type="text" size="2" data-conekta="card[exp_month]" class="form-control" value="" class="col-md-2">
+					<div class="col-md-2">
+						<input type="text" size="2" data-conekta="card[exp_month]" class="form-control" value="" class="col-md-2"  maxlength="2">
 					</div>
 					<div class="col-md-1">
 						<span>/</span>
 					</div>
-					<div class="col-md-6">
-						<input type="text" size="4" data-conekta="card[exp_year]" class="form-control" value="" class="col-md-2">
+					<div class="col-md-4">
+						<input type="text" size="4" data-conekta="card[exp_year]" class="form-control" value="" class="col-md-2" maxlength="4">
 					</div>
 				</div>
 				<div class="col-lg-12">
@@ -106,7 +107,7 @@ return false;
 				</div>
 				<div class="col-lg-12">
 					<div class="col-md-5">
-						<input type="text" size="4" data-conekta="card[cvc]" class="form-control" value="">
+						<input type="text" size="4" data-conekta="card[cvc]" class="form-control" value="" maxlength="4">
 					</div>
 					<div class="col-md-7">
 						<i> Son 3 o 4 dígitos que usualmente vienen en la parte reversa de la tarjeta.</i>
