@@ -50,7 +50,7 @@ class ApiController < ApplicationController
 
 	def list_products
 		productos = []
-	    @products = Product.where(publicado: true).paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+	    @products = Product.where(publicado: true).paginate(:page => params[:page], :per_page => 6).order('created_at DESC')
 
 
 
