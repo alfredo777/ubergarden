@@ -12,7 +12,8 @@ class ApiController < ApplicationController
 
 		@products.each do |p|
 			img = p.image_products.last
-			imgp = oppen_images(img)
+			imgp = img
+			#imgp = oppen_images(img)
 			productos.push({
 				Id: p.id,
 				nombre: p.nombre ,
@@ -56,7 +57,8 @@ class ApiController < ApplicationController
 
 		@products.each do |p|
 			img = p.image_products.last
-			imgp = oppen_images(img)
+			imgp = img
+			#imgp = oppen_images(img)
 			productos.push({
 				Id: p.id,
 				nombre: p.nombre ,
@@ -143,7 +145,8 @@ class ApiController < ApplicationController
 	products.each do |p|
 		last_colors = []
 		img = p.image_products.last
-		imgp = oppen_images(img)
+		imgp = img
+		#imgp = oppen_images(img)
 		quantity = prodxy[p.id]
 
 		coloresx.each do |colores|
@@ -219,7 +222,8 @@ class ApiController < ApplicationController
 		productos = []
 		@products.each do |p|
 			img = p.image_products.last
-			imgp = oppen_images(img)
+			imgp = img
+			#imgp = oppen_images(img)
 			productos.push({
 				Id: p.id,
 				nombre: p.nombre ,
@@ -579,7 +583,8 @@ class ApiController < ApplicationController
 		@products.each do |p|
 			img = p.image_products.last
 			if img
-			imgp = oppen_images(img)
+			imgp = img
+			#imgp = oppen_images(img)
 		    else
 		    imgp = ""
 		    end
