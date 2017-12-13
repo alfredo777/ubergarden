@@ -12,8 +12,7 @@ class ApiController < ApplicationController
 
 		@products.each do |p|
 			img = p.image_products.last
-			imgp = img
-			#imgp = oppen_images(img)
+			imgp = oppen_images(img)
 			productos.push({
 				Id: p.id,
 				nombre: p.nombre ,
@@ -57,8 +56,7 @@ class ApiController < ApplicationController
 
 		@products.each do |p|
 			img = p.image_products.last
-			imgp = img
-			#imgp = oppen_images(img)
+			imgp = oppen_images(img)
 			productos.push({
 				Id: p.id,
 				nombre: p.nombre ,
@@ -145,8 +143,7 @@ class ApiController < ApplicationController
 	products.each do |p|
 		last_colors = []
 		img = p.image_products.last
-		imgp = img
-		#imgp = oppen_images(img)
+		imgp = oppen_images(img)
 		quantity = prodxy[p.id]
 
 		coloresx.each do |colores|
@@ -222,8 +219,7 @@ class ApiController < ApplicationController
 		productos = []
 		@products.each do |p|
 			img = p.image_products.last
-			imgp = img
-			#imgp = oppen_images(img)
+			imgp = oppen_images(img)
 			productos.push({
 				Id: p.id,
 				nombre: p.nombre ,
@@ -583,8 +579,7 @@ class ApiController < ApplicationController
 		@products.each do |p|
 			img = p.image_products.last
 			if img
-			imgp = img
-			#imgp = oppen_images(img)
+			imgp = oppen_images(img)
 		    else
 		    imgp = ""
 		    end
@@ -651,8 +646,9 @@ class ApiController < ApplicationController
 	      end
 	      #if File.exist?(filename)
 	      #puts "El archivo existe"
-	      url = Base64.strict_encode64(open(filename).to_a.join)
+	      #url = Base64.strict_encode64(open(filename).to_a.join)
 	      #end
+	      url = filename
 	    end
 	    url
 	end
