@@ -17,7 +17,7 @@ class TiendaController < ApplicationController
     end
     end
 
-    @best_products = Product.find(ids)
+     @best_products = Product.where(id: ids) 
      render layout: "application"
   end
 
