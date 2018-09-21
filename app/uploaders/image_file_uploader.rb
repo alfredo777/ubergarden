@@ -27,6 +27,10 @@ class ImageFileUploader < CarrierWave::Uploader::Base
     "/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def default_url
+  "https://urgarden.s3-us-west-1.amazonaws.com/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
+
   def watermark
     manipulate! do |img|
       logo = Magick::Image.read("#{Rails.root}/app/assets/images/watermark.png").first
