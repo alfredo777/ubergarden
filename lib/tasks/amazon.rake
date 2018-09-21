@@ -1,3 +1,4 @@
+namespace :super do
 task :evaluate_images => :environment do
 	@products =  Product.all
 	@products.each do |product|
@@ -6,4 +7,5 @@ task :evaluate_images => :environment do
 			puts images.file.standar.split('?')
 		end
 	end
+end
 end
